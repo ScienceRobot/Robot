@@ -1,0 +1,20 @@
+#TestMotorUntilAngle03.txt
+0,StartLogging
+0,StartAccelerometer(ETHACCELS_LEFT_LEG,7,POLLING)
+0,StartAccelerometer(ETHACCELS_RIGHT_LEG,7,POLLING)
+0,StartAccelerometer(ETHACCELS_TORSO,1,POLLING)
+0,StartTouchSensor(ETHACCELS_LEFT_LEG,0x3,POLLING)
+0,StartTouchSensor(ETHACCELS_RIGHT_LEG,0x3,POLLING)
+#TurnMotorUntilAngle(MotPCB,Mot#,Strength,Dur,AccelPCB,AccelNum,xyz,oper,angle1,angle2)
+#note that it is best to let the accelerometers send at least one sample first
+200,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,0,-2,1000,ETHACCELS_LEFT_LEG,0,0,3,-1,1)
+200,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,1,-2,500,ETHACCELS_LEFT_LEG,0,2,3,-1,1)
+200,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,2,-2,1000,ETHACCELS_LEFT_LEG,1,0,3,-1,1)
+#0,TurnMotor(ETHMOTORS_LOWER_BODY,0,-2,200)
+#currently stopped accel can't be restarted
+#1200,StopTouchSensor(ETHACCELS_LEFT_LEG,0x3,POLLING)
+#1200,StopTouchSensor(ETHACCELS_RIGHT_LEG,0x3,POLLING)
+#1200,StopAccelerometer(ETHACCELS_LEFT_LEG,7,POLLING)
+#1200,StopAccelerometer(ETHACCELS_RIGHT_LEG,7,POLLING)
+#1200,StopAccelerometer(ETHACCELS_TORSO,1,POLLING)
+1200,StopLogging

@@ -1,0 +1,52 @@
+Time	Inst Time	Quantity	Trgt/ZrVl/Thr (WG)	Info/CrctDir	TargetAngle	CurrentAngle	Velocity	Accel	0	10	20	30	40	50	60	70	80	90	100	110	120	130	140	150	160	170	180	190	200	210	220	230	240	250	260	270	280	290	300	310	320	330	340	350	360	370	380	390	400	410	420	430	440	450	460	470	480	490	500	510	520	530	540	550	560	570	580	590	600	610	620	630	640	650	660	670	680	690	700	710	720	730	740	750	760	770	780	790	800	810	820	830	840	850	860	870	880	890	900	910	920	930	940	950	960	970	980	990	1000
+1030	0			INITIAL THRUST=-16 Segment Torso out of range	TargetAngle=-4.00 -3.00 -2.00
+1030	0			Segment Torso out of range	TargetAngle=-4.00 -3.00 -2.00
+1040	10	Ang	TargetIdx=-1		(-4.0<-3.0<-2.0)	-0.46
+1040	10	Vel	Zero=-1 Min=0 Max=100	1			-1.27
+1040	10	Accel	Thrust=-16 (0)	1				-0.03	-0.04
+1040	10			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1050	20	Ang	TargetIdx=-1		(-4.0<-3.0<-2.0)	-0.47
+1050	20	Vel	Zero=-1 Min=0 Max=100	1			-1.51
+1050	20	Accel	Thrust=-16 (0)	1				-0.24	-0.12
+1050	20			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1060	30	Ang	TargetIdx=76		(-4.0<-3.0<-2.0)	-0.51
+1060	30	Vel	Zero=-1 Min=0 Max=27	1			-3.30
+1060	30	Accel	Thrust=-16 (0)	1				-1.79	-0.69
+1060	30			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1070	40	Ang	TargetIdx=43		(-4.0<-3.0<-2.0)	-0.56
+1070	40	Vel	Zero=-1 Min=0 Max=19	1			-5.69
+1070	40	Accel	Thrust=-16 (0)	1				-2.39	-1.47
+1070	40			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1080	50	Ang	TargetIdx=28		(-4.0<-3.0<-2.0)	-0.65
+1080	50	Vel	Zero=-1 Min=0 Max=15	1			-8.47
+1080	50	Accel	Thrust=-16 (0)	1				-2.78	-2.32
+1080	50			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1090	60	Ang	TargetIdx=19		(-4.0<-3.0<-2.0)	-0.77
+1090	60	Vel	Zero=-1 Min=0 Max=11	1			-12.18
+1090	60	Accel	Thrust=-16 (0)	1				-3.71	-2.96
+1090	60			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1100	70	Ang	TargetIdx=13		(-4.0<-3.0<-2.0)	-0.93
+1100	70	Vel	Zero=-1 Min=0 Max=9	1			-15.97
+1100	70	Accel	Thrust=-16 (0)	1				-3.79	-3.43
+1100	70			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1110	80	Ang	TargetIdx=11		(-4.0<-3.0<-2.0)	-1.11
+1110	80	Vel	Zero=-1 Min=0 Max=14	1			-18.40
+1110	80	Accel	Thrust=-16 (0)	1				-2.43	-3.31
+1110	80			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1120	90	Ang	TargetIdx=8		(-4.0<-3.0<-2.0)	-1.34
+1120	90	Vel	Zero=-1 Min=0 Max=8	1			-22.29
+1120	90	Accel	Thrust=-16 (0)	1				-3.89	-3.37
+1120	90			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1130	100	Ang	TargetIdx=6		(-4.0<-3.0<-2.0)	-1.60
+1130	100	Vel	Zero=-1 Min=0 Max=7	1			-26.12
+1130	100	Accel	Thrust=-16 (0)	1				-3.83	-3.38
+1130	100			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1140	110	Ang	TargetIdx=4		(-4.0<-3.0<-2.0)	-1.90
+1140	110	Vel	Zero=-1 Min=100 Max=5	1			-30.42
+1140	110	Accel	Thrust=-16 (0)	1				-4.30	-4.01
+1140	110			V>MinV Dec: V=Y T=Y A=Y
+1150	120			Angle 0 in range2 'Torso Z' 'Left Side Motor' -2.24 (-4.00<-3.00<-2.00
+1150	120	Ang	TargetIdx=3		(-4.0<-3.0<-2.0)	-2.24
+1150	120	Vel	Zero=-1 Min=100 Max=6	1			-33.61
+1150	120	Accel	Thrust=-15 (0)	1				-3.19	-3.77
+1150	120			V>MinV Dec: V=Y T=Y A=Y

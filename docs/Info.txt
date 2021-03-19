@@ -1,0 +1,156 @@
+Robot App Info:
+
+
+Script Instructions:
+1. StartLogging() - start recording to Model log
+2. LogScriptFilename() - log script file name in log (usually first thing after StartLogging)
+3. StopLogging() - stop recording to Model log
+4. StartAccelerometer(PCBName,AccelMask,Method)- start accelerometer(s) single sample, polling, or interrupt
+  PCBName: EthAccelsPCB Name (ex: ETHACCELS_LEFT_LEG) or ALL_ETHACCELS
+	AccelMask: bitwise mask of which of 3 accels (1=accel0,3=accel0+accel1,7=all 3 accels, 5=accel0+accel2)
+	Method: SINGLE_SAMPLE or POLLING or RELATIVE_INTERRUPT 
+5. StopAccelerometer(PCBName,AccelMask,Method) - stop accelerometer(s) single sample, polling, or interrupt
+  PCBName: EthAccelsPCB Name (ex: ETHACCELS_LEFT_LEG) or ALL_ETHACCELS
+	AccelMask: bitwise mask of which of 3 accels (1=accel0,3=accel0+accel1,7=all 3 accels, 5=accel0+accel2)
+	Method: SINGLE_SAMPLE or POLLING or RELATIVE_INTERRUPT 
+6. StartAnalogSensor(PCBName,AnalogSensorMask,Method) - start analog (touch or potentiometer) sensor(s) single sample, polling, or interrupt
+  PCBName: EthAccelsPCB Name (ex: ETHACCELS_LEFT_LEG) or ALL_ETHACCELS
+	AccelMask: bitwise mask of which of touch sensors (ex: 1=touchsensor0,3=touchsensor0+touchsensor1)
+	Method: SINGLE_SAMPLE or POLLING or RELATIVE_INTERRUPT 
+7. StopAnalogSensor(PCBName,TouchSensorMask,Method) - stop analog (touch or potentiometer) sensor(s) polling or interrupt
+  PCBName: EthAccelsPCB Name (ex: ETHACCELS_LEFT_LEG) or ALL_ETHACCELS
+	AccelMask: bitwise mask of which of touch sensors (ex: 1=touchsensor0,3=touchsensor0+touchsensor1)
+	Method: SINGLE_SAMPLE or POLLING or RELATIVE_INTERRUPT 
+8. TurnMotor(MotorName,Strength,Duration)  Turn a motor with a strength (use - for counter clockwise), for Duration (in ms) 
+9. MotorAngle(
+StartTime,Motor0,InitialStrength,Timeout,(Motor1,InitialStrength,Timeout,)Accel0 or Pot0,XYorZ,TargetAngle,DegreeOffsetPlus,DegreeOffsetMinus,(Accel1 or Pot1,XYorZ,TargetAngle,DegreeOffsetPlus,DegreeOffsetMinus,)FLAGS)
+Turn motor to the TargetAngle (within DegreeOffsetPlus or DegreeOffsetMinus) of Accel[0], unless Accel[0] is in range, then turn motor to the TargetAngle of Accel[1] (unless one or more below flags change this default behavior). 
+{Note that TargetAngle can be: CurrentAngle, CurrentAngle[VariableToCreate], an earlier defined variable name, CurrentAnglePlus (adds another parameter Offset indicating to use the current angle as the targetangle plus the offset given in the next parameter, then the DegOffPos and DegOffNeg follow as usual).}  
+Note: at least a 2 degree target range (Angle,-1,1) is best to make sure the brake does not reach V=0 before reaching the target zone.
+Note: For Accelerometer angles, the angle, velocity, and acceleration are determined from the accelerometer and gyroscope, and angles represent the angle the accelerometer makes relative to the surface (center) of the earth. For potentiometer angles, the angle, velocity and acceleration are determined from the potentiometer, and angles represent the angle between two sides of the joint the potentiometer is connected to - a good way to visualize this angle is to think of the potentiometer as being at the center of a hinge- the angle the hinge makes is 0 degrees when completely closed, and 360 degrees when totally open- a potentiometer angle has nothing to do with the joint orientation relative to the earth.
+--FLAGS--:
+ABORT_ANGLE0=#1 : Abort script if angle of accel0 is greater than #1
+ABORT_ANGLE1=#1 : Abort script if angle of accel1 is greater than #1
+ABORT_VELOCITY0=#1 : Abort script if velocity of angle associated with accel0 is greater than #1
+ABORT_VELOCITY1=#1 : Abort script if velocity of angle associated with accel1 is greater than #1
+ABORT_ON_TIMEOUT : Abort script if this instruciton timesout
+WAIT_STAGE : instruction continues whether at target or not, until stage is complete
+REQUIRED : once target range is reached, instruction (and stage) ends. Only a REQUIRED instruction of a timeout can end a stage.
+NO_HOLD : In a stage, all instructions except the REQUIRED instruction, by default, try to hold the target range of all accelerometers (for example, if a target range is reached, but then lost, the instruction will continue to thrust toward the angle range). Use NO_HOLD, to have the instruction end once the target range is reached before the end of the stage (by a REQUIRED inst or a timeout). 
+TVR=#1:#2:#3  use ThrustVelocityRatio method of opposing motion ***when Velocity is moving away from target angle only (V=N, velocity=not toward target)*** (ex: HOLD_ANGLE=0.5:0.2:3 will, when the segment is moving away from target in positive direction, set Thrust=Velocity*0.5 in the direction towards target angle, when the segment is moving away from the target in a negative direction, set Thrust=Velocity*0.2 in the direction toward the target angle). The third argument (#3) is the minimum thrust towards the target. For example when the velocity away from the target is small {<1.0}, then thrust is set to this minimum thrust. This helps in cases where a segment has no velocity but is out of range and should be thrusting toward the target range (otherwise the TVR method would set thrust to be very small, around 0). Once segment is moving toward target (V=Y, velocity=yes, in correct direction), regular (incremental feedback) motion code takes over.
+RELATIVE_ANGLE : The Target Angle given for Accel0 serves as the offset for Accel1. So the TargetAngle for accel0 will constantly be updated using the equation: TargetAngle0=TargetAngle1+offset (where offset is the TargetAngle give in the MotorAccel instruction for Accel0). So for Angle0 to be 18 less than Angle1, an offset (TargetAngle for Accel0) should be -18. Note that Target Angle, DegreeOffsetPlos, and DegreeOffsetMinus are ignored for the Accel1 (but are currently required).
+MAX_THRUST=#1 : user override of MaxThrust setting on motor-accel association
+MAX_REVERSE_THRUST=#1 : user ovveride of MaxReverseThrust (thrust used to brake) on motor-accel assocation
+CONSTANT_THRUST : apply a constant thrust to motor (avoid thrust analysis). Uses initial thrust strength as constant thrust strength.
+DOUBLE_THRUST- used when two motors to make thrust half
+MAINTAIN_THRUST - at the end of a stage Thrust=0, unless this flag is set, then whatever thrust the motor has is maintained (use with caution since motor may still be turning at the end of a stage). 
+MAX_VELOCITY=#1 - maximum velocity allowed for the body segments associated with both accelerometers 0 and 1
+MAX_VELOCITY0=#1 - maximum velocity allowed for the body segment associated with accelerometer 0
+MAX_VELOCITY1=#1 - maximum velocity allowed for the body segment associated with accelerometer 1
+MIN_VELOCITY=#1 - minumum velocity allowed for the body segments associated with both accelerometers 0 and 1
+MIN_VELOCITY0=#1 - minimum velocity allowed for the body segment associated with accelerometer 0
+MIN_VELOCITY1=#1 - minimum velocity allowed for the body segment associated with accelerometer 1
+MAX_ACCEL=#1 - maximum accel. If accel is exceeded, thrust is decreased. 
+IF_A2_THEN_A0_ELSE_A1 (abbr: IF_A2): If Accel2 is in range, then use Accel0, otherwise use Accel1. A helpful way to think of this is to use Accel2 to divide up a 360 degree pie into two parts, one part for accel0 the other for accel1.
+(was alt: USE_ACCEL#_IF_ACCEL#(>,<,>=,<=)# - (ex: USE_ACCEL2_IF_ACCEL0>-20.0,USE_ACCEL1_IF_ACCEL0<=-20.0, etc.) Instruction uses the first Accel number (and strives for the associated angle range) only if the second given Accel angle is >,<,>=,or <= some angle.) 
+IF_A3_THEN_A1_ELSE_A2 (abbr: IF_A3): Same as above but Accel0 must be in range first, if true, then if Accel3 is in range, use Accel1, otherwise use Accel2
+OPPOSE_MOTION - Skip thrust analysis, and simply use ThrustVelocityRatio (TVR) to set thrust in opposite direction as current motion. For example body segment moving with +10dps, and TVR=1.0 set Thrust=10 in opposite direction, if TVR=0.5 set Thrust=5, if TV=2.0 set opposing thrust to 20 (or MaxThrust, whichever is lower). Thrust is set to 0 when body segment is not moving (IsMoving=0).
+IF_A2_AND_A3_THEN_A0_ELSE_A1 (abbr: IF_A2_AND_A3): similar to above, but if both A2 and A3 are in range, then UseAccel=0, else UseAccel=1  
+IF_NOT_A#1_MAXTHRUST=#2 (#1=accel number 1-4,#2=MaxThrust value) : If A1 (A2, A3, or A4) is not in range, set MaxThrust = to #1 (where #1 is an integer representing a MaxThrust). The accelerometer in question, A1 (A2, A3, or A4) cannot end a stage and is evaluated everytime the instruction is evaluated. Used to stop thrusting if, for example, a Robot Foot Z (left and right) is more than 5 degrees or less than -5 degrees. Currently MaxThrust is applied to all accels in inst. Highest Accel number has the priority (ex: if A1 and A2 are used, A2 will override A1 if both are true).
+VELOCITY_A#1<#2 (or>) : Currently only applies to IF_A2 and IF_A2_AND_A3. For the accel #1 (ex: a2 or a3) condition to be true, requires the accel to be in the given range AND the velocity of that accel to be < (or >) some floating point value. This allows more precise control of when a motor changes focus from one accel to another (based on the velocity of some accelerometer/gyroscope).
+VELOCITY_A#1_OR<#2 (or>) : same as above but OR with A#1 not AND
+OPPOSE_MOTION_MAINTAIN - same as OPPOSE_MOTION above, but when body segment is not moving, Thrust is not set to 0, for OPPOSE_MOTION without _MAINTAIN, thrust is set to 0 (Thrust=0) when the body segment is not moving. Used to hold a robot segment with a thrust even when segment is not moving.
+OPPOSE_MOTION=#1 - user override of TVR for both positive and negative directions (#1=TVR is the same for body segment motion in both posivei and negative directions)
+OPPOSE_MOTION=#1:#2 - user override for positive (#1) and negative (#2) TVR  (Thrust=0 when IsMoving=0)
+OPPOSE_MOTION_MAINTAIN=#1 - same as above but with thrust maintained (thrust not set to 0) when no motion
+OPPOSE_MOTION_MAINTAIN=#1:#2 - same as above but both positive and negative TVR are specified
+OPPOSE_MOTION_IN_RANGE_MOVING_TO_TARGET =#1:#2 (or just OPPOSE_MOTION_IN_RANGE for short) - uses the TVR method to oppose motion when the body segment velocity is going in the direction of the target angle (V=Y) and the body segment is in the target range. Without this flag, the TVR method for HOLD_ANGLE=#1:#2 only is used when the body segment velocity is moving away from the target V=N. Note that the TVR method will skip the default code used to try to stop a body segment on the target once the body segment is in the target range. Note that using this flag uses the TVR method, and will not use any MAX_VELOCITY, etc. restrictions on thrust.
+FUTURE_LOG - record thrust analysis decisions in future log
+NO_STOP_ON_TARGET - ignore code that seeks to stop on the target when the target angle is 1000ms away. 
+MOST_VELOCITY - use the accel (0 or 1) with the most velocity (ignoring if an accel is in range or not)
+FARTHEST_FROM_TARGET - use the accel (0 or 1) that is the farthest from the target angle
+NO_MOTION_NO_THRUST (NO_MOTION_OVER_RANGE0,NO_MOTION_OVER_RANGE1) - Do no thrust analysis and set Thrust=0 if the accel(s) have no motion even if they are not in range. Note that if used with WAIT_STAGE but not HOLD_ANGLE, this flag could cause a stage to run until timeout since the target range ending the stage might not ever be reached. This is used mostly to not introduce new motions when a robot body segment probably already has a stable orientation, but may not necessarily be in the desired target range. 
+--END FLAGS--
+examples:
+1,MotorAccel(MOTOR_TORSO,3,400,ACCEL_TORSO,X,TX0,-2,2,WAIT_STAGE|HOLD_ANGLE=0.5:0.5|MAX_THRUST=16|MAX_REVERSE_THRUST=3|MAX_VELOCITY=20|MAX_ACCEL=0.1|MAINTAIN_THRUST|CONSTANT_THRUST=20:4)
+2,MotorAccel(MOTOR_RIGHT_SIDE,10,400,ACCEL_RIGHT_UPPER_LEG,Z,-8,-1,1,ACCEL_LEFT_UPPER_LEG,Z,0,0,0,WAIT_STAGE|HOLD_ANGLE=10:1|MAX_THRUST=8|MAX_REVERSE_THRUST=2|MAX_ACCEL=1|RELATIVE_ANGLE)
+ 
+10. StoreAngle(AccelName,AccelDimension,VariableName) : store a current angle into a variable that can be used later. Ex: 0,StoreAngle(ACCEL_LEFT_UPPER_LEG,Z,LULZ0)
+11. StartLoop(#,Keyword1,Keyword2)  - start looping all instructions below this inst until the EndLoop inst
+# is the number of times to loop -1=indef, 0=none(todo), 1+=number of times to loop. Keyword1 is the key that will end the loop after the last inst in the loop group. Keyword2 is the key(s) that will instantly abort the loop and script. Keywords can be "Any" or "#" where # is the key code in decimal
+12. EndLoop- end of instructions to loop. 
+13. TouchSensor(TouchSensorName,GT/LT,Value,Delay,Timeout) - End Stage if a TouchSensor has a percent pressed value that is Greater Than (GT) or Less Than (LT) the given Value. Delay=number of ms to wait before checking for TouchSensor. Timeout= duration of inst
+14. StartBalancing - not used
+15. StopBalancing - not used
+
+
+
+
+Robot App User Interface
+Model Screen
+
+Load Log - Load Model Log to step through log entries (which update 3D model axes).
+|< - rewind log
+> - play log
+STEP FRWD - step forward one log entry
+SKIP FWD - skip to next non accel, non motor thrust log entry
+STEP BKWD - step backward one log entry (currently can eventually cause crash)
+STOP - stop robot log playing
+Close - close Robot Model window
+
+Hot Keys:
+arrow up - move model up
+arrow down - move model down
+right arrow - move model right
+left arrow - move model left
+A - rotate model counter clockwise around +Y axis
+D - rotate model clockwise around +Y axis
+W - rotate model counter clockwise around +X axis
+X - rotate model clockwise around +X axis
+Q - rotate model counter clockwise around +Z axis
+Z - rotate model clockwise around +Z axis
+
+1 - front camera
+2 - side camera
+3 - front-side camera
+
+r - rewind log to start
+f - log entry foward
+b - log entry backward
+g - go to next non accel, non motor thrust log entry
+space - stop log file playing
+
+
+. - go forward 10ms
+, - go backward 10ms
+
+s - and number - skip to stage
+/ - step forward to next stage start or end 
+
+
+===================
+ETHMOTORS WINDOW
+Hot Keys:
+
+m and then number - select motor
+b - both motors (if there are motor pairs defined)
+o - opposite - move paired motors in opposite direction
+
+s and then number - strength to turn motor
+
+d and then number - duration to turn motor
+
+left arrow - move motor(s) counterclockwise
+right arrow - move motor(s) clockwise
+down arrow - set speed to 0
+=====================
+Robot.conf file
+
+Motor Accelerometer Associations:
+Take the motor you are associating to various accelerometers and if the nearest accelerometer body segment below the motor (in the case of the Left Side Motor, this body segment is the Left Upper Leg), needs the motor to turn clockwise (CW) to increase the angle (make the angle more positive in the given dimension, which for the side motors to the upper leg is the Z dimension), then (for Left Side Motor):
+MOTOR_LEFT_SIDE=CW
+otherwise the side motor needs to turn counter clock-wise (CCW) to increase the angle of the nearest accelerometer body segment below it.
+MOTOR_RIGHT_SIDE=CCW
+
+
+Note that motors can be associated to many different accelerometers and dimensions, for example a knee motor can have an association with the upper leg X and an association with the Hip Z since the knee also affects the Hip Z angle.

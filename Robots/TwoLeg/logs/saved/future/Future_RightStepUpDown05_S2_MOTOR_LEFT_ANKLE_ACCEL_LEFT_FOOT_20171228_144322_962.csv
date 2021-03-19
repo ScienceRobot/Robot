@@ -1,0 +1,77 @@
+Time	Inst Time	Quantity	Trgt/ZrVl/Thr (WG)	Info/CrctDir	Angle	Velocity	Accel	0	10	20	30	40	50	60	70	80	90	100	110	120	130	140	150	160	170	180	190	200	210	220	230	240	250	260	270	280	290	300	310	320	330	340	350	360	370	380	390	400	410	420	430	440	450	460	470	480	490	500	510	520	530	540	550	560	570	580	590	600	610	620	630	640	650	660	670	680	690	700	710	720	730	740	750	760	770	780	790	800	810	820	830	840	850	860	870	880	890	900	910	920	930	940	950	960	970	980	990	1000
+1610	0	Ang	TargetIdx=19		-6.08
+1610	0	Vel	Zero=-1 Min=0 Max=5	1		-4.89
+1610	0	Accel	Thrust=-3 (0)	1			-0.68	-0.23
+1610	0			Dec: V=Y V<MinV T=Y A=Y A>MaxA
+1620	10	Ang	TargetIdx=14		-6.14
+1620	10	Vel	Zero=-1 Min=100 Max=2	1		-6.28
+1620	10	Accel	Thrust=-2 (0)	1			-1.39	-0.69
+1620	10			START BRAKE Thrust=0: V=Y MaxVFI<5 T=Y 
+1630	20	Ang	TargetIdx=13		-6.20
+1630	20	Vel	Zero=-1 Min=100 Max=17	1		-6.38
+1630	20	Accel	Thrust=0 (0)	1			-0.10	-0.72
+1640	30	Ang	TargetIdx=11		-6.27
+1640	30	Vel	Zero=-1 Min=100 Max=4	1		-6.78
+1640	30	Accel	Thrust=0 (0)	1			-0.40	-0.63
+1640	30			BRAKE MORE: Dec V=Y MaxVFI<5 T=N MinVFI>=5
+1650	40	Ang	TargetIdx=9		-6.35
+1650	40	Vel	Zero=-1 Min=100 Max=1	1		-7.53
+1650	40	Accel	Thrust=1 (0)	1			-0.75	-0.42
+1650	40			BRAKE MORE: Dec V=Y MaxVFI<5 T=N MinVFI>=5
+1660	50	Ang	TargetIdx=9		-6.42
+1660	50	Vel	Zero=25 Min=8 Max=100	1		-7.24
+1660	50	Accel	Thrust=2 (0)	0			0.29	-0.29
+1670	60	Ang	TargetIdx=7		-6.49
+1670	60	Vel	Zero=-1 Min=100 Max=7	1		-7.35
+1670	60	Accel	Thrust=2 (0)	1			-0.11	-0.19
+1680	70	Ang	TargetIdx=7		-6.56
+1680	70	Vel	Zero=12 Min=4 Max=100	1		-6.77
+1680	70	Accel	Thrust=2 (0)	0			0.58	0.25
+1680	70			STOP BRAKE & THRUST T=-1: V=Y (A=N) T=N V>MinV but MinVFI<5
+1690	80	Ang	TargetIdx=6		-6.62
+1690	80	Vel	Zero=17 Min=4 Max=100	1		-6.38
+1690	80	Accel	Thrust=-1 (0)	0			0.39	0.29
+1690	80			MINV Inc: V=Y T=Y (A=N) V>MinV but MinVFI<5
+1700	90	Ang	TargetIdx=5		-6.69
+1700	90	Vel	Zero=-1 Min=100 Max=14	1		-6.49
+1700	90	Accel	Thrust=-2 (0)	1			-0.11	0.28
+1710	100	Ang	TargetIdx=5		-6.74
+1710	100	Vel	Zero=5 Min=1 Max=100	1		-5.26
+1710	100	Accel	Thrust=-2 (0)	0			1.23	0.50
+1710	100			MINV Inc: V=Y T=Y (A=N) V>MinV but MinVFI<5
+1720	110	Ang	TargetIdx=6		-6.78
+1720	110	Vel	Zero=4 Min=0 Max=100	1		-4.03
+1720	110	Accel	Thrust=-3 (0)	0			1.23	0.78
+1720	110			Inc: V=Y V<MinV T=Y A=N
+1730	120	Ang	TargetIdx=6		-6.81
+1730	120	Vel	Zero=4 Min=0 Max=100	1		-3.19
+1730	120	Accel	Thrust=-4 (0)	0			0.84	1.10
+1730	120			Inc: V=Y V<MinV T=Y A=N
+1740	130	Ang	TargetIdx=7		-6.84
+1740	130	Vel	Zero=5 Min=0 Max=100	1		-2.57
+1740	130	Accel	Thrust=-5 (0)	0			0.63	0.90
+1740	130			Inc: V=Y V<MinV T=Y A=N
+1750	140	Ang	TargetIdx=14		-6.85
+1750	140	Vel	Zero=1 Min=0 Max=100	1		-1.16
+1750	140	Accel	Thrust=-6 (0)	0			1.41	0.96
+1750	140			Inc: V=Y V<MinV T=Y A=N
+1760	150	Ang	TargetIdx=9		-6.87
+1760	150	Vel	Zero=-1 Min=0 Max=16	1		-1.57
+1760	150	Accel	Thrust=-6 (0)	1			-0.41	0.54
+1760	150			Dec: V=Y V<MinV T=Y A=Y A>MaxA
+1770	160		Ang=-6.87 Vel=-0.77 Accel=0.79 T=-5		Thrust=0: In Range and not moving (range= -8.0 to -6.0)
+1780	170	Ang	TargetIdx=9		-6.89
+1780	170	Vel	Zero=-1 Min=0 Max=12	1		-1.36
+1780	170	Accel	Thrust=0 (0)	1			-0.59	-0.07
+1780	170			INC BRAKE Dec: V=Y V<MinV T=N A=Y A>MaxA
+1790	180		Ang=-6.89 Vel=-0.68 Accel=0.69 T=1		Thrust=0: In Range and not moving (range= -8.0 to -6.0)
+1800	190	Ang	TargetIdx=8		-6.91
+1800	190	Vel	Zero=-1 Min=0 Max=12	1		-1.25
+1800	190	Accel	Thrust=0 (0)	1			-0.57	-0.16
+1800	190			INC BRAKE Dec: V=Y V<MinV T=N A=Y A>MaxA
+1810	200		Ang=-6.91 Vel=-0.26 Accel=0.99 T=1		Thrust=0: In Range and not moving (range= -8.0 to -6.0)
+1820	210		Ang=-6.91 Vel=0.17 Accel=0.43 T=0		Thrust=0: In Range and not moving (range= -8.0 to -6.0)
+1830	220		Ang=-6.91 Vel=-0.22 Accel=-0.39 T=0		Thrust=0: In Range and not moving (range= -8.0 to -6.0)
+1840	230		Ang=-6.91 Vel=-0.34 Accel=-0.12 T=0		Thrust=0: In Range and not moving (range= -8.0 to -6.0)
+1850	240		Ang=-6.91 Vel=-0.03 Accel=0.31 T=0		Thrust=0: In Range and not moving (range= -8.0 to -6.0)
+1860	250		Ang=-6.91 Vel=0.07 Accel=0.11 T=0		Thrust=0: In Range and not moving (range= -8.0 to -6.0)

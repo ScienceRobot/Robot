@@ -1,0 +1,4 @@
+#TurnHeadRightd01.txt
+0,StartLogging
+0,TurnMotor(ETHMOTORS_UPPER_BODY,MOTOR_NECK,2,500)
+500,StopLogging

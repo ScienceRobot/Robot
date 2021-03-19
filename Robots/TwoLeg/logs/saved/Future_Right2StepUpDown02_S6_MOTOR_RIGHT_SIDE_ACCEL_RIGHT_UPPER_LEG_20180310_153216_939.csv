@@ -1,0 +1,18 @@
+Time	Inst Time	Quantity	Trgt/ZrVl/Thr (WG)	Info/CrctDir	TargetAngle	CurrentAngle	Velocity	Accel	0	10	20	30	40	50	60	70	80	90	100	110	120	130	140	150	160	170	180	190	200	210	220	230	240	250	260	270	280	290	300	310	320	330	340	350	360	370	380	390	400	410	420	430	440	450	460	470	480	490	500	510	520	530	540	550	560	570	580	590	600	610	620	630	640	650	660	670	680	690	700	710	720	730	740	750	760	770	780	790	800	810	820	830	840	850	860	870	880	890	900	910	920	930	940	950	960	970	980	990	1000
+2720	0			Angle in range1 'Right Upper Leg Z' 'Right Side Motor' 2.68 (1.00<3.00<13.00
+2720	0			Changing Right Side Motor from Accel[0] (Right Upper Leg Z 3.0 1.0 13.0) to Accel[1] (Torso Z 3.0 2.0 13.0)
+2720	0			INITIAL THRUST=-4 Segment Torso out of range	TargetAngle=2.00 3.00 13.00
+2720	0			Segment Torso out of range	TargetAngle=2.00 3.00 13.00
+2730	10	Ang	TargetIdx=-1		( 2.0< 3.0<13.0)	1.88
+2730	10	Vel	Zero=-1 Min=0 Max=65	1			0.90
+2730	10	Accel	Thrust=-4 (0)	1				0.76	0.56
+2730	10			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+2740	20	Ang	TargetIdx=54		( 2.0< 3.0<13.0)	1.87
+2740	20	Vel	Zero=-1	0			-0.73
+2740	20	Accel	Thrust=-5 (0)	0				-1.63	0.02
+2740	20			Inc: V=N A=N T=Y
+2750	30	Ang	TargetIdx=40		( 2.0< 3.0<13.0)	1.90
+2750	30	Vel	Zero=-1 Min=0 Max=14	1			2.77
+2750	30	Accel	Thrust=-6 (0)	1				3.50	0.88
+2750	30			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+2760	40			Angle in range1 'Torso Z' 'Right Side Motor' 2.01 (2.00<3.00<13.00

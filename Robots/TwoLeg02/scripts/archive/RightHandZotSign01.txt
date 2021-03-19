@@ -1,0 +1,26 @@
+#RightHandZotSign01.txt
+#note that currently using speed=5 disrupts the EthMotors PIC for the right hand
+0,MOTOR_RIGHT_HAND,4,4,50 #2rd finger
+0,MOTOR_RIGHT_HAND,5,4,50
+0,MOTOR_RIGHT_HAND,6,3,1000 #3rd finger
+0,MOTOR_RIGHT_HAND,7,3,700
+0,MOTOR_RIGHT_HAND,8,3,1400 #4th finger
+0,MOTOR_RIGHT_HAND,9,3,700
+0,MOTOR_RIGHT_HAND,10,3,50 #5th finger
+0,MOTOR_RIGHT_HAND,11,3,50
+0,MOTOR_RIGHT_HAND,0,-6,1200 #thumb
+0,MOTOR_RIGHT_HAND,1,-3,650 #thumb - motor 1 is currently backwards
+0,MOTOR_RIGHT_HAND,2,3,650 #thumb
+#put fingers back
+3000,MOTOR_RIGHT_HAND,4,-4,50 #2rd finger
+3000,MOTOR_RIGHT_HAND,5,-4,50
+3000,MOTOR_RIGHT_HAND,6,-3,1050 #3rd finger
+3000,MOTOR_RIGHT_HAND,7,-3,720
+3000,MOTOR_RIGHT_HAND,8,-3,1450 #4th finger
+3000,MOTOR_RIGHT_HAND,9,-3,720
+3000,MOTOR_RIGHT_HAND,10,-3,50 #5th finger
+3000,MOTOR_RIGHT_HAND,11,-3,50
+3000,MOTOR_RIGHT_HAND,0,6,1220 #thumb
+3000,MOTOR_RIGHT_HAND,1,3,670 #thumb  - motor 1 is currently backwards
+3000,MOTOR_RIGHT_HAND,2,-3,670 #thumb
+

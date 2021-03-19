@@ -1,0 +1,295 @@
+Time	Inst Time	Quantity	Trgt/ZrVl/Thr (WG)	Info/CrctDir	Angle	Velocity	Accel	0	10	20	30	40	50	60	70	80	90	100	110	120	130	140	150	160	170	180	190	200	210	220	230	240	250	260	270	280	290	300	310	320	330	340	350	360	370	380	390	400	410	420	430	440	450	460	470	480	490	500	510	520	530	540	550	560	570	580	590	600	610	620	630	640	650	660	670	680	690	700	710	720	730	740	750	760	770	780	790	800	810	820	830	840	850	860	870	880	890	900	910	920	930	940	950	960	970	980	990	1000
+1640	0	Ang	TargetIdx=18		0.04
+1640	0	Vel	Zero=-1	0		2.36
+1640	0	Accel	Thrust=-3 (0)	0			0.40	0.13
+1640	0			IncAngDir T=1: V=N A=N T=N
+1650	10	Ang	TargetIdx=60		0.07
+1650	10	Vel	Zero=-1	0		3.01
+1650	10	Accel	Thrust=1 (0)	0			0.65	0.35
+1650	10			Inc: V=N A=N T=Y
+1660	20	Ang	TargetIdx=79		0.10
+1660	20	Vel	Zero=4	0		3.41
+1660	20	Accel	Thrust=2 (0)	0			0.40	0.48
+1660	20			Inc: V=N A=N T=Y
+1670	30	Ang	TargetIdx=71		0.13
+1670	30	Vel	Zero=-1	0		2.88
+1670	30	Accel	Thrust=3 (0)	1			-0.53	0.17
+1670	30			Inc: V=N A=Y T=Y No V reverse in 50ms
+1680	40	Ang	TargetIdx=51		0.15
+1680	40	Vel	Zero=-1	0		1.46
+1680	40	Accel	Thrust=4 (0)	1			-1.42	-0.52
+1690	50	Ang	TargetIdx=-1		0.14
+1690	50	Vel	Zero=-1 Min=0 Max=24	1		-0.67
+1690	50	Accel	Thrust=4 (0)	1			-2.14	-1.36
+1690	50			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1700	60	Ang	TargetIdx=-1		0.12
+1700	60	Vel	Zero=-1 Min=0 Max=40	1		-1.88
+1700	60	Accel	Thrust=5 (0)	1			-1.21	-1.59
+1700	60			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1710	70	Ang	TargetIdx=-1		0.09
+1710	70	Vel	Zero=-1 Min=0 Max=27	1		-3.65
+1710	70	Accel	Thrust=6 (0)	1			-1.77	-1.70
+1710	70			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1720	80	Ang	TargetIdx=-1		0.04
+1720	80	Vel	Zero=-1 Min=0 Max=37	1		-4.88
+1720	80	Accel	Thrust=7 (0)	1			-1.23	-1.40
+1720	80			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1730	90	Ang	TargetIdx=73		-0.03
+1730	90	Vel	Zero=-1 Min=0 Max=22	1		-6.86
+1730	90	Accel	Thrust=8 (0)	1			-1.98	-1.66
+1730	90			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1740	100	Ang	TargetIdx=58		-0.12
+1740	100	Vel	Zero=-1 Min=0 Max=27	1		-8.44
+1740	100	Accel	Thrust=9 (0)	1			-1.57	-1.60
+1740	100			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1750	110	Ang	TargetIdx=51		-0.21
+1750	110	Vel	Zero=-1 Min=0 Max=38	1		-9.51
+1750	110	Accel	Thrust=10 (0)	1			-1.08	-1.54
+1750	110			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1760	120	Ang	TargetIdx=48		-0.31
+1760	120	Vel	Zero=-1 Min=0 Max=100	1		-9.86
+1760	120	Accel	Thrust=11 (0)	1			-0.34	-1.00
+1760	120			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1770	130	Ang	TargetIdx=41		-0.42
+1770	130	Vel	Zero=-1 Min=0 Max=28	1		-11.26
+1770	130	Accel	Thrust=11 (0)	1			-1.40	-0.94
+1770	130			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1780	140	Ang	TargetIdx=36		-0.55
+1780	140	Vel	Zero=-1 Min=0 Max=30	1		-12.54
+1780	140	Accel	Thrust=11 (0)	1			-1.27	-1.01
+1780	140			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1790	150	Ang	TargetIdx=31		-0.69
+1790	150	Vel	Zero=-1 Min=0 Max=22	1		-14.21
+1790	150	Accel	Thrust=11 (0)	1			-1.67	-1.45
+1790	150			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1800	160	Ang	TargetIdx=28		-0.84
+1800	160	Vel	Zero=-1 Min=0 Max=44	1		-15.02
+1800	160	Accel	Thrust=11 (0)	1			-0.81	-1.25
+1800	160			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1810	170	Ang	TargetIdx=23		-1.01
+1810	170	Vel	Zero=-1 Min=0 Max=14	1		-17.51
+1810	170	Accel	Thrust=11 (0)	1			-2.49	-1.66
+1810	170			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1820	180	Ang	TargetIdx=21		-1.20
+1820	180	Vel	Zero=-1 Min=0 Max=29	1		-18.62
+1820	180	Accel	Thrust=11 (0)	1			-1.11	-1.47
+1820	180			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+1830	190	Ang	TargetIdx=17		-1.42
+1830	190	Vel	Zero=-1 Min=100 Max=11	1		-21.45
+1830	190	Accel	Thrust=11 (0)	1			-2.83	-2.15
+1840	200	Ang	TargetIdx=14		-1.67
+1840	200	Vel	Zero=-1 Min=100 Max=7	1		-25.26
+1840	200	Accel	Thrust=11 (0)	1			-3.81	-2.59
+1850	210	Ang	TargetIdx=11		-1.96
+1850	210	Vel	Zero=-1 Min=100 Max=5	1		-29.64
+1850	210	Accel	Thrust=11 (0)	1			-4.37	-3.67
+1860	220	Ang	TargetIdx=9		-2.27
+1860	220	Vel	Zero=-1 Min=100 Max=16	1		-30.88
+1860	220	Accel	Thrust=11 (0)	1			-1.24	-3.14
+1870	230	Ang	TargetIdx=8		-2.61
+1870	230	Vel	Zero=-1 Min=100 Max=6	1		-34.01
+1870	230	Accel	Thrust=11 (0)	1			-3.13	-2.92
+1880	240	Ang	TargetIdx=6		-2.98
+1880	240	Vel	Zero=-1 Min=100 Max=6	1		-36.65
+1880	240	Accel	Thrust=11 (0)	1			-2.64	-2.34
+1890	250	Ang	TargetIdx=5		-3.35
+1890	250	Vel	Zero=-1 Min=100 Max=100	1		-36.67
+1890	250	Accel	Thrust=11 (0)	1			-0.02	-1.93
+1900	260	Ang	TargetIdx=4		-3.72
+1900	260	Vel	Zero=-1 Min=100 Max=29	1		-37.12
+1900	260	Accel	Thrust=11 (0)	1			-0.45	-1.04
+1920	280	Ang	TargetIdx=14		-0.86
+1920	280	Vel	Zero=-1	0		12.58
+1920	280	Accel	Thrust=11 (0)	1			-0.14	-0.35
+1920	280			IncAngDir T=-1: V=N A=Y T=N
+1930	290	Ang	TargetIdx=15		-0.73
+1930	290	Vel	Zero=7	0		12.64
+1930	290	Accel	Thrust=-1 (0)	0			0.06	-0.18
+1930	290			Inc: V=N A=N T=Y
+1940	300	Ang	TargetIdx=17		-0.59
+1940	300	Vel	Zero=5	0		14.10
+1940	300	Accel	Thrust=-2 (0)	0			1.47	0.46
+1940	300			Inc: V=N A=N T=Y
+1950	310	Ang	TargetIdx=13		-0.51
+1950	310	Vel	Zero=-1	0		8.45
+1950	310	Accel	Thrust=-3 (0)	1			-5.65	-1.37
+1960	320	Ang	TargetIdx=15		-0.46
+1960	320	Vel	Zero=4	0		5.00
+1960	320	Accel	Thrust=-3 (0)	1			-3.46	-2.55
+1970	330	Ang	TargetIdx=24		-0.43
+1970	330	Vel	Zero=2	0		2.84
+1970	330	Accel	Thrust=-3 (0)	1			-2.16	-3.76
+1980	340	Ang	TargetIdx=-1		-0.42
+1980	340	Vel	Zero=1	0		0.47
+1980	340	Accel	Thrust=-3 (0)	1			-2.37	-2.66
+1990	350	Ang	TargetIdx=53		-0.41
+1990	350	Vel	Zero=-1	0		1.13
+1990	350	Accel	Thrust=-3 (0)	0			0.66	-1.29
+1990	350			Inc: V=N A=N T=Y
+2000	360	Ang	TargetIdx=28		-0.39
+2000	360	Vel	Zero=-1	0		2.52
+2000	360	Accel	Thrust=-4 (0)	0			1.39	-0.10
+2000	360			Inc: V=N A=N T=Y
+2010	370	Ang	TargetIdx=24		-0.37
+2010	370	Vel	Zero=-1	0		1.93
+2010	370	Accel	Thrust=-4 (0)	1			-0.60	0.49
+2020	380	Ang	TargetIdx=24		-0.37
+2020	380	Vel	Zero=32	0		0.18
+2020	380	Accel	Thrust=-4 (0)	1			-1.75	-0.32
+2030	390	Ang	TargetIdx=87		-0.38
+2030	390	Vel	Zero=-1 Min=0 Max=3	1		-1.87
+2030	390	Accel	Thrust=-4 (0)	1			-2.05	-1.47
+2030	390			START BRAKE Thrust=0: V=Y MaxVFI<5 T=Y 
+2040	400	Ang	TargetIdx=46		-0.42
+2040	400	Vel	Zero=-1 Min=0 Max=3	1		-3.47
+2040	400	Accel	Thrust=0 (0)	1			-1.60	-1.80
+2040	400			In between MaxV and MinV, Thrust=0: V=Y MaxVFI<5 MinVFI<5 T=N 
+2050	410	Ang	TargetIdx=35		-0.46
+2050	410	Vel	Zero=-1 Min=0 Max=4	1		-4.48
+2050	410	Accel	Thrust=0 (0)	1			-1.01	-1.55
+2050	410			In between MaxV and MinV, Thrust=0: V=Y MaxVFI<5 MinVFI<5 T=N 
+2060	420	Ang	TargetIdx=41		-0.50
+2060	420	Vel	Zero=5 Min=0 Max=100	1		-3.68
+2060	420	Accel	Thrust=0 (0)	0			0.79	-0.60
+2060	420			STOP BRAKE & THRUST T=-1: V=Y V<MinV T=N A=N
+2070	430	Ang	TargetIdx=42		-0.54
+2070	430	Vel	Zero=28 Min=0 Max=100	1		-3.55
+2070	430	Accel	Thrust=-1 (0)	0			0.13	-0.03
+2070	430			Inc: V=Y V<MinV T=Y A=N
+2080	440	Ang	TargetIdx=34		-0.58
+2080	440	Vel	Zero=-1 Min=0 Max=6	1		-4.19
+2080	440	Accel	Thrust=-2 (0)	1			-0.64	0.09
+2080	440			Dec: V=Y V<MinV T=Y A=Y A>MaxA
+2090	450	Ang	TargetIdx=33		-0.62
+2090	450	Vel	Zero=-1 Min=0 Max=83	1		-4.24
+2090	450	Accel	Thrust=-1 (0)	1			-0.05	-0.19
+2090	450			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+2100	460	Ang	TargetIdx=29		-0.67
+2100	460	Vel	Zero=-1 Min=0 Max=9	1		-4.65
+2100	460	Accel	Thrust=-2 (0)	1			-0.41	-0.37
+2100	460			Dec: V=Y V<MinV T=Y A=Y A>MaxA
+2110	470	Ang	TargetIdx=30		-0.71
+2110	470	Vel	Zero=19 Min=0 Max=100	1		-4.42
+2110	470	Accel	Thrust=-1 (0)	0			0.24	-0.07
+2110	470			Inc: V=Y V<MinV T=Y A=N
+2120	480	Ang	TargetIdx=44		-0.74
+2120	480	Vel	Zero=2 Min=0 Max=100	1		-2.93
+2120	480	Accel	Thrust=-2 (0)	0			1.49	0.44
+2120	480			Inc: V=Y V<MinV T=Y A=N
+2130	490	Ang	TargetIdx=-1		-0.75
+2130	490	Vel	Zero=1 Min=0 Max=100	1		-0.59
+2130	490	Accel	Thrust=-3 (0)	0			2.34	1.35
+2130	490			Inc: V=Y V<MinV T=Y A=N
+2140	500	Ang	TargetIdx=-1		-0.73
+2140	500	Vel	Zero=-1	0		1.17
+2140	500	Accel	Thrust=-4 (0)	0			1.76	1.86
+2140	500			Inc: V=N A=N T=Y
+2150	510	Ang	TargetIdx=-1		-0.71
+2150	510	Vel	Zero=-1	0		2.04
+2150	510	Accel	Thrust=-4 (0)	0			0.87	1.66
+2150	510			Inc: V=N A=N T=Y
+2160	520	Ang	TargetIdx=62		-0.69
+2160	520	Vel	Zero=-1	0		2.46
+2160	520	Accel	Thrust=-4 (0)	0			0.42	1.02
+2160	520			Inc: V=N A=N T=Y
+2170	530	Ang	TargetIdx=43		-0.68
+2170	530	Vel	Zero=-1	0		0.90
+2170	530	Accel	Thrust=-4 (0)	1			-1.56	-0.09
+2180	540	Ang	TargetIdx=-1		-0.69
+2180	540	Vel	Zero=-1 Min=0 Max=4	1		-1.01
+2180	540	Accel	Thrust=-4 (0)	1			-1.91	-1.02
+2180	540			START BRAKE Thrust=0: V=Y MaxVFI<5 T=Y 
+2190	550	Ang	TargetIdx=-1		-0.70
+2190	550	Vel	Zero=18 Min=0 Max=100	1		-0.96
+2190	550	Accel	Thrust=0 (0)	0			0.05	-1.14
+2190	550			STOP BRAKE & THRUST T=-1: V=Y V<MinV T=N A=N
+2200	560	Ang	TargetIdx=15		-0.69
+2200	560	Vel	Zero=-1	0		0.92
+2200	560	Accel	Thrust=-1 (0)	0			1.88	0.01
+2200	560			Inc: V=N A=N T=Y
+2210	570	Ang	TargetIdx=53		-0.67
+2210	570	Vel	Zero=-1	0		1.85
+2210	570	Accel	Thrust=-2 (0)	0			0.93	0.95
+2210	570			Inc: V=N A=N T=Y
+2220	580	Ang	TargetIdx=34		-0.65
+2220	580	Vel	Zero=-1	0		1.97
+2220	580	Accel	Thrust=-3 (0)	0			0.11	0.97
+2220	580			Inc: V=N A=N T=Y
+2230	590	Ang	TargetIdx=27		-0.64
+2230	590	Vel	Zero=-1	0		1.12
+2230	590	Accel	Thrust=-4 (0)	1			-0.85	0.07
+2240	600	Ang	TargetIdx=-1		-0.65
+2240	600	Vel	Zero=-1 Min=0 Max=5	1		-0.58
+2240	600	Accel	Thrust=-4 (0)	1			-1.69	-0.81
+2240	600			Dec: V=Y V<MinV T=Y A=Y A>MaxA
+2250	610	Ang	TargetIdx=60		-0.67
+2250	610	Vel	Zero=-1 Min=0 Max=4	1		-2.24
+2250	610	Accel	Thrust=-3 (0)	1			-1.66	-1.40
+2250	610			START BRAKE Thrust=0: V=Y MaxVFI<5 T=Y 
+2260	620	Ang	TargetIdx=43		-0.70
+2260	620	Vel	Zero=-1 Min=0 Max=7	1		-3.04
+2260	620	Accel	Thrust=0 (0)	1			-0.80	-1.39
+2260	620			INC BRAKE Dec: V=Y V<MinV T=N A=Y A>MaxA
+2270	630	Ang	TargetIdx=44		-0.73
+2270	630	Vel	Zero=20 Min=0 Max=100	1		-2.90
+2270	630	Accel	Thrust=1 (0)	0			0.15	-0.77
+2270	630			STOP BRAKE & THRUST T=-1: V=Y V<MinV T=N A=N
+2280	640	Ang	TargetIdx=-1		-0.74
+2280	640	Vel	Zero=1 Min=0 Max=100	1		-1.11
+2280	640	Accel	Thrust=-1 (0)	0			1.79	0.38
+2280	640			Inc: V=Y V<MinV T=Y A=N
+2290	650	Ang	TargetIdx=-1		-0.74
+2290	650	Vel	Zero=1 Min=0 Max=100	1		-0.16
+2290	650	Accel	Thrust=-2 (0)	0			0.95	0.96
+2290	650			Inc: V=Y V<MinV T=Y A=N
+2300	660	Ang	TargetIdx=-1		-0.75
+2300	660	Vel	Zero=-1 Min=0 Max=15	1		-0.67
+2300	660	Accel	Thrust=-3 (0)	1			-0.51	0.74
+2300	660			Dec: V=Y V<MinV T=Y A=Y A>MaxA
+2310	670	Ang	TargetIdx=64		-0.77
+2310	670	Vel	Zero=-1 Min=0 Max=5	1		-1.94
+2310	670	Accel	Thrust=-2 (0)	1			-1.27	-0.27
+2310	670			Dec: V=Y V<MinV T=Y A=Y A>MaxA
+2320	680	Ang	TargetIdx=40		-0.80
+2320	680	Vel	Zero=-1 Min=0 Max=5	1		-3.03
+2320	680	Accel	Thrust=-1 (0)	1			-1.09	-0.96
+2320	680			Dec: V=Y V<MinV T=Y A=Y A>MaxA
+2330	690	Ang	TargetIdx=30		-0.84
+2330	690	Vel	Zero=-1 Min=0 Max=5	1		-3.95
+2330	690	Accel	Thrust=0 (0)	1			-0.92	-1.09
+2330	690			INC BRAKE Dec: V=Y V<MinV T=N A=Y A>MaxA
+2340	700	Ang	TargetIdx=30		-0.88
+2340	700	Vel	Zero=39 Min=0 Max=100	1		-3.85
+2340	700	Accel	Thrust=1 (0)	0			0.10	-0.64
+2340	700			STOP BRAKE & THRUST T=-1: V=Y V<MinV T=N A=N
+2350	710	Ang	TargetIdx=44		-0.90
+2350	710	Vel	Zero=2 Min=0 Max=100	1		-2.55
+2350	710	Accel	Thrust=-1 (0)	0			1.31	0.16
+2350	710			Inc: V=Y V<MinV T=Y A=N
+2360	720	Ang	TargetIdx=-1		-0.91
+2360	720	Vel	Zero=1 Min=0 Max=100	1		-0.74
+2360	720	Accel	Thrust=-2 (0)	0			1.81	1.07
+2360	720			Inc: V=Y V<MinV T=Y A=N
+2370	730	Ang	TargetIdx=-1		-0.91
+2370	730	Vel	Zero=1	0		0.10
+2370	730	Accel	Thrust=-3 (0)	0			0.84	1.32
+2370	730			Inc: V=N A=N T=Y
+2380	740	Ang	TargetIdx=55		-0.93
+2380	740	Vel	Zero=-1 Min=0 Max=3	1		-1.96
+2380	740	Accel	Thrust=-4 (0)	1			-2.06	0.20
+2380	740			START BRAKE Thrust=0: V=Y MaxVFI<5 T=Y 
+2390	750	Ang	TargetIdx=25		-0.97
+2390	750	Vel	Zero=-1 Min=0 Max=2	1		-4.17
+2390	750	Accel	Thrust=0 (0)	1			-2.21	-1.15
+2390	750			In between MaxV and MinV, Thrust=0: V=Y MaxVFI<5 MinVFI<5 T=N 
+2400	760	Ang	TargetIdx=25		-3.98
+2400	760	Vel	Zero=-1	0		2.85
+2400	760	Accel	Thrust=0 (0)	0			0.92	-1.12
+2400	760			IncAngDir T=1: V=N A=N T=N
+2410	770	Ang	TargetIdx=22		-3.97
+2410	770	Vel	Zero=-1	0		0.98
+2410	770	Accel	Thrust=1 (0)	1			-1.87	-1.06
+2420	780	Ang	TargetIdx=88		-3.98
+2420	780	Vel	Zero=-1 Min=0 Max=23	1		-1.16
+2420	780	Accel	Thrust=1 (0)	1			-2.14	-1.03
+2420	780			Inc: V=Y V<MinV T=Y A=Y A<MaxA

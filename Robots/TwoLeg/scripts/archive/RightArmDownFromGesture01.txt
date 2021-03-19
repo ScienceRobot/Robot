@@ -1,0 +1,7 @@
+#RightArmDownFromGesture01.txt
+#put arm back down
+0,MOTOR_UPPER_BODY,7,3,1700
+0,MOTOR_UPPER_BODY,9,-5,2000
+
+
+

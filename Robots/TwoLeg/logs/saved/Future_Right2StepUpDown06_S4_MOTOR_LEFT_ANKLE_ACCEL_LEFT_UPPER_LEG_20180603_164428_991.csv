@@ -1,0 +1,49 @@
+Time	Inst Time	Quantity	Trgt/ZrVl/Thr (WG)	Info/CrctDir	TargetAngle	CurrentAngle	Velocity	Accel	0	10	20	30	40	50	60	70	80	90	100	110	120	130	140	150	160	170	180	190	200	210	220	230	240	250	260	270	280	290	300	310	320	330	340	350	360	370	380	390	400	410	420	430	440	450	460	470	480	490	500	510	520	530	540	550	560	570	580	590	600	610	620	630	640	650	660	670	680	690	700	710	720	730	740	750	760	770	780	790	800	810	820	830	840	850	860	870	880	890	900	910	920	930	940	950	960	970	980	990	1000
+1580	0			INITIAL THRUST=-10 Segment Left Upper Leg out of range	TargetAngle=-3.00 -2.50 -2.00
+1580	0			Segment Left Upper Leg out of range	TargetAngle=-3.00 -2.50 -2.00
+1590	10	Ang	TargetIdx=91		(-3.0<-2.5<-2.0)	-0.63
+1590	10	Vel	Zero=0	0			9.45
+1590	10	Accel	Thrust=-10 (0)	1				-0.94	-0.32
+1590	10			V=N TVR Seg=-0.63 Targ=-2.50 Vel=9.45 TVR=20.00 Thrust=-14 IncAngDir=1
+1600	20	Ang	TargetIdx=91		(-3.0<-2.5<-2.0)	-0.58
+1600	20	Vel	Zero=0	0			5.26
+1600	20	Accel	Thrust=-14 (0)	1				-4.18	-1.71
+1600	20			V=N TVR Seg=-0.58 Targ=-2.50 Vel=5.26 TVR=20.00 Thrust=-14 IncAngDir=1
+1610	30	Ang	TargetIdx=91		(-3.0<-2.5<-2.0)	-0.53
+1610	30	Vel	Zero=0	0			4.75
+1610	30	Accel	Thrust=-14 (0)	1				-0.51	-1.88
+1610	30			V=N TVR Seg=-0.53 Targ=-2.50 Vel=4.75 TVR=20.00 Thrust=-14 IncAngDir=1
+1620	40	Ang	TargetIdx=91		(-3.0<-2.5<-2.0)	-0.46
+1620	40	Vel	Zero=0	0			7.02
+1620	40	Accel	Thrust=-14 (0)	0				2.27	-0.81
+1620	40			V=N TVR Seg=-0.46 Targ=-2.50 Vel=7.02 TVR=20.00 Thrust=-14 IncAngDir=1
+1630	50	Ang	TargetIdx=54		(-3.0<-2.5<-2.0)	-0.37
+1630	50	Vel	Zero=-1	0			8.76
+1630	50	Accel	Thrust=-14 (0)	0				1.74	1.17
+1630	50			V=N TVR Seg=-0.37 Targ=-2.50 Vel=8.76 TVR=20.00 Thrust=-14 IncAngDir=1
+1640	60	Ang	TargetIdx=24		(-3.0<-2.5<-2.0)	-0.37
+1640	60	Vel	Zero=-1	0			8.76
+1640	60	Accel	Thrust=-14 (0)	0				1.74	1.92
+1640	60			V=N TVR Seg=-0.37 Targ=-2.50 Vel=8.76 TVR=20.00 Thrust=-14 IncAngDir=1
+1650	70	Ang	TargetIdx=17		(-3.0<-2.5<-2.0)	-0.28
+1650	70	Vel	Zero=-1	0			8.94
+1650	70	Accel	Thrust=-14 (0)	0				0.18	1.22
+1650	70			V=N TVR Seg=-0.28 Targ=-2.50 Vel=8.94 TVR=20.00 Thrust=-14 IncAngDir=1
+1660	80	Ang	TargetIdx=15		(-3.0<-2.5<-2.0)	-0.05
+1660	80	Vel	Zero=-1	0			12.64
+1660	80	Accel	Thrust=-14 (0)	0				2.03	1.32
+1660	80			V=N TVR Seg=-0.05 Targ=-2.50 Vel=12.64 TVR=20.00 Thrust=-14 IncAngDir=1
+1670	90	Ang	TargetIdx=14		(-3.0<-2.5<-2.0)	0.09
+1670	90	Vel	Zero=-1	0			14.58
+1670	90	Accel	Thrust=-14 (0)	0				1.93	1.38
+1670	90			V=N TVR Seg=0.09 Targ=-2.50 Vel=14.58 TVR=20.00 Thrust=-5 IncAngDir=1
+1680	100	Ang	TargetIdx=15		(-3.0<-2.5<-2.0)	0.24
+1680	100	Vel	Zero=7	0			15.04
+1680	100	Accel	Thrust=-5 (0)	0				0.47	1.48
+1680	100			V=N TVR Seg=0.24 Targ=-2.50 Vel=15.04 TVR=20.00 Thrust=-5 IncAngDir=1
+1690	110	Ang	TargetIdx=20		(-3.0<-2.5<-2.0)	0.41
+1690	110	Vel	Zero=3	0			16.77
+1690	110	Accel	Thrust=-5 (0)	0				1.73	1.37
+1690	110			V=N TVR Seg=0.41 Targ=-2.50 Vel=16.77 TVR=20.00 Thrust=-5 IncAngDir=1
+1700	120			Changing Left Ankle Motor from Accel[0] (Left Upper Leg Z -2.5 -3.0 -2.0) to Accel[1] (Left Upper Leg Z 0.0 -90.0 90.0)
+1700	120			Angle 1 in range2 'Left Upper Leg Z' 'Left Ankle Motor' 0.56 (-90.00<0.00<90.00

@@ -1,0 +1,7 @@
+#StartAccelTouchInterrupt01.txt
+0,StartAccelerometer(ETHACCELS_LEFT_LEG,7,POLLING)
+0,StartAccelerometer(ETHACCELS_RIGHT_LEG,7,POLLING)
+0,StartAccelerometer(ETHACCELS_TORSO,1,POLLING)
+0,StartTouchSensor(ETHACCELS_LEFT_LEG,0x3,POLLING)
+0,StartTouchSensor(ETHACCELS_RIGHT_LEG,0x3,POLLING)
+

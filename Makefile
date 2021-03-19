@@ -1,0 +1,70 @@
+#RobotApp
+PROJECT=Robot
+RELEASE_PROJECT = Release/$(PROJECT)
+DEBUG_PROJECT = Debug/$(PROJECT).debug
+CC=gcc
+DATA_THISDIR = $(shell pwd | sed -e 's=^/tmp_mnt/=/=')
+RELEASE_CFLAGS = -Wall -DLinux -D_FILE_OFFSET_BITS=64 -DUSE_RT_PREEMPT #-DUSE_RTAI
+DEBUG_CFLAGS = -Wall -DLinux -g -D_FILE_OFFSET_BITS=64 -DUSE_RT_PREEMPT #-DUSE_RTAI
+
+OS := $(shell uname)
+ifeq ($(OS),Darwin)
+#note no USE_RT_PREEMPT for MacOS yet
+RELEASE_CFLAGS = -Wall -DLinux -DMacOS -D_FILE_OFFSET_BITS=64 #-DUSE_RT_PREEMPT #-DUSE_RTAI
+DEBUG_CFLAGS = -Wall -DLinux -DMacOS -g -D_FILE_OFFSET_BITS=64 #-DUSE_RT_PREEMPT #-DUSE_RTAI
+endif
+
+#INCDIR = -I/usr/src/linux/include -I/usr/include -I.
+INCDIR = -I/usr/include -I/usr/X11/include -I/usr/local/include -I../../src -Isrc -I/usr/src/rtai -I/usr/src/rtai/base/include
+#LIBS = -L/lib -L/usr/lib64 -L/usr/lib -L/usr/X11R6/lib -lfreethought -ljpeg -lswscale -lavcodec -lmp3lame -lavformat -lavutil -lm -lz -lpthread -lX11
+LIBS = -L/lib -L/usr/lib64 -L/usr/lib -L/usr/X11R6/lib -L/usr/X11/lib -L/usr/local/lib -L/usr/realtime/lib -lfreethought -ljpeg -lmp3lame -lm -lpthread -lX11 
+#-llxrt
+#Robot Library folder and Specific Robot folder source code files: 
+SRC1 = $(shell echo src/*.c)
+#RTAI NOTE:  for the Robot binary to run, you may need to "ln -s /usr/realtime/lib/liblxrt.so.1.0.0 /usr/lib/liblxrt.so.1"
+#This means D_OBJECTS1 is the same as the variable SRC1 but replace each %.c with %.o
+D_OBJECTS1=$(SRC1:src/%.c=Debug/%.o)
+R_OBJECTS1=$(SRC1:src/%.c=Release/%.o)
+#note that second line must be tabbed
+
+RTARGET = $(RELEASE_PROJECT)
+DTARGET = $(DEBUG_PROJECT)
+
+all : dirs $(RTARGET)
+
+debug : dirs $(DTARGET)
+
+dirs :
+	@mkdir -p Debug Release
+
+install : dirs $(RTARGET)
+	cp $(RELEASE_PROJECT) /usr/local/bin
+
+uninstall : 
+	rm -rf /usr/local/bin/$(PROJECT)
+
+#really important to put $(D_OBJECTS1) before $(LIBS)
+#$@ is the variable to the left of the :, $< is the variable to the right of the :
+$(DTARGET) : $(D_OBJECTS1)
+	$(CC) $(DEBUG_CFLAGS) $(D_OBJECTS1) $(LIBS)  -o $@ 
+
+$(RTARGET) : $(R_OBJECTS1)
+	$(CC) $(RELEASE_CFLAGS) $(R_OBJECTS1) $(LIBS) -o $@
+
+#below compiles source to object (.c to .o)
+Debug/%.o: ../../src/%.c                    
+	$(CC) $(DEBUG_CFLAGS) $(INCDIR) -o $@  -c  $<  
+
+Debug/%.o: src/%.c                    
+	$(CC) $(DEBUG_CFLAGS) $(INCDIR) -o $@  -c  $<  
+
+Release/%.o: ../../src/%.c                    
+	$(CC) $(RELEASE_CFLAGS) $(INCDIR) -o $@  -c  $<  
+
+Release/%.o: src/%.c                    
+	$(CC) $(RELEASE_CFLAGS) $(INCDIR) -o $@  -c  $<  
+
+clean:
+	rm -f *.o src/*.o Release/*.o Debug/*.o $(RELEASE_PROJECT)  $(DEBUG_PROJECT)
+#currently do not delete logs 	rm -f *.o src/*.o Release/*.o Debug/*.o $(RELEASE_PROJECT)  $(DEBUG_PROJECT) logs/*
+

@@ -1,0 +1,58 @@
+Time	Inst Time	Quantity	Trgt/ZrVl/Thr (WG)	Info/CrctDir	TargetAngle	CurrentAngle	Velocity	Accel	0	10	20	30	40	50	60	70	80	90	100	110	120	130	140	150	160	170	180	190	200	210	220	230	240	250	260	270	280	290	300	310	320	330	340	350	360	370	380	390	400	410	420	430	440	450	460	470	480	490	500	510	520	530	540	550	560	570	580	590	600	610	620	630	640	650	660	670	680	690	700	710	720	730	740	750	760	770	780	790	800	810	820	830	840	850	860	870	880	890	900	910	920	930	940	950	960	970	980	990	1000
+2790	0			INITIAL THRUST=7 Segment Right Lower Leg out of range	TargetAngle=1.00 4.00 8.00
+2790	0			Segment Right Lower Leg out of range	TargetAngle=1.00 4.00 8.00
+2800	10	Ang	TargetIdx=20		( 1.0< 4.0< 8.0)	-3.22
+2800	10	Vel	Zero=-1 Min=100 Max=5	1			36.80
+2800	10	Accel	Thrust=7 (0)	1				7.29	4.40
+2800	10			A>MaxA (5.0) Dec: V=Y T=N A=Y
+2810	20	Ang	TargetIdx=16		( 1.0< 4.0< 8.0)	-2.78
+2810	20	Vel	Zero=-1 Min=100 Max=4	1			44.32
+2810	20	Accel	Thrust=6 (0)	1				7.52	6.91
+2810	20			START BRAKE Thrust=0: V=Y MaxVFI<5 T=Y 
+2820	30	Ang	TargetIdx=12		( 1.0< 4.0< 8.0)	-2.25
+2820	30	Vel	Zero=-1 Min=100 Max=2	1			53.27
+2820	30	Accel	Thrust=0 (0)	1				8.95	7.92
+2820	30			BRAKE MORE: Dec V=Y MaxVFI<5 T=N MinVFI>=5
+2830	40	Ang	TargetIdx=12		( 1.0< 4.0< 8.0)	-1.75
+2830	40	Vel	Zero=14 Min=10 Max=100	1			49.50
+2830	40	Accel	Thrust=-1 (0)	0				-3.77	4.23
+2840	50	Ang	TargetIdx=11		( 1.0< 4.0< 8.0)	-1.23
+2840	50	Vel	Zero=-1 Min=100 Max=7	1			52.30
+2840	50	Accel	Thrust=-1 (0)	1				2.80	2.66
+2850	60	Ang	TargetIdx=9		( 1.0< 4.0< 8.0)	-0.69
+2850	60	Vel	Zero=-1 Min=100 Max=11	1			53.78
+2850	60	Accel	Thrust=-1 (0)	1				1.48	0.17
+2860	70	Ang	TargetIdx=8		( 1.0< 4.0< 8.0)	-0.14
+2860	70	Vel	Zero=-1 Min=100 Max=13	1			54.94
+2860	70	Accel	Thrust=-1 (0)	1				1.16	1.81
+2870	80	Ang	TargetIdx=8		( 1.0< 4.0< 8.0)	0.37
+2870	80	Vel	Zero=14 Min=10 Max=100	1			51.23
+2870	80	Accel	Thrust=-1 (0)	0				-3.71	-0.36
+2880	90	Ang	TargetIdx=9		( 1.0< 4.0< 8.0)	0.75
+2880	90	Vel	Zero=3 Min=2 Max=100	1			38.42
+2880	90	Accel	Thrust=-1 (0)	0				-12.81	-5.12
+2880	90			STOP BRAKE & THRUST T=1: V=Y (A=N) T=N V>MinV but MinVFI<5
+2890	100			Angle in range1 'Right Lower Leg Z' 'Right Ankle Motor' 1.03 (1.00<4.00<8.00
+2890	100			Changing Right Ankle Motor from Accel[0] (Right Lower Leg Z 4.0 1.0 8.0) to Accel[1] (Right Upper Leg Z 2.0 1.0 9.0)
+2900	110	Ang	TargetIdx=12		( 1.0< 2.0< 9.0)	-0.18
+2900	110	Vel	Zero=-1 Min=100 Max=33	1			19.63
+2900	110	Accel	Thrust=1 (0)	1				1.56	-2.70
+2900	110			V>MinV Dec: V=Y T=N A=Y
+2910	120	Ang	TargetIdx=9		( 1.0< 2.0< 9.0)	0.04
+2910	120	Vel	Zero=-1 Min=100 Max=20	1			22.05
+2910	120	Accel	Thrust=0 (0)	1				2.42	2.38
+2920	130	Ang	TargetIdx=8		( 1.0< 2.0< 9.0)	0.26
+2920	130	Vel	Zero=-1 Min=100 Max=96	1			22.55
+2920	130	Accel	Thrust=0 (0)	1				0.50	1.49
+2930	140	Ang	TargetIdx=8		( 1.0< 2.0< 9.0)	0.48
+2930	140	Vel	Zero=25 Min=8 Max=100	1			21.67
+2930	140	Accel	Thrust=0 (0)	0				-0.88	0.68
+2940	150	Ang	TargetIdx=7		( 1.0< 2.0< 9.0)	0.68
+2940	150	Vel	Zero=15 Min=4 Max=100	1			20.25
+2940	150	Accel	Thrust=0 (0)	0				-1.42	-0.60
+2940	150			STOP BRAKE & THRUST T=1: V=Y (A=N) T=N V>MinV but MinVFI<5
+2950	160	Ang	TargetIdx=7		( 1.0< 2.0< 9.0)	0.87
+2950	160	Vel	Zero=11 Min=2 Max=100	1			18.42
+2950	160	Accel	Thrust=1 (0)	0				-1.83	-1.38
+2950	160			MINV Inc: V=Y T=Y (A=N) V>MinV but MinVFI<5
+2960	170			Angle in range1 'Right Upper Leg Z' 'Right Ankle Motor' 1.02 (1.00<2.00<9.00

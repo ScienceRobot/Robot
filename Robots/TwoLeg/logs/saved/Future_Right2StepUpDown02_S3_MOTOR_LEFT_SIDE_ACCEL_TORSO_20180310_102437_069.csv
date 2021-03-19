@@ -1,0 +1,155 @@
+Time	Inst Time	Quantity	Trgt/ZrVl/Thr (WG)	Info/CrctDir	TargetAngle	CurrentAngle	Velocity	Accel	0	10	20	30	40	50	60	70	80	90	100	110	120	130	140	150	160	170	180	190	200	210	220	230	240	250	260	270	280	290	300	310	320	330	340	350	360	370	380	390	400	410	420	430	440	450	460	470	480	490	500	510	520	530	540	550	560	570	580	590	600	610	620	630	640	650	660	670	680	690	700	710	720	730	740	750	760	770	780	790	800	810	820	830	840	850	860	870	880	890	900	910	920	930	940	950	960	970	980	990	1000
+2100	0			INITIAL THRUST=12 Segment Torso out of range	TargetAngle=-7.00 -6.00 -5.00
+2100	0			Segment Torso out of range	TargetAngle=-7.00 -6.00 -5.00
+2110	10	Ang	TargetIdx=8		(-7.0<-6.0<-5.0)	-4.44
+2110	10	Vel	Zero=11 Min=1 Max=100	1			-20.72
+2110	10	Accel	Thrust=12 (0)	0				2.00	2.24
+2110	10			MINV Inc: V=Y T=Y (A=N) V>MinV but MinVFI<5
+2120	20	Ang	TargetIdx=9		(-7.0<-6.0<-5.0)	-4.60
+2120	20	Vel	Zero=4 Min=0 Max=100	1			-15.67
+2120	20	Accel	Thrust=13 (0)	0				5.05	3.92
+2120	20			Inc: V=Y V<MinV T=Y A=N
+2130	30	Ang	TargetIdx=11		(-7.0<-6.0<-5.0)	-4.72
+2130	30	Vel	Zero=4 Min=0 Max=100	1			-12.16
+2130	30	Accel	Thrust=14 (0)	0				3.50	3.52
+2130	30			Inc: V=Y V<MinV T=Y A=N
+2140	40	Ang	TargetIdx=15		(-7.0<-6.0<-5.0)	-4.80
+2140	40	Vel	Zero=3 Min=0 Max=100	1			-8.15
+2140	40	Accel	Thrust=15 (0)	0				4.02	4.19
+2140	40			Inc: V=Y V<MinV T=Y A=N
+2150	50	Ang	TargetIdx=12		(-7.0<-6.0<-5.0)	-4.89
+2150	50	Vel	Zero=-1 Min=0 Max=33	1			-9.39
+2150	50	Accel	Thrust=16 (0)	1				-1.24	2.09
+2150	50			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+2160	60	Ang	TargetIdx=11		(-7.0<-6.0<-5.0)	-4.99
+2160	60	Vel	Zero=-1 Min=0 Max=100	1			-9.76
+2160	60	Accel	Thrust=17 (0)	1				-0.37	0.80
+2160	60			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+2170	70			Angle in range1 'Torso Z' 'Left Side Motor' -5.08 (-7.00<-6.00<-5.00
+2170	70			Changing Left Side Motor from Accel[0] (Torso Z -6.0 -7.0 -5.0) to Accel[1] (Right Upper Leg Z -9.3 -10.3 -8.3)
+2180	80	Ang	TargetIdx=26		(-10.3<-9.3<-8.3)	-10.43
+2180	80	Vel	Zero=-1 Min=0 Max=10	1			4.27
+2180	80	Accel	Thrust=18 (0)	1				5.02	1.26
+2180	80			Dec: V=Y V<MinV T=Y A=Y A>MaxA (5.0)
+2190	90	Ang	TargetIdx=21		(-10.4<-9.4<-8.4)	-10.38
+2190	90	Vel	Zero=-1 Min=0 Max=54	1			5.11
+2190	90	Accel	Thrust=17 (0)	1				0.84	1.66
+2190	90			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+2200	100	Ang	TargetIdx=-1		(-10.3<-9.3<-8.3)	-10.37
+2200	100	Vel	Zero=1 Min=0 Max=100	1			0.74
+2200	100	Accel	Thrust=18 (0)	0				-4.37	0.49
+2200	100			Inc: V=Y V<MinV T=Y A=N
+2210	110	Ang	TargetIdx=33		(-10.3<-9.3<-8.3)	-10.34
+2210	110	Vel	Zero=-1 Min=0 Max=19	1			3.25
+2210	110	Accel	Thrust=19 (0)	1				2.51	-0.34
+2210	110			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+2220	120	Ang	TargetIdx=24		(-10.2<-9.2<-8.2)	-10.29
+2220	120	Vel	Zero=-1 Min=0 Max=31	1			4.72
+2220	120	Accel	Thrust=20 (0)	1				1.47	-0.13
+2220	120			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+2230	130	Ang	TargetIdx=20		(-10.1<-9.1<-8.1)	-10.23
+2230	130	Vel	Zero=-1 Min=0 Max=42	1			5.78
+2230	130	Accel	Thrust=20 (0)	1				1.06	1.68
+2230	130			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+2240	140	Ang	TargetIdx=14		(-10.0<-9.0<-8.0)	-10.15
+2240	140	Vel	Zero=-1 Min=0 Max=18	1			8.16
+2240	140	Accel	Thrust=20 (0)	1				2.37	1.64
+2240	140			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+2250	150	Ang	TargetIdx=10		(-9.9<-8.9<-7.9)	-10.03
+2250	150	Vel	Zero=-1 Min=0 Max=9	1			12.36
+2250	150	Accel	Thrust=20 (0)	1				4.20	2.54
+2250	150			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+2260	160	Ang	TargetIdx=8		(-9.8<-8.8<-7.8)	-9.88
+2260	160	Vel	Zero=-1 Min=0 Max=17	1			14.56
+2260	160	Accel	Thrust=20 (0)	1				2.21	2.93
+2260	160			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+2270	170	Ang	TargetIdx=6		(-9.7<-8.7<-7.7)	-9.71
+2270	170	Vel	Zero=-1 Min=0 Max=12	1			17.50
+2270	170	Accel	Thrust=20 (0)	1				2.94	3.11
+2270	170			Inc: V=Y V<MinV T=Y A=Y A<MaxA
+2280	180			Angle in range1 'Right Upper Leg Z' 'Left Side Motor' -9.47 (-9.52<-8.52<-7.52
+2280	180	Ang	TargetIdx=4		(-9.5<-8.5<-7.5)	-9.47
+2280	180	Vel	Zero=-1 Min=100 Max=4	1			24.26
+2280	180	Accel	Thrust=20 (0)	1				6.76	3.97
+2280	180			START BRAKE Thrust=0: V=Y MaxVFI<5 T=Y 
+2290	190			Changing Left Side Motor from Accel[1] (Right Upper Leg Z -8.4 -9.4 -7.4) to Accel[0] (Torso Z -6.0 -7.0 -5.0)
+2290	190			INITIAL THRUST=-12 Segment Torso out of range	TargetAngle=-7.00 -6.00 -5.00
+2290	190			Segment Torso out of range	TargetAngle=-7.00 -6.00 -5.00
+2300	200	Ang	TargetIdx=14		(-7.0<-6.0<-5.0)	-7.63
+2300	200	Vel	Zero=-1	0			-40.61
+2300	200	Accel	Thrust=-12 (0)	0				-4.40	-1.77
+2300	200			V=N HOLD_ANGLE_TVR Seg=-7.63 Targ=-6.00 Vel=-40.61 TVR=0.00 Thrust=0 IncAngDir=-1
+2310	210	Ang	TargetIdx=10		(-7.0<-6.0<-5.0)	-7.99
+2310	210	Vel	Zero=-1	0			-36.45
+2310	210	Accel	Thrust=0 (0)	1				4.17	-2.63
+2310	210			V=N HOLD_ANGLE_TVR Seg=-7.99 Targ=-6.00 Vel=-36.45 TVR=0.00 Thrust=0 IncAngDir=-1
+2320	220	Ang	TargetIdx=7		(-7.0<-6.0<-5.0)	-8.30
+2320	220	Vel	Zero=-1	0			-30.93
+2320	220	Accel	Thrust=0 (0)	1				5.51	1.76
+2320	220			V=N HOLD_ANGLE_TVR Seg=-8.30 Targ=-6.00 Vel=-30.93 TVR=0.00 Thrust=0 IncAngDir=-1
+2330	230	Ang	TargetIdx=7		(-7.0<-6.0<-5.0)	-8.58
+2330	230	Vel	Zero=12	0			-27.56
+2330	230	Accel	Thrust=0 (0)	1				3.37	4.35
+2330	230			V=N HOLD_ANGLE_TVR Seg=-8.58 Targ=-6.00 Vel=-27.56 TVR=0.00 Thrust=0 IncAngDir=-1
+2340	240	Ang	TargetIdx=7		(-7.0<-6.0<-5.0)	-8.71
+2340	240	Vel	Zero=5	0			-13.24
+2340	240	Accel	Thrust=0 (0)	1				14.32	7.74
+2340	240			V=N HOLD_ANGLE_TVR Seg=-8.71 Targ=-6.00 Vel=-13.24 TVR=0.00 Thrust=0 IncAngDir=-1
+2350	250	Ang	TargetIdx=12		(-7.0<-6.0<-5.0)	-8.74
+2350	250	Vel	Zero=2	0			-3.32
+2350	250	Accel	Thrust=0 (0)	1				9.92	9.21
+2350	250			V=N HOLD_ANGLE_TVR Seg=-8.74 Targ=-6.00 Vel=-3.32 TVR=0.00 Thrust=0 IncAngDir=-1
+2360	260	Ang	TargetIdx=38		(-7.0<-6.0<-5.0)	-8.67
+2360	260	Vel	Zero=-1 Min=0 Max=5	1			7.17
+2360	260	Accel	Thrust=0 (0)	1				10.49	11.58
+2360	260			INC BRAKE Dec: V=Y V<MinV T=N A=Y A>MaxA (5.0)
+2370	270	Ang	TargetIdx=21		(-7.0<-6.0<-5.0)	-8.55
+2370	270	Vel	Zero=-1 Min=0 Max=8	1			12.32
+2370	270	Accel	Thrust=1 (0)	1				5.15	8.52
+2370	270			INC BRAKE Dec: V=Y V<MinV T=N A=Y A>MaxA (5.0)
+2380	280	Ang	TargetIdx=12		(-7.0<-6.0<-5.0)	-8.34
+2380	280	Vel	Zero=-1 Min=100 Max=4	1			20.16
+2380	280	Accel	Thrust=2 (0)	1				7.84	7.82
+2380	280			BRAKE MORE: Dec V=Y MaxVFI<5 T=N MinVFI>=5
+2390	290	Ang	TargetIdx=9		(-7.0<-6.0<-5.0)	-8.10
+2390	290	Vel	Zero=-1 Min=100 Max=7	1			24.36
+2390	290	Accel	Thrust=2 (0)	1				4.20	5.73
+2400	300	Ang	TargetIdx=7		(-7.0<-6.0<-5.0)	-7.81
+2400	300	Vel	Zero=-1 Min=100 Max=5	1			28.89
+2400	300	Accel	Thrust=2 (0)	1				4.53	5.52
+2410	310	Ang	TargetIdx=6		(-7.0<-6.0<-5.0)	-7.54
+2410	310	Vel	Zero=21 Min=6 Max=100	1			27.53
+2410	310	Accel	Thrust=2 (0)	0				-1.36	2.46
+2420	320	Ang	TargetIdx=5		(-7.0<-6.0<-5.0)	-7.24
+2420	320	Vel	Zero=-1 Min=100 Max=9	1			30.01
+2420	320	Accel	Thrust=2 (0)	1				2.48	1.89
+2430	330			Angle in range1 'Torso Z' 'Left Side Motor' -6.93 (-7.00<-6.00<-5.00
+2430	330			Changing Left Side Motor from Accel[0] (Torso Z -6.0 -7.0 -5.0) to Accel[1] (Right Upper Leg Z -6.8 -7.8 -5.8)
+2440	340	Ang	TargetIdx=32		(-7.7<-6.7<-5.7)	-6.89
+2440	340	Vel	Zero=-1	0			-4.44
+2440	340	Accel	Thrust=2 (0)	0				-1.89	-1.37
+2440	340			V=N HOLD_ANGLE_TVR Seg=-6.89 Targ=-6.73 Vel=-4.44 TVR=0.00 Thrust=0 IncAngDir=1
+2450	350	Ang	TargetIdx=14		(-7.7<-6.7<-5.7)	-6.95
+2450	350	Vel	Zero=-1	0			-6.15
+2450	350	Accel	Thrust=0 (0)	0				-1.71	-2.77
+2450	350			V=N HOLD_ANGLE_TVR Seg=-6.95 Targ=-6.69 Vel=-6.15 TVR=0.00 Thrust=0 IncAngDir=1
+2460	360	Ang	TargetIdx=11		(-7.6<-6.6<-5.6)	-7.02
+2460	360	Vel	Zero=-1	0			-7.35
+2460	360	Accel	Thrust=0 (0)	0				-1.20	-1.60
+2460	360			V=N HOLD_ANGLE_TVR Seg=-7.02 Targ=-6.64 Vel=-7.35 TVR=0.00 Thrust=0 IncAngDir=1
+2470	370	Ang	TargetIdx=7		(-7.6<-6.6<-5.6)	-7.09
+2470	370	Vel	Zero=-1	0			-6.89
+2470	370	Accel	Thrust=0 (0)	1				0.45	-0.82
+2470	370			V=N HOLD_ANGLE_TVR Seg=-7.09 Targ=-6.59 Vel=-6.89 TVR=0.00 Thrust=0 IncAngDir=1
+2480	380	Ang	TargetIdx=4		(-7.6<-6.6<-5.6)	-7.15
+2480	380	Vel	Zero=-1	0			-5.68
+2480	380	Accel	Thrust=0 (0)	1				1.21	0.16
+2480	380			V=N HOLD_ANGLE_TVR Seg=-7.15 Targ=-6.59 Vel=-5.68 TVR=0.00 Thrust=0 IncAngDir=1
+2490	390	Ang	TargetIdx=2		(-7.6<-6.6<-5.6)	-7.22
+2490	390	Vel	Zero=-1	0			-6.52
+2490	390	Accel	Thrust=0 (0)	0				-0.84	0.27
+2490	390			V=N HOLD_ANGLE_TVR Seg=-7.22 Targ=-6.59 Vel=-6.52 TVR=0.00 Thrust=0 IncAngDir=1
+2500	400	Ang	TargetIdx=1		(-7.6<-6.6<-5.6)	-7.26
+2500	400	Vel	Zero=-1	0			-4.47
+2500	400	Accel	Thrust=0 (0)	1				2.05	0.81
+2500	400			V=N HOLD_ANGLE_TVR Seg=-7.26 Targ=-6.57 Vel=-4.47 TVR=0.00 Thrust=0 IncAngDir=1

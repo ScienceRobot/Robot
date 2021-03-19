@@ -1,0 +1,43 @@
+Time	Inst Time	Quantity	Trgt/ZrVl/Thr (WG)	Info/CrctDir	TargetAngle	CurrentAngle	Velocity	Accel	0	10	20	30	40	50	60	70	80	90	100	110	120	130	140	150	160	170	180	190	200	210	220	230	240	250	260	270	280	290	300	310	320	330	340	350	360	370	380	390	400	410	420	430	440	450	460	470	480	490	500	510	520	530	540	550	560	570	580	590	600	610	620	630	640	650	660	670	680	690	700	710	720	730	740	750	760	770	780	790	800	810	820	830	840	850	860	870	880	890	900	910	920	930	940	950	960	970	980	990	1000
+1881	1			Changing Left Knee Motor from Accel[0] (Left Upper Leg X 12.2 10.2 14.2) to Accel[2] (Hip X 0.0 -3.0 3.0)
+1881	1			Angle 2 in range2 'Hip X' 'Left Knee Motor' 0.64 (-3.00<0.00<3.00
+1890	10	Ang	TargetIdx=3		(-3.0< 0.0< 3.0)	0.43
+1890	10	Vel	Zero=-1 Min=100 Max=0	1			-21.23
+1890	10	Accel	Thrust=0 (0)	1				-5.95	-1.89
+1900	20			Changing Left Knee Motor from Accel[2] (Hip X 0.0 -3.0 3.0) to Accel[0] (Left Upper Leg X 12.3 10.3 14.3)
+1900	20			Angle 0 in range2 'Left Upper Leg X' 'Left Knee Motor' 11.85 (10.33<12.33<14.33
+1900	20		Ang=11.85 Vel=-1.12 Accel=0.11 T=0	Thrust=0: In Range and moving against gravity 10.3 14.3
+1910	30		Ang=11.80 Vel=-5.14 Accel=-4.02 T=0	Thrust=0: In Range and moving against gravity 10.4 14.4
+1924	44		Ang=11.73 Vel=-7.15 Accel=-2.01 T=0	Thrust=0: In Range and moving against gravity 10.4 14.4
+1930	50		Ang=11.71 Vel=-1.58 Accel=5.56 T=0	Thrust=0: In Range and moving against gravity 10.4 14.4
+1940	60		Ang=11.72 Vel=1.17 Accel=2.75 T=0	Thrust=0: In Range and moving toward TargetAngle 10.4 14.4
+1950	70			Thrust=0: V=N !IsMoving NO_MOTION_NO_THRUST
+1960	80			Thrust=0: V=N !IsMoving NO_MOTION_NO_THRUST
+1970	90		Ang=11.74 Vel=1.03 Accel=0.44 T=0	Thrust=0: In Range and moving toward TargetAngle 10.6 14.6
+1980	100		Ang=11.79 Vel=5.68 Accel=4.66 T=0	Thrust=0: In Range and moving toward TargetAngle 10.6 14.6
+1990	110		Ang=11.87 Vel=7.92 Accel=2.24 T=0	Thrust=0: In Range and moving toward TargetAngle 10.6 14.6
+2000	120		Ang=11.93 Vel=5.94 Accel=-1.98 T=0	Thrust=0: In Range and moving toward TargetAngle 10.7 14.7
+2010	130			Thrust=0: V=N !IsMoving NO_MOTION_NO_THRUST
+2020	140		Ang=11.92 Vel=-1.37 Accel=-1.64 T=0	Thrust=0: In Range and moving against gravity 10.9 14.9
+2047	167		Ang=11.85 Vel=-6.78 Accel=-5.41 T=0	Thrust=0: In Range and moving against gravity 11.0 15.0
+2047	167		Ang=11.85 Vel=-6.78 Accel=-5.41 T=0	Thrust=0: In Range and moving against gravity 11.0 15.0
+2050	170		Ang=11.69 Vel=-16.00 Accel=-9.22 T=0	Thrust=0: In Range and moving against gravity 11.1 15.1
+2060	180		Ang=11.40 Vel=-12.90 Accel=3.31 T=0	Thrust=0: In Range and moving against gravity 11.4 15.4
+2070	190		Ang=11.40 Vel=-12.90 Accel=3.31 T=0	Thrust=0: In Range and moving against gravity 11.4 15.4
+2080	200			NO INITIAL THRUST SENT_INITIAL_THRUST=10 Segment Left Upper Leg out of range	TargetAngle=11.57 13.57 15.57
+2080	200	Ang	TargetIdx=10		(11.6<13.6<15.6)	11.02
+2080	200	Vel	Zero=6	0			-20.01
+2080	200	Accel	Thrust=0 (1)	0				-1.90	1.58
+2080	200			V=N TVR Seg=11.02 Targ=13.57 Vel=-20.01 TVR=0.50 Thrust=-14 IncAngDir=-1
+2090	210	Ang	TargetIdx=9		(11.6<13.6<15.6)	10.72
+2090	210	Vel	Zero=21	0			-30.12
+2090	210	Accel	Thrust=-14 (1)	0				-10.11	-2.90
+2090	210			V=N TVR Seg=10.72 Targ=13.60 Vel=-30.12 TVR=0.50 Thrust=-14 IncAngDir=-1
+2100	220	Ang	TargetIdx=9		(11.6<13.6<15.6)	10.50
+2100	220	Vel	Zero=6	0			-22.34
+2100	220	Accel	Thrust=-14 (1)	1				7.78	-1.41
+2100	220			V=N TVR Seg=10.50 Targ=13.65 Vel=-22.34 TVR=0.50 Thrust=-14 IncAngDir=-1
+2110	230	Ang	TargetIdx=9		(11.6<13.6<15.6)	10.50
+2110	230	Vel	Zero=7	0			-22.34
+2110	230	Accel	Thrust=-14 (1)	1				7.78	1.82
+2110	230			V=N TVR Seg=10.50 Targ=13.65 Vel=-22.34 TVR=0.50 Thrust=-14 IncAngDir=-1

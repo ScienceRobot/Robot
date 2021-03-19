@@ -1,0 +1,61 @@
+Robot
+
+
+1) Requires FreeThought Library
+
+
+Instructions:
+1) StartTimeInMS,StartLogging - start logging accelerometer angles, 3 gyroscope angles/s, motor turns, and angles reached or lost. log files are located in Robot home folder in "logs" subfolder and are named with a timestamp.
+2) StartTimeInMS,StopLogging - stop writing to the log file
+3) StartTime,HoldAngleWithMotor(AccelName,AccelAngleXYorZ,TargetAngle,DegreesPlus,DegreesMinus,MotorName/Num,Dir*Strength,Duration/TimeOut,flags)
+  flags=WAIT_STAGE - only execute instructions with the same start time (stage), and hold all later instructions. NOTE: If TurnMotorUntil and HoldAngle instructions are in the same stage, the HoldAngle instruction will end either at timeout or when all TurnMotorUntil instructions are fulfilled.
+	      WAIT_ALL   - do not execute any other instructions (with the same start time on later script lines) until this instruction is done.
+
+HoldAngleWithMotor strives to hold a single accelerometer dimension (ex: left leg accel #1, lower left leg segment, X component/pitch angle), to a particular angle range (ex: -10 to 0 degrees), using a single Motor (ex: left foot motor) with a timeout that indicates when to end the instruction. Currently the Robot task logic determines what motor thrust to use, and when to accel or brake the motor to get to the desired angle range. Generally, in the current Robot motion model, HoldAngleWithMotor is used to maintain balance, while TurnMotorUntilAngle is used to move to a particular angle, and then a secondary motion instruction takes over for the next stage. The only main difference between these two instructions currently is that TurnMotorUntilAngle stops once the angle range is reached, while HoldAngleWithMotor only stops after a timeout or the end of the script. 
+
+
+4) StartTime,TurnMotorUntilAngle(EthMotorsPCBName,MotorName/Num,Dir*Strength/Speed,Duration/TimeOut,EthAccelsPCBName,AccelNum,AccelAngleXYorZ,operator: GT_LT_EQ_BETWEEN,Angle1{,Angle2},flags)
+  operators are: EQ,LT,GT,BETWEEN (possibly add LTE, GTE)
+	ex:0,TurnMotorUntilAngle(ETHMOTORS_UPPER_BODY,MOTOR_HEAD,2,250,ETHACCELS_TORSO,1,0,3,-1,1,WAIT_STAGE)
+
+
+Sample "stages" script:
+0,StartLogging 
+0,HoldAngleWithMotor(ETHACCELS_LEFT_LEG,1,2,1.0,5.0,ETHMOTORS_LOWER_BODY,MOTOR_LEFT_ANKLE,5000,WAIT_STAGE)
+4,StopLogging
+
+
+=============
+DHCP settings
+1) In Ubuntu create a new network connection with a manual IPv4 address:
+ip: 192.168.2.1  netmask: 255.255.255.0  gateway:192.168.2.1
+In Routes check "Use this connection only for resources on its network"
+
+see: http://askubuntu.com/questions/140126/how-do-i-install-and-configure-a-dhcp-server
+sudo apt install isc-dhcp-server
+
+in /etc/dhcp/dhcpd.conf add:
+subnet 192.168.2.0 netmask 255.255.255.0 {
+range 192.168.2.2 192.168.2.254;
+}
+
+
+(if /etc/network/interfaces is empty, most likely do not need below): 
+in /etc/network/interfaces
+add:
+auto enp3s0
+iface enp3s0 inet static
+    address 192.168.2.1
+    netmask 255.255.255.0
+
+
+in /etc/default/isc-dhcp-server
+add for INTERFACES="eth0"
+
+useful commands:
+systemctl restart NetworkManager.service
+systemctl restart  isc-dhcp-server
+
+
+
+if problems recognizing Eth PCBs, power them off and on and try again

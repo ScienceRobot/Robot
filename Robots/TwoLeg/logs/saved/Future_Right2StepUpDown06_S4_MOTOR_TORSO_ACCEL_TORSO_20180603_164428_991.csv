@@ -1,0 +1,43 @@
+Time	Inst Time	Quantity	Trgt/ZrVl/Thr (WG)	Info/CrctDir	TargetAngle	CurrentAngle	Velocity	Accel	0	10	20	30	40	50	60	70	80	90	100	110	120	130	140	150	160	170	180	190	200	210	220	230	240	250	260	270	280	290	300	310	320	330	340	350	360	370	380	390	400	410	420	430	440	450	460	470	480	490	500	510	520	530	540	550	560	570	580	590	600	610	620	630	640	650	660	670	680	690	700	710	720	730	740	750	760	770	780	790	800	810	820	830	840	850	860	870	880	890	900	910	920	930	940	950	960	970	980	990	1000
+1581	1			Angle 0 in range2 'Torso X' 'Torso Motor' -11.20 (-13.82<-11.82<-9.82
+1581	1		Ang=-11.20 Vel=0.82 Accel=-2.27 T=0		Thrust=0: In Range and not moving (range= -13.8 to -9.8)
+1590	10			InRange and NotMoving (or has ROBOT_INSTRUCTION_NO_HOLD flag): NO THRUST ANALYSIS Segment Torso	TargetAngle=-13.82 -11.82 -9.82
+1590	10		Ang=-11.20 Vel=0.33 Accel=-0.50 T=0		Thrust=0: In Range and not moving (range= -13.8 to -9.8)
+1600	20			InRange and NotMoving (or has ROBOT_INSTRUCTION_NO_HOLD flag): NO THRUST ANALYSIS Segment Torso	TargetAngle=-13.82 -11.82 -9.82
+1600	20		Ang=-11.20 Vel=0.21 Accel=-0.12 T=0		Thrust=0: In Range and not moving (range= -13.8 to -9.8)
+1610	30			InRange and NotMoving (or has ROBOT_INSTRUCTION_NO_HOLD flag): NO THRUST ANALYSIS Segment Torso	TargetAngle=-13.82 -11.82 -9.82
+1610	30		Ang=-11.21 Vel=-0.83 Accel=-1.04 T=0		Thrust=0: In Range and not moving (range= -13.8 to -9.8)
+1620	40		Ang=-11.16 Vel=4.44 Accel=5.27 T=0	Thrust=0: In Range and moving against gravity -13.8 -9.8
+1630	50	Ang	TargetIdx=24		(-13.8<-11.8<-9.8)	-11.05
+1630	50	Vel	Zero=-1	0			11.09
+1630	50	Accel	Thrust=0 (1)	0				6.65	3.63
+1630	50			V=N TVR Seg=-11.05 Targ=-11.82 Vel=11.09 TVR=0.50 Thrust=-2 IncAngDir=1
+1640	60	Ang	TargetIdx=17		(-13.8<-11.8<-9.8)	-10.88
+1640	60	Vel	Zero=-1	0			17.05
+1640	60	Accel	Thrust=-2 (1)	0				5.95	5.96
+1640	60			V=N TVR Seg=-10.88 Targ=-11.82 Vel=17.05 TVR=0.50 Thrust=-2 IncAngDir=1
+1650	70	Ang	TargetIdx=15		(-13.8<-11.8<-9.8)	-10.65
+1650	70	Vel	Zero=-1	0			23.18
+1650	70	Accel	Thrust=-2 (1)	0				6.13	6.24
+1650	70			V=N TVR Seg=-10.65 Targ=-11.82 Vel=23.18 TVR=0.50 Thrust=-2 IncAngDir=1
+1660	80	Ang	TargetIdx=14		(-13.8<-11.8<-9.8)	-10.38
+1660	80	Vel	Zero=-1	0			26.69
+1660	80	Accel	Thrust=-2 (1)	0				3.52	5.20
+1660	80			V=N TVR Seg=-10.38 Targ=-11.82 Vel=26.69 TVR=0.50 Thrust=-2 IncAngDir=1
+1670	90	Ang	TargetIdx=15		(-13.8<-11.8<-9.8)	-10.11
+1670	90	Vel	Zero=7	0			26.98
+1670	90	Accel	Thrust=-2 (1)	0				0.29	3.31
+1670	90			V=N TVR Seg=-10.11 Targ=-11.82 Vel=26.98 TVR=0.50 Thrust=-2 IncAngDir=1
+1680	100	Ang	TargetIdx=20		(-13.8<-11.8<-9.8)	-9.88
+1680	100	Vel	Zero=3	0			23.71
+1680	100	Accel	Thrust=-2 (1)	1				-3.27	0.18
+1680	100			V=N TVR Seg=-9.88 Targ=-11.82 Vel=23.71 TVR=0.50 Thrust=-2 IncAngDir=1
+1690	110			NO INITIAL THRUST SENT_INITIAL_THRUST=10 Segment Torso out of range	TargetAngle=-13.82 -11.82 -9.82
+1690	110	Ang	TargetIdx=28		(-13.8<-11.8<-9.8)	-9.66
+1690	110	Vel	Zero=3	0			21.13
+1690	110	Accel	Thrust=-2 (1)	1				-2.58	-1.85
+1690	110			V=N TVR Seg=-9.66 Targ=-11.82 Vel=21.13 TVR=0.50 Thrust=-4 IncAngDir=1
+1700	120	Ang	TargetIdx=51		(-13.8<-11.8<-9.8)	-9.52
+1700	120	Vel	Zero=2	0			14.65
+1700	120	Accel	Thrust=-4 (1)	1				-6.48	-4.11
+1700	120			V=N TVR Seg=-9.52 Targ=-11.82 Vel=14.65 TVR=0.50 Thrust=-4 IncAngDir=1

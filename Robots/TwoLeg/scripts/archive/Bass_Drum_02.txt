@@ -1,0 +1,17 @@
+#Bass_Drum_02.txt
+#0,StartLogging
+#0,StartAccelerometer(ETHACCELS_LEFT_LEG,7,POLLING)
+#0,StartAccelerometer(ETHACCELS_RIGHT_LEG,7,POLLING)
+#0,StartAccelerometer(ETHACCELS_TORSO,1,POLLING)
+#0,StartTouchSensor(ETHACCELS_LEFT_LEG,0x3,POLLING)
+#0,StartTouchSensor(ETHACCELS_RIGHT_LEG,0x3,POLLING)
+#double tap
+#raise
+0,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_FOOT,-6,50)
+50,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_FOOT,6,200)  
+250,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_FOOT,-6,50)
+300,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_FOOT,6,200)  
+
+#END,StopAllTouchSensorsInterrupt
+#END,StopAllAccelerometersInterrupt
+#1500,StopLogging

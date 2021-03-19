@@ -1,0 +1,8 @@
+#StopAccelTouchInterrupt01.txt
+0,StopTouchSensor(ETHACCELS_LEFT_LEG,0x3,POLLING)
+0,StopTouchSensor(ETHACCELS_RIGHT_LEG,0x3,POLLING)
+0,StopAccelerometer(ETHACCELS_LEFT_LEG,7,POLLING)
+0,StopAccelerometer(ETHACCELS_RIGHT_LEG,7,POLLING)
+0,StopAccelerometer(ETHACCELS_TORSO,1,POLLING)
+
+

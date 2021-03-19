@@ -1,0 +1,8 @@
+#RightArmUpForToss01.txt
+#0,MOTOR_UPPER_BODY,7,-5,2000
+0,MOTOR_UPPER_BODY,9,7,1800
+0,MOTOR_UPPER_BODY,11,5,800 #turn wrist
+
+
+
+

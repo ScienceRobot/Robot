@@ -1,0 +1,161 @@
+Time	Inst Time	Quantity	Trgt/ZrVl/Thr (WG)	Info/CrctDir	Angle	Velocity	Accel	0	10	20	30	40	50	60	70	80	90	100	110	120	130	140	150	160	170	180	190	200	210	220	230	240	250	260	270	280	290	300	310	320	330	340	350	360	370	380	390	400	410	420	430	440	450	460	470	480	490	500	510	520	530	540	550	560	570	580	590	600	610	620	630	640	650	660	670	680	690	700	710	720	730	740	750	760	770	780	790	800	810	820	830	840	850	860	870	880	890	900	910	920	930	940	950	960	970	980	990	1000
+2290	0	Ang	TargetIdx=50		-2.30
+2290	0	Vel	Zero=-1	0		29.03
+2290	0	Accel	Thrust=5 (0)	1			-0.66	-0.22
+2290	0			V=N HOLD_ANGLE_TVR Seg=-2.30 Targ=-8.00 Vel=29.03 TVR=10.00 Thrust=16 IncAngDir=-1
+2300	10	Ang	TargetIdx=33		-2.02
+2300	10	Vel	Zero=-1	0		27.79
+2300	10	Accel	Thrust=16 (0)	1			-1.24	-0.63
+2300	10			V=N HOLD_ANGLE_TVR Seg=-2.02 Targ=-8.00 Vel=27.79 TVR=10.00 Thrust=16 IncAngDir=-1
+2310	20	Ang	TargetIdx=16		-1.78
+2310	20	Vel	Zero=-1	0		24.11
+2310	20	Accel	Thrust=16 (0)	1			-3.69	-1.86
+2310	20			V=N HOLD_ANGLE_TVR Seg=-1.78 Targ=-8.00 Vel=24.11 TVR=10.00 Thrust=16 IncAngDir=-1
+2320	30	Ang	TargetIdx=28		-1.57
+2320	30	Vel	Zero=2	0		21.38
+2320	30	Accel	Thrust=16 (0)	1			-2.73	-2.55
+2320	30			V=N HOLD_ANGLE_TVR Seg=-1.57 Targ=-8.00 Vel=21.38 TVR=10.00 Thrust=16 IncAngDir=-1
+2330	40	Ang	TargetIdx=14		-1.42
+2330	40	Vel	Zero=-1	0		14.94
+2330	40	Accel	Thrust=16 (0)	1			-6.44	-4.28
+2330	40			V=N HOLD_ANGLE_TVR Seg=-1.42 Targ=-8.00 Vel=14.94 TVR=10.00 Thrust=16 IncAngDir=-1
+2340	50	Ang	TargetIdx=38		-1.29
+2340	50	Vel	Zero=1	0		13.19
+2340	50	Accel	Thrust=16 (0)	1			-1.75	-3.64
+2340	50			V=N HOLD_ANGLE_TVR Seg=-1.29 Targ=-8.00 Vel=13.19 TVR=10.00 Thrust=16 IncAngDir=-1
+2350	60	Ang	TargetIdx=47		-1.21
+2350	60	Vel	Zero=4	0		7.76
+2350	60	Accel	Thrust=16 (0)	1			-5.44	-4.54
+2350	60			V=N HOLD_ANGLE_TVR Seg=-1.21 Targ=-8.00 Vel=7.76 TVR=10.00 Thrust=16 IncAngDir=-1
+2360	70	Ang	TargetIdx=27		-1.20
+2360	70	Vel	Zero=-1	0		0.71
+2360	70	Accel	Thrust=16 (0)	1			-7.05	-4.74
+2360	70			V=N HOLD_ANGLE_TVR Seg=-1.20 Targ=-8.00 Vel=0.71 TVR=10.00 Thrust=7 IncAngDir=-1
+2370	80	Ang	TargetIdx=100		-1.27
+2370	80	Vel	Zero=-1 Min=100 Max=0	1		-6.79
+2370	80	Accel	Thrust=7 (0)	1			-7.50	-6.66
+2370	80			Dec: Targ<100 Zero>100 V=Y A=Y V>Min Need=3 ThrDirCrt=1
+2380	90	Ang	TargetIdx=67		-1.37
+2380	90	Vel	Zero=-1 Min=100 Max=0	1		-9.91
+2380	90	Accel	Thrust=6 (0)	1			-3.12	-5.89
+2380	90			Dec: Targ<100 Zero>100 V=Y A=Y V>Min Need=3 ThrDirCrt=1
+2390	100	Ang	TargetIdx=56		-1.49
+2390	100	Vel	Zero=-1 Min=100 Max=0	1		-11.71
+2390	100	Accel	Thrust=5 (0)	1			-1.80	-4.14
+2390	100			Dec: Targ<100 Zero>100 V=Y A=Y V>Min Need=3 ThrDirCrt=1
+2400	110	Ang	TargetIdx=52		-1.61
+2400	110	Vel	Zero=-1 Min=100 Max=0	1		-12.51
+2400	110	Accel	Thrust=4 (0)	1			-0.80	-1.91
+2400	110			Dec: Targ<100 Zero>100 V=Y A=Y V>Min Need=3 ThrDirCrt=1
+2410	120	Ang	TargetIdx=39		-1.78
+2410	120	Vel	Zero=-1 Min=100 Max=0	1		-16.27
+2410	120	Accel	Thrust=3 (0)	1			-3.76	-2.12
+2410	120			Dec: Targ<100 Zero>100 V=Y A=Y V>Min Need=3 ThrDirCrt=1
+2420	130	Ang	TargetIdx=29		-1.99
+2420	130	Vel	Zero=-1 Min=100 Max=0	1		-21.11
+2420	130	Accel	Thrust=2 (0)	1			-4.85	-3.13
+2420	130			Dec: Targ<100 Zero>100 V=Y A=Y V>Min Need=3 ThrDirCrt=1
+2430	140	Ang	TargetIdx=36		-2.15
+2430	140	Vel	Zero=4 Min=4 Max=0	1		-16.62
+2430	140	Accel	Thrust=1 (0)	0			4.50	-1.37
+2440	150	Ang	TargetIdx=34		-2.32
+2440	150	Vel	Zero=-1 Min=100 Max=0	1		-16.92
+2440	150	Accel	Thrust=1 (0)	1			-0.30	-0.22
+2440	150			Dec: Targ<100 Zero>100 V=Y A=Y V>Min Need=3 ThrDirCrt=1
+2450	160	Ang	TargetIdx=39		-2.47
+2450	160	Vel	Zero=6 Min=6 Max=0	1		-14.43
+2450	160	Accel	Thrust=0 (0)	0			2.49	2.23
+2460	170	Ang	TargetIdx=37		-2.61
+2460	170	Vel	Zero=-1 Min=100 Max=0	1		-14.86
+2460	170	Accel	Thrust=0 (0)	1			-0.44	0.59
+2460	170			Dec: Targ<100 Zero>100 V=Y A=Y V>Min Need=3 ThrDirCrt=0
+2470	180	Ang	TargetIdx=54		-2.71
+2470	180	Vel	Zero=2 Min=2 Max=0	1		-9.90
+2470	180	Accel	Thrust=-1 (0)	0			4.96	2.34
+2480	190	Ang	TargetIdx=37		-2.86
+2480	190	Vel	Zero=-1 Min=100 Max=0	1		-14.16
+2480	190	Accel	Thrust=-1 (0)	1			-4.26	0.09
+2480	190			Dec: Targ<100 Zero>100 V=Y A=Y V>Min Need=4 ThrDirCrt=0
+2490	200	Ang	TargetIdx=55		-2.95
+2490	200	Vel	Zero=2 Min=2 Max=0	1		-9.31
+2490	200	Accel	Thrust=-2 (0)	0			4.85	1.85
+2500	210	Ang	TargetIdx=-1		-2.98
+2500	210	Vel	Zero=1 Min=1 Max=100	1		-3.13
+2500	210	Accel	Thrust=-2 (0)	0			6.18	2.26
+2500	210			STOP BRAKE & THRUST T=1: V=Y (A=N) T=N V>MinV but MinVFI<5
+2510	220	Ang	TargetIdx=-1		-2.96
+2510	220	Vel	Zero=1	0		2.35
+2510	220	Accel	Thrust=1 (0)	0			5.48	5.50
+2510	220			V=N HOLD_ANGLE_TVR Seg=-2.96 Targ=-8.00 Vel=2.35 TVR=10.00 Thrust=16 IncAngDir=-1
+2520	230	Ang	TargetIdx=-1		-2.87
+2520	230	Vel	Zero=-1	0		8.59
+2520	230	Accel	Thrust=16 (0)	0			6.24	5.96
+2520	230			V=N HOLD_ANGLE_TVR Seg=-2.87 Targ=-8.00 Vel=8.59 TVR=10.00 Thrust=16 IncAngDir=-1
+2530	240	Ang	TargetIdx=-1		-2.69
+2530	240	Vel	Zero=1	0		17.90
+2530	240	Accel	Thrust=16 (0)	0			9.31	7.01
+2530	240			V=N HOLD_ANGLE_TVR Seg=-2.69 Targ=-8.00 Vel=17.90 TVR=10.00 Thrust=16 IncAngDir=-1
+2540	250	Ang	TargetIdx=-1		-2.53
+2540	250	Vel	Zero=-1	0		16.37
+2540	250	Accel	Thrust=16 (0)	1			-1.53	4.67
+2540	250			V=N HOLD_ANGLE_TVR Seg=-2.53 Targ=-8.00 Vel=16.37 TVR=10.00 Thrust=16 IncAngDir=-1
+2550	260	Ang	TargetIdx=38		-2.36
+2550	260	Vel	Zero=-1	0		17.24
+2550	260	Accel	Thrust=16 (0)	0			0.87	2.89
+2550	260			V=N HOLD_ANGLE_TVR Seg=-2.36 Targ=-8.00 Vel=17.24 TVR=10.00 Thrust=16 IncAngDir=-1
+2560	270	Ang	TargetIdx=38		-2.10
+2560	270	Vel	Zero=-1	0		25.84
+2560	270	Accel	Thrust=16 (0)	0			8.60	2.65
+2560	270			V=N HOLD_ANGLE_TVR Seg=-2.10 Targ=-8.00 Vel=25.84 TVR=10.00 Thrust=16 IncAngDir=-1
+2570	280	Ang	TargetIdx=38		-1.76
+2570	280	Vel	Zero=2	0		33.93
+2570	280	Accel	Thrust=16 (0)	0			8.09	5.85
+2570	280			V=N HOLD_ANGLE_TVR Seg=-1.76 Targ=-8.00 Vel=33.93 TVR=10.00 Thrust=16 IncAngDir=-1
+2580	290	Ang	TargetIdx=2		-1.35
+2580	290	Vel	Zero=0	0		40.64
+2580	290	Accel	Thrust=16 (0)	0			6.71	7.80
+2580	290			V=N HOLD_ANGLE_TVR Seg=-1.35 Targ=-8.00 Vel=40.64 TVR=10.00 Thrust=16 IncAngDir=-1
+2590	300	Ang	TargetIdx=2		-0.94
+2590	300	Vel	Zero=7	0		40.91
+2590	300	Accel	Thrust=16 (0)	0			0.27	5.02
+2590	300			V=N HOLD_ANGLE_TVR Seg=-0.94 Targ=-8.00 Vel=40.91 TVR=10.00 Thrust=16 IncAngDir=-1
+2600	310	Ang	TargetIdx=2		-0.58
+2600	310	Vel	Zero=2	0		36.25
+2600	310	Accel	Thrust=16 (0)	1			-4.66	0.77
+2600	310			V=N HOLD_ANGLE_TVR Seg=-0.58 Targ=-8.00 Vel=36.25 TVR=10.00 Thrust=16 IncAngDir=-1
+2610	320	Ang	TargetIdx=1		-0.31
+2610	320	Vel	Zero=3	0		26.82
+2610	320	Accel	Thrust=16 (0)	1			-9.43	-4.61
+2610	320			V=N HOLD_ANGLE_TVR Seg=-0.31 Targ=-8.00 Vel=26.82 TVR=10.00 Thrust=16 IncAngDir=-1
+2620	330	Ang	TargetIdx=1		-0.13
+2620	330	Vel	Zero=1	0		18.05
+2620	330	Accel	Thrust=16 (0)	1			-8.77	-7.62
+2620	330			V=N HOLD_ANGLE_TVR Seg=-0.13 Targ=-8.00 Vel=18.05 TVR=10.00 Thrust=16 IncAngDir=-1
+2630	340	Ang	TargetIdx=-1		-0.04
+2630	340	Vel	Zero=0	0		8.79
+2630	340	Accel	Thrust=16 (0)	1			-9.26	-9.15
+2630	340			V=N HOLD_ANGLE_TVR Seg=-0.04 Targ=-8.00 Vel=8.79 TVR=10.00 Thrust=16 IncAngDir=-1
+2640	350	Ang	TargetIdx=-1		0.01
+2640	350	Vel	Zero=3	0		5.26
+2640	350	Accel	Thrust=16 (0)	1			-3.53	-7.19
+2640	350			V=N HOLD_ANGLE_TVR Seg=0.01 Targ=-8.00 Vel=5.26 TVR=10.00 Thrust=16 IncAngDir=-1
+2650	360	Ang	TargetIdx=-1		0.08
+2650	360	Vel	Zero=3	0		6.63
+2650	360	Accel	Thrust=16 (0)	0			1.37	-3.81
+2650	360			V=N HOLD_ANGLE_TVR Seg=0.08 Targ=-8.00 Vel=6.63 TVR=10.00 Thrust=16 IncAngDir=-1
+2660	370	Ang	TargetIdx=1		0.18
+2660	370	Vel	Zero=-1	0		10.14
+2660	370	Accel	Thrust=16 (0)	0			3.51	0.45
+2660	370			V=N HOLD_ANGLE_TVR Seg=0.18 Targ=-8.00 Vel=10.14 TVR=10.00 Thrust=16 IncAngDir=-1
+2670	380	Ang	TargetIdx=-1		0.29
+2670	380	Vel	Zero=3	0		11.43
+2670	380	Accel	Thrust=16 (0)	0			1.29	2.06
+2670	380			V=N HOLD_ANGLE_TVR Seg=0.29 Targ=-8.00 Vel=11.43 TVR=10.00 Thrust=16 IncAngDir=-1
+2680	390	Ang	TargetIdx=-1		0.37
+2680	390	Vel	Zero=2	0		8.13
+2680	390	Accel	Thrust=16 (0)	1			-3.30	0.50
+2680	390			V=N HOLD_ANGLE_TVR Seg=0.37 Targ=-8.00 Vel=8.13 TVR=10.00 Thrust=16 IncAngDir=-1
+2690	400	Ang	TargetIdx=-1		0.41
+2690	400	Vel	Zero=1	0		3.40
+2690	400	Accel	Thrust=16 (0)	1			-4.73	-2.24
+2690	400			V=N HOLD_ANGLE_TVR Seg=0.41 Targ=-8.00 Vel=3.40 TVR=10.00 Thrust=16 IncAngDir=-1

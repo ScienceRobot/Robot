@@ -1,0 +1,152 @@
+#RightSideStep03.sh
+0,StartLogging 
+0,LogScriptFileName
+#StartTimeInMS,HoldAngleWithMotor(AccelName,AccelAngleXYorZ,TargetAngle,DegreesPlus,DegreesMinus,MotorName,Dir*Strength,Duration/TimeOut,flags)
+
+#legs spread 22cm from left foot to right foot center
+
+#constant thrust step right
+#no thrust analysis, but does check for angle
+
+
+0,StoreAngle(ACCEL_LEFT_LOWER_LEG,Z,LLLZ0)
+0,StoreAngle(ACCEL_RIGHT_LOWER_LEG,Z,RLLZ0)
+0,StoreAngle(ACCEL_TORSO,Z,TZ0)
+0,StoreAngle(ACCEL_TORSO,X,TX0)
+0,StoreAngle(ACCEL_RIGHT_UPPER_LEG,X,RULX0)
+0,StoreAngle(ACCEL_RIGHT_LOWER_LEG,X,RLLX0)
+0,StoreAngle(ACCEL_RIGHT_UPPER_LEG,Z,RULZ0)
+
+#Stage 1: LEAN LEFT 
+#both ankles lean ankle until LLLZ is 0, thrust=7
+#alt: left ankle turns until LLLZ=-1 LLLZ starts at 3, important to limit thrust
+1,MotorAccel(MOTOR_LEFT_SIDE,MOTOR_RIGHT_SIDE,3,5000,ACCEL_LEFT_LOWER_LEG,Z,-5,-1,1,WAIT_STAGE|DOUBLE_THRUST|FUTURE_LOG|CONSTANT_THRUST)
+#1,MotorAccel(MOTOR_LEFT_SIDE,MOTOR_RIGHT_SIDE,3,5000,ACCEL_LEFT_LOWER_LEG,Z,-4,-1,1,WAIT_STAGE|DOUBLE_THRUST|FUTURE_LOG|CONSTANT_THRUST)
+1,MotorAccel(MOTOR_LEFT_ANKLE,3,5000,ACCEL_LEFT_FOOT,Z,0,-1,1,ACCEL_LEFT_LOWER_LEG,Z,-5,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=3)
+1,MotorAccel(MOTOR_RIGHT_ANKLE,3,5000,ACCEL_RIGHT_FOOT,Z,0,-1,1,ACCEL_LEFT_LOWER_LEG,Z,-5,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=3)
+
+#feet, knee, leg, and torso motors keep torso from falling forward or backward
+#torso holds torso x until stage 4- note LAST_STAGE=4 needs 10s timeout
+1,MotorAccel(MOTOR_TORSO,3,10000,ACCEL_TORSO,X,TX0,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=7|MAX_REVERSE_THRUST=3|LAST_STAGE=4)
+#1,MotorAccel(MOTOR_LEFT_LEG,MOTOR_RIGHT_LEG,3,5000,ACCEL_TORSO,X,TX0,-1,1,WAIT_STAGE|HOLD_ANGLE|DOUBLE_THRUST|FUTURE_LOG|MAX_THRUST=3)
+#1,MotorAccel(MOTOR_LEFT_KNEE,MOTOR_RIGHT_KNEE,3,5000,ACCEL_TORSO,X,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE|DOUBLE_THRUST|FUTURE_LOG|MAX_THRUST=3)
+#1,MotorAccel(MOTOR_LEFT_FOOT,3,5000,ACCEL_LEFT_LOWER_LEG,X,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=3)
+#1,MotorAccel(MOTOR_RIGHT_FOOT,3,5000,ACCEL_RIGHT_LOWER_LEG,X,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=3)
+
+
+
+#stage 2: LEFT_SIDE reverses, to make torso Z straighten, and put torso weight over left leg, can be more positive than 1deg
+#2,MotorAccel(MOTOR_LEFT_SIDE,6,3000,ACCEL_TORSO,Z,1,-1,4,WAIT_STAGE|MAX_THRUST=7)
+#inst lasts until stage 4 (balance with foot in air) Roll degrees 1 to -5
+2,MotorAccel(MOTOR_LEFT_SIDE,6,3000,ACCEL_TORSO,Z,0,-2,1,WAIT_STAGE|MAX_THRUST=9|ABORT_ON_TIMEOUT)
+#ABORT_ANGLE0=5 - end script if ankle Z turns past 5 degrees was -6
+2,MotorAccel(MOTOR_LEFT_ANKLE,3,10000,ACCEL_LEFT_FOOT,Z,0,-10,10,ACCEL_LEFT_LOWER_LEG,Z,-6,-2,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=12|MAX_REVERSE_THRUST=3|ABORT_ANGLE0=15|LAST_STAGE=4)
+#2,MotorAccel(MOTOR_RIGHT_ANKLE,3,3000,ACCEL_RIGHT_FOOT,Z,0,-10,10,ACCEL_LEFT_LOWER_LEG,Z,-5,-2,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=3)
+
+#legs hold up torso
+#2,MotorAccel(MOTOR_LEFT_LEG,MOTOR_RIGHT_LEG,3,5000,ACCEL_TORSO,X,TX0,-1,1,WAIT_STAGE|HOLD_ANGLE|DOUBLE_THRUST|FUTURE_LOG|MAX_THRUST=6)
+
+#knee holds up upper legs
+2,MotorAccel(MOTOR_LEFT_KNEE,3,10000,ACCEL_LEFT_UPPER_LEG,X,CurrentAngle[LULX],-1,1,WAIT_STAGE|HOLD_ANGLE|MAX_THRUST=12|MAX_REVERSE_THRUST=6|LAST_STAGE=4)
+2,MotorAccel(MOTOR_RIGHT_KNEE,3,3000,ACCEL_RIGHT_UPPER_LEG,X,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE|MAX_THRUST=10)
+
+#feet hold up lower legs
+2,MotorAccel(MOTOR_LEFT_FOOT,3,3000,ACCEL_LEFT_LOWER_LEG,X,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE|MAX_THRUST=10)
+2,MotorAccel(MOTOR_RIGHT_FOOT,3,3000,ACCEL_RIGHT_LOWER_LEG,X,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE|MAX_THRUST=10)
+
+
+#2,MotorAccel(MOTOR_LEFT_ANKLE,3,5000,ACCEL_LEFT_FOOT,Z,0,-1,1,ACCEL_LEFT_LOWER_LEG,Z,-4,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=3)
+#2,MotorAccel(MOTOR_RIGHT_SIDE,3,7000,ACCEL_RIGHT_UPPER_LEG,Z,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=6)
+
+
+#Stage 3: push RIGHT LEG out 
+#store upper and lower leg X before leg lift to return to that angle 
+3,StoreAngle(ACCEL_RIGHT_UPPER_LEG,X,RULX0_BeforeLift)
+3,StoreAngle(ACCEL_RIGHT_UPPER_LEG,X,RLLX0_BeforeLift)
+
+
+#right side pushes away from left leg
+#3,MotorAccel(MOTOR_RIGHT_SIDE,6,2000,ACCEL_RIGHT_UPPER_LEG,Z,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE)
+3,MotorAccel(MOTOR_RIGHT_SIDE,6,2000,ACCEL_RIGHT_UPPER_LEG,Z,CurrentAnglePlus,-5,-1,1,CONSTANT_THRUST|WAIT_STAGE)
+#left side counters
+#3,MotorAccel(MOTOR_LEFT_SIDE,6,2000,ACCEL_LEFT_LOWER_LEG,Z,-5,-2,1,ACCEL_TORSO,Z,0,-2,1,WAIT_STAGE|HOLD_ANGLE|MAX_THRUST=9)
+3,MotorAccel(MOTOR_LEFT_SIDE,6,2000,ACCEL_RIGHT_UPPER_LEG,Z,CurrentAnglePlus,-5,-1,1,CONSTANT_THRUST|HOLD_ANGLE|WAIT_STAGE)
+
+
+#need to lift right leg to lower friction
+3,MotorAccel(MOTOR_RIGHT_LEG,10,2000,ACCEL_RIGHT_UPPER_LEG,X,17,-1,1,WAIT_STAGE|CONSTANT_THRUST|HOLD_ANGLE)
+#bend right knee so foot lifts in place - decrease angle X (lower leg rotates forward)
+3,MotorAccel(MOTOR_RIGHT_KNEE,12,2000,ACCEL_RIGHT_LOWER_LEG,X,-20,-1,1,WAIT_STAGE|CONSTANT_THRUST|HOLD_ANGLE)
+
+
+#(LEFT FOOT MOTOR HOLDS ROBOT FROM FALLING FORWARD)
+3,MotorAccel(MOTOR_LEFT_LEG,10,2000,ACCEL_RIGHT_UPPER_LEG,X,17,-1,1,WAIT_STAGE|CONSTANT_THRUST|HOLD_ANGLE)
+
+
+
+#important that left knee hold ULX to 17 standing is 10 - left knee needs to push hard initially
+#3,MotorAccel(MOTOR_LEFT_KNEE,10,2000,ACCEL_LEFT_UPPER_LEG,X,LULX,-0.5,0.5,WAIT_STAGE|HOLD_ANGLE)
+#important the left side holds torso Z to 0 (changed to CurrentAngle) was MAX_THRUST=6
+#3,MotorAccel(MOTOR_LEFT_SIDE,6,2000,ACCEL_TORSO,Z,0,-2,1,WAIT_STAGE|HOLD_ANGLE|MAX_THRUST=9)
+#3,MotorAccel(MOTOR_LEFT_SIDE,6,2000,ACCEL_LEFT_LOWER_LEG,Z,-5,-2,1,ACCEL_TORSO,Z,0,-2,1,WAIT_STAGE|HOLD_ANGLE|MAX_THRUST=9)
+#3,MotorAccel(MOTOR_LEFT_SIDE,3,2000,ACCEL_TORSO,Z,0,-1,1,WAIT_STAGE|HOLD_ANGLE|MAX_THRUST=9)
+#important that left ankle holds lower leg Z or else robot falls right  setting Z=-4 forces ankle to thrust immediately
+#3,MotorAccel(MOTOR_LEFT_ANKLE,10,2000,ACCEL_LEFT_FOOT,Z,0,-5,5,ACCEL_LEFT_LOWER_LEG,Z,-4,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=12)
+#3,MotorAccel(MOTOR_LEFT_ANKLE,10,2000,ACCEL_LEFT_LOWER_LEG,Z,-4,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=16|LAST_STAGE=4|ABORT_ANGLE0=10)
+#ankle inst lasts through balance stage (4)
+#3,MotorAccel(MOTOR_LEFT_ANKLE,10,2000,ACCEL_LEFT_FOOT,Z,0,-10,10,ACCEL_LEFT_LOWER_LEG,Z,-4,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=16|LAST_STAGE=4|ABORT_ANGLE0=15)
+#torso motor holds up torso X
+#3,MotorAccel(MOTOR_TORSO,9,2000,ACCEL_TORSO,X,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG)
+#3,MotorAccel(MOTOR_RIGHT_SIDE,6,2000,ACCEL_TORSO,Z,0,-1,1,WAIT_STAGE|HOLD_ANGLE)
+#left foot holds lower leg to current angle 
+3,MotorAccel(MOTOR_LEFT_FOOT,5,2000,ACCEL_LEFT_FOOT,X,0,-5,5,ACCEL_LEFT_LOWER_LEG,X,CurrentAngle[LLLX],-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG)
+#left ankle holds robot weight from falling left
+#2,MotorAccel(MOTOR_LEFT_ANKLE,10,6100,ACCEL_LEFT_FOOT,Z,0,-5,5,ACCEL_LEFT_LOWER_LEG,Z,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE|MAX_THRUST=16|FUTURE_LOG|LAST_STAGE=6100)
+
+#right ankle hold Z at 0
+3,MotorAccel(MOTOR_RIGHT_ANKLE,10,2000,ACCEL_RIGHT_FOOT,Z,0,-3,3,WAIT_STAGE|FUTURE_LOG|HOLD_ANGLE)
+
+
+#right foot bends up to lower friction of foot with ground
+#3,MotorAccel(MOTOR_RIGHT_FOOT,6,2000,ACCEL_RIGHT_FOOT,X,8,-0.5,0.5,WAIT_STAGE|FUTURE_LOG|HOLD_ANGLE)
+
+
+#right foot holds foot parallel to ground X=0 (standing should be x=0, but can be ex: 2)
+#3,MotorAccel(MOTOR_RIGHT_FOOT,6,2000,ACCEL_RIGHT_FOOT,X,0,-0.5,0.5,WAIT_STAGE|FUTURE_LOG|HOLD_ANGLE)
+
+
+#Stage 4: SHIFT ROBOT WEIGHT BACK TO CENTER
+4,MotorAccel(MOTOR_RIGHT_SIDE,6,500,ACCEL_TORSO,Z,0,-1,1,WAIT_STAGE)
+4,MotorAccel(MOTOR_RIGHT_LEG,6,500,ACCEL_RIGHT_UPPER_LEG,X,RULX0_BeforeLift,-0.5,0.5,WAIT_STAGE|HOLD_ANGLE)
+4,MotorAccel(MOTOR_RIGHT_KNEE,9,500,ACCEL_RIGHT_LOWER_LEG,X,RLLX0,-0.5,0.5,WAIT_STAGE|HOLD_ANGLE)
+4,MotorAccel(MOTOR_RIGHT_FOOT,1,500,ACCEL_RIGHT_FOOT,X,0,-1,1,WAIT_STAGE|HOLD_ANGLE) #does not use constant thrust
+#left ankle leans back- actually ankle should hold right leg up until after rt leg goes back down 
+#4,MotorAccel(MOTOR_LEFT_ANKLE,10,800,ACCEL_LEFT_FOOT,Z,0,-5,5,ACCEL_LEFT_LOWER_LEG,Z,LLLZ0,-1,1,WAIT_STAGE|HOLD_ANGLE|MAX_THRUST=16|FUTURE_LOG|LAST_STAGE=6100)
+
+
+#Stage 5: BALANCE - hold robot centrally balanced for 3 seconds
+#NOTE: Ankle in stage 2 holds until stage 4
+#(Basically try to hold the current angles)
+5,MotorAccel(MOTOR_LEFT_LEG,10,3000,ACCEL_TORSO,X,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE)
+#4,MotorAccel(MOTOR_LEFT_KNEE,10,3000,ACCEL_LEFT_UPPER_LEG,X,LULX,-0.5,0.5,WAIT_STAGE|HOLD_ANGLE|MAX_THRUST=14)
+#important the left side holds torso Z to 0 (changed to CurrentAngle)
+5,MotorAccel(MOTOR_LEFT_SIDE,3,3000,ACCEL_TORSO,Z,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE|MAX_THRUST=10)
+#important that left ankle holds lower leg Z or else robot falls right  setting Z=-4 forces ankle to thrust immediately
+#4,MotorAccel(MOTOR_LEFT_ANKLE,5,3000,ACCEL_LEFT_LOWER_LEG,Z,-4,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=16|ABORT_ANGLE0=10)
+#torso motor holds up torso X
+#4,MotorAccel(MOTOR_TORSO,9,2000,ACCEL_TORSO,X,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG)
+#right side pushes away from left leg
+#4,MotorAccel(MOTOR_RIGHT_SIDE,6,2000,ACCEL_RIGHT_UPPER_LEG,Z,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE)
+#left foot holds lower leg to current angle 
+5,MotorAccel(MOTOR_LEFT_FOOT,5,3000,ACCEL_LEFT_FOOT,X,0,-5,5,ACCEL_LEFT_LOWER_LEG,X,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG)
+#left ankle pushes weight back to center - returns to initial angle LLLZ0
+5,MotorAccel(MOTOR_LEFT_ANKLE,3,3000,ACCEL_LEFT_FOOT,Z,0,-5,5,ACCEL_LEFT_LOWER_LEG,Z,LLLZ0,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=6)
+#torso motor holds up torso X
+#4,MotorAccel(MOTOR_TORSO,3,2000,ACCEL_TORSO,X,CurrentAngle,-1,1,WAIT_STAGE|HOLD_ANGLE|FUTURE_LOG|MAX_THRUST=4|MAX_REVERSE_THRUST=3)
+
+
+
+#possibly right leg motor needs to hold up leg or possibly falls down
+
+10000,StopLogging
+

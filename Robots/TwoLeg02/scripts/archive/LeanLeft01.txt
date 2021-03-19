@@ -1,0 +1,7 @@
+#LeanLeft01.txt
+#Lean left to prepare for right step
+0,MOTOR_LOWER_BODY,1,4,400 #left ankle lean left
+0,MOTOR_LOWER_BODY,7,4,400 #right ankle lean left
+400,MOTOR_LOWER_BODY,1,-4,400 #left ankle lean left
+400,MOTOR_LOWER_BODY,7,-4,400 #right ankle lean left
+

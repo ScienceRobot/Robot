@@ -1,0 +1,17 @@
+#StepUpAndDownRight01.txt
+#lean left until torso (or head) is < -10degrees, and lift right leg, bending knee, and put back down
+#0,StartLogging
+#0,StartAccelerometer(ETHACCELS_TORSO,1,POLLING)
+#stage 1: lean left with feet until torso Z < 0 degrees
+#stage 2: lift right leg, and bed right knee
+#stage 3: right knee unbends, right leg goes back down
+#possibly need flag like CONSTANT_EVAL, or STRIVE_FOR_ANGLE, or UNTIL_TIMEOUT (UNTIL_ANGLE being default) - does not wait but constantly evaluates angle even after attaining at least once
+#0,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,MOTOR_LEFT_ANKLE,1,500,ETHACCELS_TORSO,0,Z,LT,0,WAIT_STAGE) #wait
+#0,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,MOTOR_LEFT_ANKLE,1,1000,ETHACCELS_TORSO,0,Z,LT,0) #do not wait
+1,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_KNEE,6,300) 
+1,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_LEG,6,300)
+300,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_KNEE,-6,300) 
+300,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_LEG,-6,300)
+#END,StopAllTouchSensorsInterrupt
+#END,StopAllAccelerometersInterrupt
+#2000,StopLogging

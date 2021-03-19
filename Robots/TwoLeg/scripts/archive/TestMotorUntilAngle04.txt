@@ -1,0 +1,7 @@
+#TestMotorUntilAngle03.txt
+0,StartLogging
+#TurnMotorUntilAngle(MotPCB,Mot#,Strength,Dur,AccelPCB,AccelNum,xyz,oper,angle1,angle2)
+0,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,0,-2,1000,ETHACCELS_LEFT_LEG,0,0,3,-1,1)
+0,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,1,-2,500,ETHACCELS_LEFT_LEG,0,2,3,-1,1)
+0,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,2,-2,1000,ETHACCELS_LEFT_LEG,1,0,3,-1,1)
+1000,StopLogging

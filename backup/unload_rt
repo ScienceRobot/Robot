@@ -1,0 +1,6 @@
+rmmod /usr/realtime/modules/rtai_mbx.ko
+rmmod /usr/realtime/modules/rtai_msg.ko
+rmmod /usr/realtime/modules/rtai_sem.ko
+rmmod /usr/realtime/modules/rtai_sched.ko
+rmmod /usr/realtime/modules/rtai_hal.ko
+

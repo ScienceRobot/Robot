@@ -1,0 +1,24 @@
+#RightStep01.txt
+#0,StartLogging;
+#0,StartAllAccelerometersInterrupt
+#0,StartAllTouchSensorsInterrupt
+#gently lean left and forward
+0,MOTOR_LOWER_BODY,1,4,250 #left ankle lean left
+0,MOTOR_LOWER_BODY,7,4,250 #right ankle lean left
+0,MOTOR_LOWER_BODY,0,1,250 #left foot lean forward
+0,MOTOR_LOWER_BODY,6,-1,250 #right foot lean forward
+0,MOTOR_LOWER_BODY,11,5,400 #right knee bends slightly (left knee does not bend back currently)- if robot falls to the right after the right kne bends the
+# it did not shift it's weight enough before bending its rt knee
+#the leg should not lift until the foot is off the ground
+400,MOTOR_LOWER_BODY,9,6,500 #right leg swings leg forward, pushes torso back
+400,MOTOR_LOWER_BODY,3,6,400 #and left leg swings backwards, pushes torso forward
+#swing right knee forward
+650,MOTOR_LOWER_BODY,11,-6,300 #right knee swings lower right leg forward
+#lean back right
+800,MOTOR_LOWER_BODY,1,-4,250 #left ankle lean right
+800,MOTOR_LOWER_BODY,7,-4,250 #right ankle lean right
+800,MOTOR_LOWER_BODY,0,-1,250 #left foot lean backward
+800,MOTOR_LOWER_BODY,6,1,250 #right foot lean backward
+#END,StopAllTouchSensorsInterrupt
+#END,StopAllAccelerometersInterrupt
+#END,StopLogging;

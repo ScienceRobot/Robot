@@ -1,0 +1,3 @@
+#Test01.txt
+0,MOTOR_LOWER_BODY,9,6,100 #right leg swings forward, pushes torso back
+

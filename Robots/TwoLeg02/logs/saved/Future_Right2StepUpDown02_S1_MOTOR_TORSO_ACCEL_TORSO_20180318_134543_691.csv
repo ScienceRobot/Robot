@@ -1,0 +1,224 @@
+Time	Inst Time	Quantity	Trgt/ZrVl/Thr (WG)	Info/CrctDir	TargetAngle	CurrentAngle	Velocity	Accel	0	10	20	30	40	50	60	70	80	90	100	110	120	130	140	150	160	170	180	190	200	210	220	230	240	250	260	270	280	290	300	310	320	330	340	350	360	370	380	390	400	410	420	430	440	450	460	470	480	490	500	510	520	530	540	550	560	570	580	590	600	610	620	630	640	650	660	670	680	690	700	710	720	730	740	750	760	770	780	790	800	810	820	830	840	850	860	870	880	890	900	910	920	930	940	950	960	970	980	990	1000
+10	0			Angle 0 in range2 'Torso X' 'Torso Motor' -11.88 (-13.87<-11.87<-9.87
+10	0		Ang=-11.88 Vel=-0.33 Accel=-0.15 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+20	10		Ang=-11.98 Vel=-0.21 Accel=0.12 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+30	20		Ang=-11.84 Vel=0.08 Accel=0.29 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+40	30		Ang=-11.84 Vel=-0.02 Accel=-0.10 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+50	40		Ang=-11.54 Vel=0.30 Accel=0.32 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+60	50		Ang=-11.53 Vel=-0.21 Accel=-0.51 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+70	60		Ang=-11.13 Vel=-0.19 Accel=0.02 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+80	70		Ang=-10.97 Vel=-0.81 Accel=-0.62 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+90	80		Ang=-10.98 Vel=-1.19 Accel=-0.38 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+100	90		Ang=-11.00 Vel=-1.97 Accel=-0.78 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+110	100		Ang=-11.02 Vel=-1.94 Accel=0.03 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+120	110		Ang=-11.03 Vel=-0.88 Accel=1.05 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+130	120		Ang=-11.03 Vel=-0.68 Accel=0.21 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+140	130		Ang=-11.04 Vel=-0.89 Accel=-0.21 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+150	140		Ang=-11.04 Vel=-0.16 Accel=0.73 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+160	150		Ang=-11.04 Vel=0.80 Accel=0.95 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+170	160		Ang=-11.03 Vel=0.93 Accel=0.14 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+180	170		Ang=-11.01 Vel=1.68 Accel=0.74 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+190	180		Ang=-10.99 Vel=1.82 Accel=0.15 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+200	190		Ang=-10.97 Vel=1.77 Accel=-0.05 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+210	200		Ang=-10.97 Vel=0.93 Accel=-0.83 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+220	210		Ang=-10.97 Vel=0.00 Accel=-0.93 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+230	220		Ang=-10.98 Vel=-1.17 Accel=-1.18 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+240	230		Ang=-11.00 Vel=-2.25 Accel=-1.08 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+250	240		Ang=-11.03 Vel=-2.94 Accel=-0.69 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+260	250		Ang=-11.05 Vel=-2.18 Accel=0.76 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+270	260		Ang=-11.06 Vel=-0.61 Accel=1.57 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+280	270		Ang=-11.05 Vel=0.48 Accel=1.09 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+290	280		Ang=-11.03 Vel=1.75 Accel=1.27 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+300	290		Ang=-11.01 Vel=2.93 Accel=1.18 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+310	300		Ang=-10.97 Vel=3.22 Accel=0.29 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+320	310		Ang=-10.94 Vel=3.26 Accel=0.04 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+330	320		Ang=-10.92 Vel=2.16 Accel=-1.10 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+340	330		Ang=-10.91 Vel=0.90 Accel=-1.26 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+350	340		Ang=-10.92 Vel=-0.69 Accel=-1.59 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+360	350		Ang=-10.94 Vel=-1.90 Accel=-1.21 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+370	360		Ang=-10.96 Vel=-2.30 Accel=-0.40 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+380	370		Ang=-10.98 Vel=-2.03 Accel=0.27 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+390	380		Ang=-10.99 Vel=-0.97 Accel=1.07 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+400	390		Ang=-10.99 Vel=0.10 Accel=1.06 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+410	400		Ang=-10.97 Vel=1.49 Accel=1.40 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+420	410		Ang=-10.95 Vel=2.43 Accel=0.94 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+430	420		Ang=-10.92 Vel=3.35 Accel=0.92 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+440	430		Ang=-10.88 Vel=3.18 Accel=-0.17 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+450	440		Ang=-10.86 Vel=2.11 Accel=-1.07 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+460	450		Ang=-10.85 Vel=0.84 Accel=-1.27 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+470	460		Ang=-10.85 Vel=0.09 Accel=-0.76 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+480	470		Ang=-10.85 Vel=-0.13 Accel=-0.21 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+490	480		Ang=-10.87 Vel=-1.23 Accel=-1.11 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+500	490		Ang=-10.87 Vel=-0.74 Accel=0.50 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+510	500		Ang=-10.87 Vel=0.29 Accel=1.02 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+520	510		Ang=-10.86 Vel=0.97 Accel=0.69 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+530	520		Ang=-10.84 Vel=1.73 Accel=0.76 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+540	530		Ang=-10.82 Vel=2.55 Accel=0.82 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+550	540		Ang=-10.79 Vel=2.72 Accel=0.18 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+560	550		Ang=-10.77 Vel=1.77 Accel=-0.95 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+570	560		Ang=-10.77 Vel=0.81 Accel=-0.97 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+580	570		Ang=-10.76 Vel=0.50 Accel=-0.31 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+590	580		Ang=-10.76 Vel=-0.38 Accel=-0.88 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+600	590		Ang=-10.76 Vel=-0.38 Accel=-0.88 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+610	600		Ang=-10.77 Vel=-0.10 Accel=0.22 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+620	610		Ang=-10.77 Vel=0.38 Accel=0.48 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+630	620		Ang=-10.75 Vel=1.25 Accel=0.87 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+640	630		Ang=-10.74 Vel=1.29 Accel=0.04 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+650	640		Ang=-10.73 Vel=0.84 Accel=-0.44 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+660	650		Ang=-10.73 Vel=-0.32 Accel=-1.17 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+670	660		Ang=-10.75 Vel=-1.58 Accel=-1.26 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+680	670		Ang=-10.78 Vel=-3.05 Accel=-1.47 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+690	680		Ang=-10.82 Vel=-3.52 Accel=-0.47 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+700	690		Ang=-10.85 Vel=-3.13 Accel=0.39 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+710	700		Ang=-10.87 Vel=-2.08 Accel=1.05 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+720	710		Ang=-10.88 Vel=-1.39 Accel=0.69 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+730	720		Ang=-10.88 Vel=-0.19 Accel=1.19 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+740	730		Ang=-10.87 Vel=1.05 Accel=1.24 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+750	740		Ang=-10.86 Vel=1.67 Accel=0.62 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+760	750		Ang=-10.84 Vel=2.09 Accel=0.42 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+770	760		Ang=-10.82 Vel=1.88 Accel=-0.21 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+780	770		Ang=-10.80 Vel=1.51 Accel=-0.37 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+790	780		Ang=-10.80 Vel=0.39 Accel=-1.12 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+800	790		Ang=-10.81 Vel=-0.84 Accel=-1.23 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+810	800		Ang=-10.83 Vel=-1.98 Accel=-1.15 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+820	810		Ang=-10.85 Vel=-2.45 Accel=-0.47 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+830	820		Ang=-10.89 Vel=-3.57 Accel=-1.11 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+840	830		Ang=-10.92 Vel=-3.71 Accel=-0.15 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+850	840		Ang=-10.96 Vel=-3.70 Accel=0.02 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+860	850		Ang=-10.99 Vel=-3.42 Accel=0.28 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+870	860		Ang=-11.02 Vel=-2.37 Accel=1.05 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+880	870		Ang=-11.03 Vel=-0.90 Accel=1.47 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+890	880		Ang=-11.03 Vel=-0.10 Accel=0.80 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+900	890		Ang=-11.02 Vel=1.35 Accel=1.45 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+910	900		Ang=-11.00 Vel=1.51 Accel=0.16 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+920	910		Ang=-10.99 Vel=1.21 Accel=-0.30 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+930	920		Ang=-10.99 Vel=0.24 Accel=-0.97 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+940	930		Ang=-11.00 Vel=-1.68 Accel=-1.92 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+950	940		Ang=-11.03 Vel=-2.84 Accel=-1.16 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+960	950		Ang=-11.07 Vel=-3.84 Accel=-1.00 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+970	960		Ang=-11.12 Vel=-4.61 Accel=-0.77 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+980	970		Ang=-11.16 Vel=-4.67 Accel=-0.05 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+990	980		Ang=-11.21 Vel=-4.37 Accel=0.30 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1000	990		Ang=-11.24 Vel=-3.57 Accel=0.80 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1010	1000		Ang=-11.26 Vel=-1.88 Accel=1.69 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1020	1010		Ang=-11.26 Vel=-0.39 Accel=1.49 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1030	1020		Ang=-11.26 Vel=0.90 Accel=1.29 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1040	1030		Ang=-11.24 Vel=1.09 Accel=0.19 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1050	1040		Ang=-11.24 Vel=0.56 Accel=-0.53 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1060	1050		Ang=-11.23 Vel=0.40 Accel=-0.16 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1070	1060		Ang=-11.25 Vel=-1.16 Accel=-1.56 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1080	1070		Ang=-11.28 Vel=-3.13 Accel=-1.97 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1090	1080		Ang=-11.32 Vel=-4.74 Accel=-1.62 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1100	1090		Ang=-11.38 Vel=-5.38 Accel=-0.63 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1110	1100		Ang=-11.44 Vel=-5.95 Accel=-0.57 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1120	1110		Ang=-11.50 Vel=-5.97 Accel=-0.02 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1130	1120		Ang=-11.55 Vel=-5.00 Accel=0.97 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1140	1130		Ang=-11.58 Vel=-3.19 Accel=1.81 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1150	1140		Ang=-11.59 Vel=-1.49 Accel=1.70 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1160	1150		Ang=-11.60 Vel=-0.36 Accel=1.14 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1170	1160		Ang=-11.59 Vel=0.46 Accel=0.82 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1180	1170		Ang=-11.58 Vel=1.33 Accel=0.87 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1190	1180		Ang=-11.57 Vel=1.27 Accel=-0.06 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1200	1190		Ang=-11.56 Vel=0.38 Accel=-0.89 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1210	1200		Ang=-11.57 Vel=-0.48 Accel=-0.85 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1220	1210		Ang=-11.58 Vel=-0.75 Accel=-0.27 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1230	1220		Ang=-11.59 Vel=-1.40 Accel=-0.65 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1240	1230		Ang=-11.61 Vel=-1.80 Accel=-0.40 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1250	1240		Ang=-11.63 Vel=-2.08 Accel=-0.28 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1260	1250		Ang=-11.65 Vel=-1.83 Accel=0.25 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1270	1260		Ang=-11.67 Vel=-2.00 Accel=-0.17 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1280	1270		Ang=-11.69 Vel=-2.23 Accel=-0.24 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1290	1280		Ang=-11.71 Vel=-1.97 Accel=0.26 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1300	1290		Ang=-11.73 Vel=-2.06 Accel=-0.08 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1310	1300		Ang=-11.75 Vel=-1.57 Accel=0.49 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1320	1310		Ang=-11.75 Vel=-0.87 Accel=0.69 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1330	1320		Ang=-11.75 Vel=0.23 Accel=1.11 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1340	1330		Ang=-11.75 Vel=-0.26 Accel=-0.49 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1350	1340		Ang=-11.77 Vel=-1.10 Accel=-0.84 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1360	1350		Ang=-11.78 Vel=-1.84 Accel=-0.75 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1370	1360		Ang=-11.81 Vel=-2.23 Accel=-0.39 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1380	1370		Ang=-11.83 Vel=-2.49 Accel=-0.26 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1390	1380		Ang=-11.86 Vel=-2.42 Accel=0.08 T=0	Thrust=0: In Range and moving toward TargetAngle -13.9 -9.9
+1400	1390	Ang	TargetIdx=-1		(-13.9<-11.9<-9.9)	-11.87
+1400	1390	Vel	Zero=-1	0			-1.53
+1400	1390	Accel	Thrust=0 (0)	1				0.89	0.23
+1400	1390			V=N HOLD_ANGLE_TVR Seg=-11.87 Targ=-11.87 Vel=-1.53 TVR=0.50 Thrust=0 IncAngDir=1
+1410	1400	Ang	TargetIdx=82		(-13.9<-11.9<-9.9)	-11.88
+1410	1400	Vel	Zero=-1	0			-1.15
+1410	1400	Accel	Thrust=0 (0)	1				0.38	0.45
+1410	1400			V=N HOLD_ANGLE_TVR Seg=-11.88 Targ=-11.87 Vel=-1.15 TVR=0.50 Thrust=0 IncAngDir=1
+1420	1410	Ang	TargetIdx=94		(-13.9<-11.9<-9.9)	-11.90
+1420	1410	Vel	Zero=7	0			-1.71
+1420	1410	Accel	Thrust=0 (0)	0				-0.56	0.23
+1420	1410			V=N HOLD_ANGLE_TVR Seg=-11.90 Targ=-11.87 Vel=-1.71 TVR=0.50 Thrust=0 IncAngDir=1
+1430	1420	Ang	TargetIdx=-1		(-13.9<-11.9<-9.9)	-11.93
+1430	1420	Vel	Zero=2	0			-2.79
+1430	1420	Accel	Thrust=0 (0)	0				-1.08	-0.42
+1430	1420			V=N HOLD_ANGLE_TVR Seg=-11.93 Targ=-11.87 Vel=-2.79 TVR=0.50 Thrust=1 IncAngDir=1
+1440	1430	Ang	TargetIdx=-1		(-13.9<-11.9<-9.9)	-11.96
+1440	1430	Vel	Zero=2	0			-3.04
+1440	1430	Accel	Thrust=1 (0)	0				-0.25	-0.63
+1440	1430			V=N HOLD_ANGLE_TVR Seg=-11.96 Targ=-11.87 Vel=-3.04 TVR=0.50 Thrust=1 IncAngDir=1
+1450	1440	Ang	TargetIdx=-1		(-13.9<-11.9<-9.9)	-11.98
+1450	1440	Vel	Zero=6	0			-2.59
+1450	1440	Accel	Thrust=1 (0)	1				0.45	-0.29
+1450	1440			V=N HOLD_ANGLE_TVR Seg=-11.98 Targ=-11.87 Vel=-2.59 TVR=0.50 Thrust=1 IncAngDir=1
+1460	1450	Ang	TargetIdx=-1		(-13.9<-11.9<-9.9)	-12.00
+1460	1450	Vel	Zero=-1	0			-1.85
+1460	1450	Accel	Thrust=1 (0)	1				0.74	0.31
+1460	1450			V=N HOLD_ANGLE_TVR Seg=-12.00 Targ=-11.87 Vel=-1.85 TVR=0.50 Thrust=0 IncAngDir=1
+1470	1460		Ang=-12.01 Vel=-0.82 Accel=1.03 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1480	1470		Ang=-12.00 Vel=0.68 Accel=1.50 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1490	1480		Ang=-12.00 Vel=0.82 Accel=0.15 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1500	1490		Ang=-11.99 Vel=0.28 Accel=-0.54 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1510	1500		Ang=-12.00 Vel=-0.36 Accel=-0.64 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1520	1510	Ang	TargetIdx=-1		(-13.9<-11.9<-9.9)	-12.01
+1520	1510	Vel	Zero=24	0			-1.06
+1520	1510	Accel	Thrust=0 (0)	0				-0.69	-0.63
+1520	1510			V=N HOLD_ANGLE_TVR Seg=-12.01 Targ=-11.87 Vel=-1.06 TVR=0.50 Thrust=0 IncAngDir=1
+1530	1520	Ang	TargetIdx=90		(-13.9<-11.9<-9.9)	-12.02
+1530	1520	Vel	Zero=-1	0			-1.30
+1530	1520	Accel	Thrust=0 (0)	0				-0.24	-0.53
+1530	1520			V=N HOLD_ANGLE_TVR Seg=-12.02 Targ=-11.87 Vel=-1.30 TVR=0.50 Thrust=0 IncAngDir=1
+1540	1530	Ang	TargetIdx=63		(-13.9<-11.9<-9.9)	-12.03
+1540	1530	Vel	Zero=-1	0			-1.10
+1540	1530	Accel	Thrust=0 (0)	1				0.20	-0.25
+1540	1530			V=N HOLD_ANGLE_TVR Seg=-12.03 Targ=-11.87 Vel=-1.10 TVR=0.50 Thrust=0 IncAngDir=1
+1550	1540	Ang	TargetIdx=53		(-13.9<-11.9<-9.9)	-12.04
+1550	1540	Vel	Zero=-1	0			-1.03
+1550	1540	Accel	Thrust=0 (0)	1				0.07	0.01
+1550	1540			V=N HOLD_ANGLE_TVR Seg=-12.04 Targ=-11.87 Vel=-1.03 TVR=0.50 Thrust=0 IncAngDir=1
+1560	1550		Ang=-12.05 Vel=-0.55 Accel=0.48 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1570	1560		Ang=-12.06 Vel=-0.95 Accel=-0.40 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1580	1570	Ang	TargetIdx=56		(-13.9<-11.9<-9.9)	-12.07
+1580	1570	Vel	Zero=14	0			-1.27
+1580	1570	Accel	Thrust=0 (0)	0				-0.32	-0.08
+1580	1570			V=N HOLD_ANGLE_TVR Seg=-12.07 Targ=-11.87 Vel=-1.27 TVR=0.50 Thrust=0 IncAngDir=1
+1590	1580	Ang	TargetIdx=58		(-13.9<-11.9<-9.9)	-12.08
+1590	1580	Vel	Zero=17	0			-1.29
+1590	1580	Accel	Thrust=0 (0)	0				-0.02	-0.24
+1590	1580			V=N HOLD_ANGLE_TVR Seg=-12.08 Targ=-11.87 Vel=-1.29 TVR=0.50 Thrust=0 IncAngDir=1
+1600	1590		Ang=-12.09 Vel=-0.48 Accel=0.81 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1610	1600		Ang=-12.08 Vel=0.69 Accel=1.17 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1620	1610		Ang=-12.07 Vel=1.28 Accel=0.59 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1630	1620		Ang=-12.05 Vel=1.84 Accel=0.56 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1640	1630		Ang=-12.03 Vel=1.68 Accel=-0.16 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1650	1640		Ang=-12.02 Vel=1.21 Accel=-0.47 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1660	1650		Ang=-12.02 Vel=0.19 Accel=-1.02 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1670	1660		Ang=-12.02 Vel=-0.29 Accel=-0.49 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1680	1670		Ang=-12.02 Vel=0.05 Accel=0.34 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1690	1680		Ang=-12.01 Vel=1.32 Accel=1.27 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1700	1690		Ang=-11.99 Vel=1.69 Accel=0.37 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1710	1700		Ang=-11.98 Vel=1.50 Accel=-0.19 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1720	1710		Ang=-11.97 Vel=0.93 Accel=-0.56 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1730	1720		Ang=-11.96 Vel=0.48 Accel=-0.45 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1740	1730		Ang=-11.96 Vel=-0.22 Accel=-0.70 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1750	1740		Ang=-11.96 Vel=0.07 Accel=0.29 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1760	1750		Ang=-11.96 Vel=0.66 Accel=0.59 T=0		Thrust=0: In Range and not moving (range= -13.9 to -9.9)
+1770	1760		Ang=-11.92 Vel=3.40 Accel=2.74 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1780	1770		Ang=-11.88 Vel=4.23 Accel=0.83 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1790	1780		Ang=-11.85 Vel=3.38 Accel=-0.85 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1800	1790		Ang=-11.81 Vel=3.39 Accel=0.02 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1810	1800		Ang=-11.78 Vel=3.53 Accel=0.14 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1820	1810		Ang=-11.75 Vel=2.81 Accel=-0.73 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9
+1830	1820		Ang=-11.72 Vel=2.73 Accel=-0.08 T=0	Thrust=0: In Range and moving against gravity -13.9 -9.9

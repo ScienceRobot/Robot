@@ -1,0 +1,13 @@
+#LeanLeft01.txt
+#Lean left to prepare for right step
+0,MOTOR_LOWER_BODY,1,4,400 #left ankle lean left
+0,MOTOR_LOWER_BODY,7,4,400 #right ankle lean left
+200,MOTOR_LOWER_BODY,11,3,300 #bend r knee back so r leg can swing forward
+400,MOTOR_LOWER_BODY,9,6,500 #right leg swings leg forward, pushes torso back
+400,MOTOR_LOWER_BODY,3,6,400 #and left leg swings backwards, pushes torso forward
+#lean feet back right- needs to happen quickly after lean left
+400,MOTOR_LOWER_BODY,1,-4,400 #left ankle lean left
+400,MOTOR_LOWER_BODY,7,-4,400 #right ankle lean left
+#swing right knee forward
+#650,MOTOR_LOWER_BODY,11,-6,300 #right knee swings lower right leg forward
+

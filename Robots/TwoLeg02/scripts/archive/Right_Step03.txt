@@ -1,0 +1,76 @@
+#Right_Step03.txt - just a straight step- bend s l knee and swings l leg forward
+0,StartLogging
+0,StartAccelerometer(ETHACCELS_LEFT_LEG,7,POLLING)
+0,StartAccelerometer(ETHACCELS_RIGHT_LEG,7,POLLING)
+0,StartAccelerometer(ETHACCELS_TORSO,1,POLLING)
+0,StartTouchSensor(ETHACCELS_LEFT_LEG,0x3,POLLING)
+0,StartTouchSensor(ETHACCELS_RIGHT_LEG,0x3,POLLING)
+#should be: lean left - step forward, lean forward - lean right
+#gently lean left and forward
+#0,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_LEFT_ANKLE,1,300) #left ankle lean left
+#0,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_ANKLE,1,300) #right ankle lean left
+#left foot needs to lean forward to throw robot weight forward
+
+#bend right knee to help foot clear floor
+#at 100 helped the r leg to clear
+#0,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_KNEE,2,200,ETHACCELS_RIGHT_LEG,1,0,0,15) 
+0,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_KNEE,2,400) 
+
+#right leg swings leg forward#400ms is a small step
+#700ms is too far
+#accel 2x reached < -20degrees in 200ms- it's a medium sized step
+0,TurnMotorUntilAngleWait(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_LEG,5,1000,ETHACCELS_RIGHT_LEG,2,0,2,-24) 
+#0,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_LEG,6,400) 
+#left leg needs to thrust a little in opposite direction or else torso falls forward
+#300,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,MOTOR_LEFT_LEG,5,700,ETHACCELS_LEFT_LEG,2,0,1,8) #and left leg swings backwards, pushes torso forward
+
+#falls to right - so bend left knee at the same time
+#0,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,MOTOR_LEFT_KNEE,6,300,ETHACCELS_LEFT_LEG,2,0,0,7) 
+300,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_LEFT_KNEE,-3,300)
+
+
+800,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_LEFT_FOOT,-6,300)
+800,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_FOOT,6,300)
+#400,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,MOTOR_LEFT_FOOT,6,300,ETHACCELS_LEFT_LEG,1,0,0,17) 
+#400,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_FOOT,6,300,ETHACCELS_RIGHT_LEG,1,0,0,14) 
+
+
+#lean ankles to right until lower leg l=4 r=-4
+#because bending left knee makes robot fall left
+#at 300 could be late sometimes
+#300,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,MOTOR_LEFT_ANKLE,-1,250,ETHACCELS_LEFT_LEG,1,2,0,4) 
+
+
+
+#bend right and left feet forward until lower leg l=27 r=15
+#300,TurnMotorUntilAngleWait(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_FOOT,1,400,ETHACCELS_RIGHT_LEG,1,0,0,15) 
+#300,TurnMotorUntilAngleWait(ETHMOTORS_LOWER_BODY,MOTOR_LEFT_FOOT,1,400,ETHACCELS_LEFT_LEG,1,0,0,27) 
+
+
+
+#bend left knee until upper leg=8deg
+#400,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,MOTOR_LEFT_KNEE,2,200,ETHACCELS_LEFT_LEG,1,0,0,15) 
+
+
+#if the robot falls backwards- there was not enough weight thrown forward here.
+#400ms was too much- not a lot of push forward is needed here
+#at 300ms is a little early maybe
+#400,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_LEFT_FOOT,1,200) #left foot lean forward 200ms not enough
+#0,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_FOOT,1,200) #right foot tip pushes down (lean backward)
+
+
+#swing right knee forward
+#650,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_KNEE,-6,300) #right knee swings lower right leg forward
+
+#robot needs to push torso back to try and balance after step
+#850,TurnMotor(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_LEG,-6,400) 
+
+#right ankle turns until right leg reaches -4deg
+#1000,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,MOTOR_RIGHT_ANKLE,-1,250,ETHACCELS_RIGHT_LEG,1,2,0,-4)
+
+
+#800,TurnMotor(ETHMOTORS_LOWER_BODY,0,-1,250) #left foot lean backward
+#800,TurnMotor(ETHMOTORS_LOWER_BODY,6,1,250) #right foot lean backward
+#END,StopAllTouchSensorsInterrupt
+#END,StopAllAccelerometersInterrupt
+1500,StopLogging

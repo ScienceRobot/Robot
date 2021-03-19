@@ -1,0 +1,26 @@
+#RightHandOKSign01.txt
+#note that currently using speed=5 disrupts the EthMotors PIC for the right hand
+0,MOTOR_RIGHT_HAND,4,4,700 #2rd finger
+0,MOTOR_RIGHT_HAND,5,4,700
+0,MOTOR_RIGHT_HAND,6,3,700 #3rd finger
+0,MOTOR_RIGHT_HAND,7,3,700
+0,MOTOR_RIGHT_HAND,8,3,600 #4th finger
+0,MOTOR_RIGHT_HAND,9,3,600
+0,MOTOR_RIGHT_HAND,10,3,350 #5th finger
+0,MOTOR_RIGHT_HAND,11,3,350
+0,MOTOR_RIGHT_HAND,0,-6,1000 #thumb
+0,MOTOR_RIGHT_HAND,1,-3,700 #thumb - motor 1 is currently backwards
+0,MOTOR_RIGHT_HAND,2,3,700 #thumb
+#put fingers back
+3000,MOTOR_RIGHT_HAND,4,-4,700 #2rd finger
+3000,MOTOR_RIGHT_HAND,5,-4,700
+3000,MOTOR_RIGHT_HAND,6,-3,770 #3rd finger
+3000,MOTOR_RIGHT_HAND,7,-3,770
+3000,MOTOR_RIGHT_HAND,8,-3,660 #4th finger
+3000,MOTOR_RIGHT_HAND,9,-3,660
+3000,MOTOR_RIGHT_HAND,10,-3,400 #5th finger
+3000,MOTOR_RIGHT_HAND,11,-3,400
+3000,MOTOR_RIGHT_HAND,0,6,1020 #thumb
+3000,MOTOR_RIGHT_HAND,1,3,720 #thumb  - motor 1 is currently backwards
+3000,MOTOR_RIGHT_HAND,2,-3,720 #thumb
+

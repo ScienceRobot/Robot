@@ -1,0 +1,9 @@
+#RightArmDownFromKeyboard01.txt
+#0,MOTOR_UPPER_BODY,7,-5,2000
+0,MOTOR_UPPER_BODY,9,-3,2000
+0,MOTOR_UPPER_BODY,10,-3,500
+#0,MOTOR_UPPER_BODY,11,5,800 #turn wrist
+
+
+
+

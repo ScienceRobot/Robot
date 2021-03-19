@@ -1,0 +1,16 @@
+#TestMotorUntilAngle01.txt
+0,StartLogging
+0,StartAccelerometer(ETHACCELS_LEFT_LEG,7,POLLING)
+0,StartAccelerometer(ETHACCELS_RIGHT_LEG,7,POLLING)
+0,StartAccelerometer(ETHACCELS_TORSO,1,POLLING)
+0,StartTouchSensor(ETHACCELS_LEFT_LEG,0x3,POLLING)
+0,StartTouchSensor(ETHACCELS_RIGHT_LEG,0x3,POLLING)
+#TurnMotorUntilAngle(MotPCB,Mot#,Strength,Dur,AccelPCB,AccelNum,xyz,oper,angle1,angle2)
+0,TurnMotorUntilAngle(ETHMOTORS_LOWER_BODY,0,-2,1000,ETHACCELS_LEFT_LEG,0,0,3,-1,1)
+#0,TurnMotor(ETHMOTORS_LOWER_BODY,0,-2,200)
+1000,StopTouchSensor(ETHACCELS_LEFT_LEG,0x3,POLLING)
+1000,StopTouchSensor(ETHACCELS_RIGHT_LEG,0x3,POLLING)
+1000,StopAccelerometer(ETHACCELS_LEFT_LEG,7,POLLING)
+1000,StopAccelerometer(ETHACCELS_RIGHT_LEG,7,POLLING)
+1000,StopAccelerometer(ETHACCELS_TORSO,1,POLLING)
+1000,StopLogging
