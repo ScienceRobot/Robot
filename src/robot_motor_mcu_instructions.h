@@ -1,4 +1,4 @@
-//robot_motor_pic_instructions.h
+//robot_motor_mcu_instructions.h
 
 /*
 This program is free software: you can redistribute it and/or modify
@@ -13,8 +13,8 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 */
-#ifndef _ROBOT_MOTOR_PIC_INSTRUCTIONS_H
-#define _ROBOT_MOTOR_PIC_INSTRUCTIONS_H
+#ifndef _ROBOT_MOTOR_MCU_INSTRUCTIONS_H
+#define _ROBOT_MOTOR_MCU_INSTRUCTIONS_H
 
 //instructions used by the PIC that controls the motors on the Robot
 //here because are used in RObot program running on main CPU
@@ -30,7 +30,9 @@ You should have received a copy of the GNU General Public License
 //PIC instructions 0x10-0x1f
 #define ROBOT_MOTORS_GET_MEM 0x10  //get PIC memory value
 #define ROBOT_MOTORS_SET_MEM 0x11  //set PIC memory value
-//Motor instructions 0x20-0xff
+
+//Motor instructions 0x20-0x4f
+#define ROBOT_START_MOTOR_INSTRUCTIONS 0x20
 #define ROBOT_MOTORS_SEND_4BYTE_INST 0x20  //send B24 Instruction to execute now
 #define ROBOT_MOTORS_GET_4BYTE_DATA 0x21  //get B24 Returned Data
 #define ROBOT_MOTORS_NEW_PROGRAM 0x22  //send stored program instruction start time
@@ -48,6 +50,7 @@ You should have received a copy of the GNU General Public License
 #define ROBOT_MOTORS_SEND_CURRENT_SENSE 0x2e  //send motor current sense A2D reading(s)
 #define ROBOT_MOTORS_STOP_SENDING_CURRENT_SENSE 0x2f  //stop sending motor current sense A2D readings
 #define ROBOT_MOTORS_STOP_ALL_MOTORS 0x30  //stop sending motor current sense A2D readings
+#define ROBOT_END_MOTOR_INSTRUCTIONS 0x4f
 
 
-#endif //_ROBOT_MOTOR_PIC_INSTRUCTIONS_H
+#endif //_ROBOT_MOTOR_MCU_INSTRUCTIONS_H

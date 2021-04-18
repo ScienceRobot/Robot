@@ -23,8 +23,8 @@ You should have received a copy of the GNU General Public License
 #include "win_Accels.h"
 #include "win_Load_Script.h"
 #include "win_RobotModel.h"
-#include "robot_accelmagtouchgps_pic_instructions.h"
-#include "robot_motor_pic_instructions.h"
+#include "robot_accelmagtouchgps_mcu_instructions.h"
+#include "robot_motor_mcu_instructions.h"
 
 #include <errno.h>
 

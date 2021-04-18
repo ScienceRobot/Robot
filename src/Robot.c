@@ -28,8 +28,8 @@ You should have received a copy of the GNU General Public License
 #include "win_Power.h"
 #include "win_GPS.h"
 #include "win_NewEthPCB.h"
-#include "robot_accelmagtouchgps_pic_instructions.h"
-#include "robot_motor_pic_instructions.h"
+#include "robot_accelmagtouchgps_mcu_instructions.h"
+#include "robot_motor_mcu_instructions.h"
 
 #if Linux
 #include <unistd.h>
@@ -8286,6 +8286,17 @@ DWORD WINAPI Thread_ListenToRobot(LPVOID lpParam)
 												//FT_SetFocus(twin,0); //give the window the focus
 												FillAccelItemList(); //refresh Accel PCB itemlist- adds any new pcb since window was opened
 											} //if (twin==0) {
+
+											//Create and open Accelerometers window if not already created and open
+											twin = GetFTWindow("winAnalogSensors");
+											if (twin == 0) {  //this thread can't be the parent thread of the window, because GetInput doesn't work- the hourglass just spins and the window can't be clicked on
+												lmac->AddWindowFunction = (FTControlfunc *)winAnalogSensors_AddFTWindow;
+												lmac->flags |= ROBOT_MAC_CONNECTION_OPEN_WINDOW;
+											}	else {
+												//FT_SetFocus(twin,0); //give the window the focus
+												//FillAnalogSensorItemList(); //refresh Analog PCB itemlist- adds any new pcb since window was opened
+											} //if (twin==0) {
+
 										} //if (!strcmp(lmacnew->Name,"Accel")) {
 
 										//if this is an EthPower PCB		
@@ -8358,26 +8369,27 @@ DWORD WINAPI Thread_ListenToRobot(LPVOID lpParam)
 
 
 								//Determine where to route this data depending on client name
-								if (!strncmp(lmacnew->Name, "Motor", 5)) {	//EthMotors PCB
+								if (!strncmp(lmacnew->Name, "Motor", 5) || (!strncmp(lmacnew->Name, "GAMTP", 5))) {	//EthMotors or GAMTP PCB
 
 									//get Motor PCB number
 									//lmacnew->Num=atoi(&lmacnew->Name[5]);
 									ProcessMotorData(lmacnew, recvbuf, NumBytes, DataStr);
 								} //if (!strncmp(lmacnew->Name,"Motor",5)) {	//EthMotors PCB
 
-								if (!strncmp(lmacnew->Name, "Accel", 5)) {	//EthAccelTouch PCB
+								if (!strncmp(lmacnew->Name, "Accel", 5)|| (!strncmp(lmacnew->Name, "GAMTP", 5))) {	//EthAccelTouch or GAMTP PCB
 									//get Accel PCB number
 									//lmacnew->Num=atoi(&lmacnew->Name[5]);
 									//see if this is Accelerometer or Analog Sensor data
 									if (NumBytes > 4) {
 										//because we need to open the Accelerometers window we process a 0x01 "id" command too
-										if (recvbuf[4] == 0x01 || (recvbuf[4] > 0x20 && recvbuf[4] <= 0x3f)) { //Accelerometer
+										if (recvbuf[4] == 0x01 || (recvbuf[4] >= ROBOT_START_ACCEL_INSTRUCTIONS
+ && recvbuf[4] <= ROBOT_END_ACCEL_INSTRUCTIONS)) { //Accelerometer
 											ProcessAccelSensorData(lmacnew, recvbuf, NumBytes, DataStr);
 										}
-										if (recvbuf[4] >= 0x40 && recvbuf[4] <= 0x5f) { //analog sensor
+										if (recvbuf[4] >= ROBOT_START_ANALOG_SENSOR_INSTRUCTIONS && recvbuf[4] <= ROBOT_END_ANALOG_SENSOR_INSTRUCTIONS) { //analog sensor
 											ProcessAnalogSensorData(lmacnew, recvbuf, NumBytes, DataStr);
 										}
-										if (recvbuf[4] >= 0x60 && recvbuf[4] <= 0x6f) { //GPS module
+										if (recvbuf[4] >= ROBOT_START_GPS_INSTRUCTIONS && recvbuf[4] <= ROBOT_END_GPS_INSTRUCTIONS) { //GPS module
 											ProcessGPSData(lmacnew, recvbuf, NumBytes, DataStr);
 										}
 
@@ -9741,6 +9753,7 @@ int ProcessAnalogSensorData(MAC_Connection *lmac,unsigned char *recvbuf,int NumB
 				}
 				PercentChange/=1.28; //convert to a percentage
 				//10-bit ADC sample, 0x3ff=1023.0  3.3/1023 = 0.003225806
+				//12-bit ADC sample, 0xfff=4095.0  3.3/4095 = 0.000805861
 				Sample=(unsigned short int)(recvbuf[i+4]<<8|recvbuf[i+3]);
 				//fSample=(float)Sample*0.003225806;
 				fSample=(float)Sample*0.000805664;

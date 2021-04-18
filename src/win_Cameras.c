@@ -34,7 +34,7 @@ You should have received a copy of the GNU General Public License
 #include "Robot.h"
 #include "win_Cameras.h"
 #include "win_Robot.h"
-//#include "robot_Camera_pic_instructions.h"
+//#include "robot_Camera_mcu_instructions.h"
 
 #include <errno.h>
 #if WIN32

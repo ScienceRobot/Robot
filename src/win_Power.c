@@ -34,7 +34,7 @@ You should have received a copy of the GNU General Public License
 #include "Robot.h"
 #include "win_Power.h"
 #include "win_Robot.h"
-#include "robot_power_pic_instructions.h"
+#include "robot_power_mcu_instructions.h"
 
 #include <errno.h>
 #if WIN32

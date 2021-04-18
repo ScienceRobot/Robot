@@ -51,7 +51,6 @@ You should have received a copy of the GNU General Public License
 // Link with Iphlpapi.lib
 #pragma comment(lib, "IPHLPAPI.lib")
 #endif  //WIN32
-//#include "robot_pic.h"
 
 #if WIN32
 #define WORKING_BUFFER_SIZE 15000

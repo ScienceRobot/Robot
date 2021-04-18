@@ -40,7 +40,7 @@ You should have received a copy of the GNU General Public License
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #endif  //WIN32
-#include "robot_accelmagtouchgps_pic_instructions.h"
+#include "robot_accelmagtouchgps_mcu_instructions.h"
 #include "Free3D.h" //for PI
 
 

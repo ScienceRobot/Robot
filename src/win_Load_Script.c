@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 #include "Robot.h"
 #include "win_Load_Script.h"
 #include "Free3D.h" //for GetFileNameFromPath
-#include "robot_motor_pic_instructions.h" //for ROBOT_MOTORS_DEFAULT_NUM_CLKS_IN_MOTOR_DUTY_CYCLE
+#include "robot_motor_mcu_instructions.h" //for ROBOT_MOTORS_DEFAULT_NUM_CLKS_IN_MOTOR_DUTY_CYCLE
 #if Linux
 #include <strings.h>
 #endif

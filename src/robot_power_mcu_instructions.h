@@ -1,4 +1,4 @@
-//robot_power_pic_instructions.h
+//robot_power_mcu_instructions.h
 /*
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,8 +13,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 */
 
-#ifndef _ROBOT_POWER_PIC_INSTRUCTIONS_H
-#define _ROBOT_POWER_PIC_INSTRUCTIONS_H
+#ifndef _ROBOT_POWER_MCU_INSTRUCTIONS_H
+#define _ROBOT_POWER_MCU_INSTRUCTIONS_H
 
 //instructions used by the PIC that controls the power on the Robot
 
@@ -38,4 +38,4 @@ You should have received a copy of the GNU General Public License
 #define ROBOT_POWER_GET_CURRENT_12V 0x41  //read current sense resistor on 12V
 #define ROBOT_POWER_GET_CURRENT_3_3V 0x42  //read current sense resistor on 3.3V
 
-#endif //_ROBOT_POWER_PIC_INSTRUCTIONS_H
+#endif //_ROBOT_POWER_MCU_INSTRUCTIONS_H

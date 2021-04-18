@@ -28,7 +28,7 @@ You should have received a copy of the GNU General Public License
 #include "win_RobotModel.h"
 #include "win_Robot.h"
 #include "win_Load_Robot_Log.h"
-#include "robot_motor_pic_instructions.h"
+#include "robot_motor_mcu_instructions.h"
 
 #include <errno.h>
 

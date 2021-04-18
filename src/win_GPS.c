@@ -35,7 +35,7 @@ You should have received a copy of the GNU General Public License
 #include "win_GPS.h"
 #include "win_Accels.h"
 #include "win_Robot.h"
-#include "robot_accelmagtouchgps_pic_instructions.h"
+#include "robot_accelmagtouchgps_mcu_instructions.h"
 
 #include <errno.h>
 #if WIN32

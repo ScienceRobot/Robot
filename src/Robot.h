@@ -40,7 +40,7 @@ You should have received a copy of the GNU General Public License
 #include <pulse/error.h> //for pulseaudio sound system
 #endif //USE_SOUND
 #endif //Linux
-#include "robot_motor_pic_instructions.h"
+#include "robot_motor_mcu_instructions.h"
 //#include "RobotConfig.h"
 
 #if USE_RT_PREEMPT
