@@ -58,9 +58,13 @@ extern int *Ly1,*Ly2;  //levels for buttons
 AccelWindowStatus AStatus; //Accelerometer Window Status
 
 
+int numaccels=8;
+
 int winAccels_AddFTWindow(void)
 {
 FTWindow twin,*twin2;
+
+int fh=8;
 
 twin2=GetFTWindow("winAccels");
 if (twin2==0) {
@@ -78,7 +82,7 @@ if (twin2==0) {
 	}
 	twin.y=50;
 	twin.w = 640;
-	twin.h=460;
+	twin.h=	440+fh*numaccels*4;//460;
 	twin.Keypress=(FTControlfuncwk *)winAccels_key;
 	twin.AddFTControls=(FTControlfuncw *)winAccels_AddFTControls;
 	twin.OnOpen=(FTControlfuncw *)winAccels_OnOpen;
@@ -299,7 +303,7 @@ AddFTControl(twin, tcontrol);
 
 //newline
 //Individual Accelerometers
-for(i=0;i<3;i++) {
+for(i=0;i<numaccels;i++) {
 	fonty=fh*i*4;
 	memset(tcontrol,0,sizeof(FTControl));
 	sprintf(tcontrol->name,"chkAccelNum%d",i);
@@ -499,14 +503,16 @@ for(i=0;i<3;i++) {
 //End individual acclerometers
 
 
+fonty+=fh*8.5;
+
 //newline
 //tcontrol=(FTControl *)malloc(sizeof(FTControl));
 memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"lblSendInstructionToAccelRaw");
 tcontrol->type=CTLabel;
 tcontrol->x1=fw;
-tcontrol->y1=fh*17;
-tcontrol->y2=fh*18.5;
+tcontrol->y1=fonty+fh*0.5;//fh*17;
+tcontrol->y2=fonty+fh*2;//fh*18.5;
 strcpy(tcontrol->text,"Send inst:"); 
 //tcontrol->color[0]=wingray;  //bkground
 //tcontrol->textcolor[0]=black;//black;  //text
@@ -516,9 +522,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"txtSendInstructionToAccelRaw");
 tcontrol->type=CTTextBox;//2; //textbox
 tcontrol->x1=fw*12;
-tcontrol->y1=fh*17;
+tcontrol->y1=fonty+fh*0.5;//fh*17;
+tcontrol->y2=fonty+fh*2;//fh*18.5;
 tcontrol->x2=fw*29;
-tcontrol->y2=fh*18.5;
 strcpy(tcontrol->text,"");
 //tcontrol->Keypress=(FTControlfuncwck *)txtOutFile_Keypress;
 //tcontrol->color[0]=white;  //bkground
@@ -534,8 +540,8 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"lblNumCalibSamples");
 tcontrol->type=CTLabel;
 tcontrol->x1=fw*30;
-tcontrol->y1=fh*17;
-tcontrol->y2=fh*18.5;
+tcontrol->y1=fonty+fh*0.5;//fh*17;
+tcontrol->y2=fonty+fh*2;//fh*18.5;
 strcpy(tcontrol->text,"Num Calib Samples:"); 
 //tcontrol->color[0]=wingray;  //bkground
 //tcontrol->textcolor[0]=black;//black;  //text
@@ -545,9 +551,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"txtNumCalibSamples");
 tcontrol->type=CTTextBox;//number of samples to get for calibration
 tcontrol->x1=fw*49;
-tcontrol->y1=fh*17;
+tcontrol->y1=fonty+fh*0.5;//fh*17;
+tcontrol->y2=fonty+fh*2;//fh*18.5;
 tcontrol->x2=fw*55;
-tcontrol->y2=fh*18.5;
 strcpy(tcontrol->text,"100");
 AddFTControl(twin,tcontrol);
 
@@ -556,9 +562,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"chkCalibAccels");
 tcontrol->type=CTCheckBox;
 tcontrol->x1=fw*57;
-tcontrol->y1=fh*17;
 tcontrol->x2=fw*66;
-tcontrol->y2=fh*18.5;
+tcontrol->y1=fonty+fh*0.5;//fh*17;
+tcontrol->y2=fonty+fh*2;//fh*18.5;
 strcpy(tcontrol->text,"Accels");
 tcontrol->value=1;
 //tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnCalibrateAccels_Click;
@@ -568,9 +574,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"chkCalibGyros");
 tcontrol->type=CTCheckBox;
 tcontrol->x1=fw*67;
-tcontrol->y1=fh*17;
 tcontrol->x2=fw*75;
-tcontrol->y2=fh*18.5;
+tcontrol->y1=fonty+fh*0.5;//fh*17;
+tcontrol->y2=fonty+fh*2;//fh*18.5;
 strcpy(tcontrol->text,"Gyros");
 tcontrol->value=1;
 //tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnCalibrateGyros_Click;
@@ -581,9 +587,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnCalibrateAccelGyro");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*77;
-tcontrol->y1=fh*17;
 tcontrol->x2=fw*88;
-tcontrol->y2=fh*18.5;
+tcontrol->y1=fonty+fh*0.5;//fh*17;
+tcontrol->y2=fonty+fh*2;//fh*18.5;
 strcpy(tcontrol->text,"Calibrate");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnCalibrateAccelGyro_Click;
 AddFTControl(twin,tcontrol);
@@ -595,9 +601,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"lblGetAccelData");
 tcontrol->type=CTLabel;
 tcontrol->x1=fw;
-tcontrol->y1=fh*19;
 tcontrol->x2=fw*21;
-tcontrol->y2=fh*20.5;
+tcontrol->y1=fonty+fh*3;//fh*19;
+tcontrol->y2=fonty+fh*4.5;//fh*20.5;
 strcpy(tcontrol->text,"Data received: ");
 AddFTControl(twin,tcontrol);
 
@@ -605,9 +611,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"txtGetAccelData");
 tcontrol->type=CTTextBox;//2; //textbox
 tcontrol->x1=fw*21;
-tcontrol->y1=fh*19;
 tcontrol->x2=fw*35;
-tcontrol->y2=fh*20.5;
+tcontrol->y1=fonty+fh*3;//fh*19;
+tcontrol->y2=fonty+fh*4.5;//fh*20.5;
 strcpy(tcontrol->text,"");
 //tcontrol->Keypress=(FTControlfuncwck *)txtOutFile_Keypress;
 AddFTControl(twin,tcontrol);
@@ -626,9 +632,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"txtMagOffsetX");
 tcontrol->type=CTTextBox;
 tcontrol->x1=fw*50;
-tcontrol->y1=fh*19;
 tcontrol->x2=fw*55;
-tcontrol->y2=fh*20.5;
+tcontrol->y1=fonty+fh*3;//fh*19;
+tcontrol->y2=fonty+fh*4.5;//fh*20.5;
 strcpy(tcontrol->text,"");
 AddFTControl(twin,tcontrol);
 
@@ -636,7 +642,7 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"lblMagOffsetY");
 tcontrol->type=CTLabel;
 tcontrol->x1=fw*56;
-tcontrol->y1=fh*19;
+tcontrol->y1=fonty+fh*3;//fh*19;
 strcpy(tcontrol->text,"y:");
 AddFTControl(twin,tcontrol);
 
@@ -644,9 +650,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"txtMagOffsetY");
 tcontrol->type=CTTextBox;
 tcontrol->x1=fw*59;
-tcontrol->y1=fh*19;
 tcontrol->x2=fw*64;
-tcontrol->y2=fh*20.5;
+tcontrol->y1=fonty+fh*3;//fh*19;
+tcontrol->y2=fonty+fh*4.5;//fh*20.5;
 strcpy(tcontrol->text,"");
 AddFTControl(twin,tcontrol);
 
@@ -654,7 +660,7 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"lblMagOffsetZ");
 tcontrol->type=CTLabel;
 tcontrol->x1=fw*65;
-tcontrol->y1=fh*19;
+tcontrol->y1=fonty+fh*3;//fh*19;
 strcpy(tcontrol->text,"z:");
 AddFTControl(twin,tcontrol);
 
@@ -662,9 +668,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"txtMagOffsetZ");
 tcontrol->type=CTTextBox;
 tcontrol->x1=fw*68;
-tcontrol->y1=fh*19;
 tcontrol->x2=fw*73;
-tcontrol->y2=fh*20.5;
+tcontrol->y1=fonty+fh*3;//fh*19;
+tcontrol->y2=fonty+fh*4.5;//fh*20.5;
 strcpy(tcontrol->text,"");
 AddFTControl(twin,tcontrol);
 
@@ -672,7 +678,7 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"lblMagOffsetuT");
 tcontrol->type=CTLabel;
 tcontrol->x1=fw*74;
-tcontrol->y1=fh*19;
+tcontrol->y1=fonty+fh*3;//fh*19;
 strcpy(tcontrol->text,"uT");
 AddFTControl(twin,tcontrol);
 
@@ -681,9 +687,9 @@ memset(tcontrol, 0, sizeof(FTControl));
 strcpy(tcontrol->name, "btnCalibrateAllAccelGyro");
 tcontrol->type = CTButton;
 tcontrol->x1 = fw * 77;
-tcontrol->y1 = fh * 19;
 tcontrol->x2 = fw * 91;
-tcontrol->y2 = fh*20.5;
+tcontrol->y1=fonty+fh*3;//fh*19;
+tcontrol->y2=fonty+fh*4.5;//fh*20.5;
 strcpy(tcontrol->text, "CalibrateAll");
 tcontrol->ButtonClick[0] = (FTControlfuncwcxy *)btnCalibrateAllAccelGyro_Click;
 AddFTControl(twin, tcontrol);
@@ -694,9 +700,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnAccelGetValues");
 tcontrol->type=CTButton;
 tcontrol->x1=fw;
-tcontrol->y1=fh*21;
 tcontrol->x2=fw*15;
-tcontrol->y2=fh*26;
+tcontrol->y1=fonty+fh*5;//fh*21;
+tcontrol->y2=fonty+fh*10;//fh*26;
 strcpy(tcontrol->text,"Get Value");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnAccelsGetValues_Click;
 AddFTControl(twin,tcontrol);
@@ -705,9 +711,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnAccelsStartPolling");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*16;
-tcontrol->y1=fh*21;
 tcontrol->x2=fw*30;
-tcontrol->y2=fh*26;
+tcontrol->y1=fonty+fh*5;//fh*21;
+tcontrol->y2=fonty+fh*10;//fh*26;
 strcpy(tcontrol->text,"Start Polling");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnAccelsStartPolling_Click;
 AddFTControl(twin,tcontrol);
@@ -716,9 +722,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnAccelsStopPolling");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*31;
-tcontrol->y1=fh*21;
 tcontrol->x2=fw*45;
-tcontrol->y2=fh*26;
+tcontrol->y1=fonty+fh*5;//fh*21;
+tcontrol->y2=fonty+fh*10;//fh*26;
 strcpy(tcontrol->text,"Stop Polling");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnAccelsStopPolling_Click;
 AddFTControl(twin,tcontrol);
@@ -727,9 +733,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnAnalogSensorsWin");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*46;
-tcontrol->y1=fh*21;
 tcontrol->x2=fw*60;
-tcontrol->y2=fh*26;
+tcontrol->y1=fonty+fh*5;//fh*21;
+tcontrol->y2=fonty+fh*10;//fh*26;
 strcpy(tcontrol->text,"Analog Sensors");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnAnalogSensorsWin_Click;
 AddFTControl(twin,tcontrol);
@@ -739,9 +745,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnGetMagOffset");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*61;
-tcontrol->y1=fh*21;
 tcontrol->x2=fw*75;
-tcontrol->y2=fh*26;
+tcontrol->y1=fonty+fh*5;//fh*21;
+tcontrol->y2=fonty+fh*10;//fh*26;
 strcpy(tcontrol->text,"Get Mag Offset");  
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnGetMagOffset_Click;
 AddFTControl(twin,tcontrol);
@@ -762,9 +768,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnResetAccel");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*76;
-tcontrol->y1=fh*21;
 tcontrol->x2=fw*90;
-tcontrol->y2=fh*26;
+tcontrol->y1=fonty+fh*5;//fh*21;
+tcontrol->y2=fonty+fh*10;//fh*26;
 strcpy(tcontrol->text,"Reset Accel");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnResetAccel_Click;
 AddFTControl(twin,tcontrol);
@@ -776,9 +782,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnAccelStartInterrupt");
 tcontrol->type=CTButton;
 tcontrol->x1=fw;
-tcontrol->y1=fh*27;
 tcontrol->x2=fw*15;
-tcontrol->y2=fh*32;
+tcontrol->y1=fonty+fh*11;//fh*27;
+tcontrol->y2=fonty+fh*16;//fh*32;
 strcpy(tcontrol->text,"Start Interrupt");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnAccelsStartInterrupt_Click;
 AddFTControl(twin,tcontrol);
@@ -787,9 +793,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnAccelStopInterrupt");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*16;
-tcontrol->y1=fh*27;
 tcontrol->x2=fw*30;
-tcontrol->y2=fh*32;
+tcontrol->y1=fonty+fh*11;//fh*27;
+tcontrol->y2=fonty+fh*16;//fh*32;
 strcpy(tcontrol->text,"Stop Interrupt");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnAccelsStopInterrupt_Click;
 AddFTControl(twin,tcontrol);
@@ -798,9 +804,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnSendInstructionToAccel");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*31;
-tcontrol->y1=fh*27;
 tcontrol->x2=fw*45;
-tcontrol->y2=fh*32;
+tcontrol->y1=fonty+fh*11;//fh*27;
+tcontrol->y2=fonty+fh*16;//fh*32;
 strcpy(tcontrol->text,"Send Instruction");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnSendInstructionToAccel_Click;
 AddFTControl(twin,tcontrol);
@@ -810,9 +816,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnwinGPS");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*46;
-tcontrol->y1=fh*27;
 tcontrol->x2=fw*60;
-tcontrol->y2=fh*32;
+tcontrol->y1=fonty+fh*11;//fh*27;
+tcontrol->y2=fonty+fh*16;//fh*32;
 strcpy(tcontrol->text,"GPS");  
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnGPSWin_Click;
 AddFTControl(twin,tcontrol);
@@ -821,9 +827,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnSetMagOffset");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*61;
-tcontrol->y1=fh*27;
 tcontrol->x2=fw*75;
-tcontrol->y2=fh*32;
+tcontrol->y1=fonty+fh*11;//fh*27;
+tcontrol->y2=fonty+fh*16;//fh*32;
 strcpy(tcontrol->text,"Set Mag Offset");  
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnSetMagOffset_Click;
 AddFTControl(twin,tcontrol);
@@ -832,9 +838,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnwinAccelsExit");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*76;
-tcontrol->y1=fh*27;
 tcontrol->x2=fw*90;
-tcontrol->y2=fh*32;
+tcontrol->y1=fonty+fh*11;//fh*27;
+tcontrol->y2=fonty+fh*16;//fh*32;
 strcpy(tcontrol->text,"Close");  
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnwinAccelsExit_Click;
 AddFTControl(twin,tcontrol);
