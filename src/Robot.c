@@ -8384,6 +8384,8 @@ DWORD WINAPI Thread_ListenToRobot(LPVOID lpParam)
 										//because we need to open the Accelerometers window we process a 0x01 "id" command too
 										if (recvbuf[4] == 0x01 || (recvbuf[4] >= ROBOT_START_ACCEL_INSTRUCTIONS
  && recvbuf[4] <= ROBOT_END_ACCEL_INSTRUCTIONS)) { //Accelerometer
+							 				//print sample
+											fprintf(stderr,"NumBytes: %d\n",NumBytes);
 											ProcessAccelSensorData(lmacnew, recvbuf, NumBytes, DataStr);
 										}
 										if (recvbuf[4] >= ROBOT_START_ANALOG_SENSOR_INSTRUCTIONS && recvbuf[4] <= ROBOT_END_ANALOG_SENSOR_INSTRUCTIONS) { //analog sensor
@@ -8651,6 +8653,8 @@ int ProcessAccelSensorData(MAC_Connection *lmac,unsigned char *recvbuf,int NumBy
 
 
 
+
+
 			i=5;
 			while(i<NumBytes) { //for each accelerometer in the EthAccelTouch packet
 				AccelNum=(int)recvbuf[i];
@@ -8688,6 +8692,9 @@ int ProcessAccelSensorData(MAC_Connection *lmac,unsigned char *recvbuf,int NumBy
 				fSample.x=(float)SampleX/16384.0;
 				fSample.y=(float)SampleY/16384.0;
 				fSample.z=(float)SampleZ/16384.0;
+
+				//print sample
+				fprintf(stderr,"Accel: %d Sample: %f %f %f\n",AccelNum,fSample.x,fSample.y,fSample.z);
 
 
 				MSampleX=(int16_t)(recvbuf[i+7]<<8|recvbuf[i+8]);

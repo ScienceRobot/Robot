@@ -47,6 +47,7 @@ You should have received a copy of the GNU General Public License
 #define DEFAULT_BUFLEN 512
 
 #define MAX_NUM_OF_ETHACCELS 100  //todo: remove this constant and use dynamic memory allocation
+#define MAX_NUM_OF_ACCELS 8 //how many accels to show
 
 extern RobotStatus RStatus;
 extern ProgramStatus PStatus;
@@ -58,7 +59,7 @@ extern int *Ly1,*Ly2;  //levels for buttons
 AccelWindowStatus AStatus; //Accelerometer Window Status
 
 
-int numaccels=8;
+int numaccels=MAX_NUM_OF_ACCELS;
 
 int winAccels_AddFTWindow(void)
 {
@@ -1086,7 +1087,7 @@ int chkAccelAll_OnChange(FTWindow *twin,FTControl *tcontrol)
 	char tstr[FTMedStr];
 
 
-	for(i=0;i<15;i++) {
+	for(i=0;i<MAX_NUM_OF_ACCELS;i++) {
 			sprintf(tstr,"chkAccelNum%d",i);
 			tc=GetFTControl(tstr);
 			if (tc!=0) {
@@ -1120,7 +1121,7 @@ int btnAccelsGetValues_Click(FTWindow *twin,FTControl *tcontrol,int x,int y)
 	//create a 16-bit mask depending on the checkbox selected
 	//so getting a sample from accel 0, 1 and 2 = 0x0007
 	mask=0;
-	for(i=0;i<15;i++) {
+	for(i=0;i<MAX_NUM_OF_ACCELS;i++) {
 			sprintf(tstr,"chkAccelNum%d",i);
 			tc=GetFTControl(tstr);
 			if (tc!=0) {
@@ -1245,7 +1246,7 @@ int btnAccelsStartPolling_Click(FTWindow *twin,FTControl *tcontrol,int x,int y)
 	//start polling any checked accelerometers
 	//create a mask depending on the checkbox selected
 	mask=0;
-	for(i=0;i<15;i++) {
+	for(i=0;i<MAX_NUM_OF_ACCELS;i++) {
 			sprintf(tstr,"chkAccelNum%d",i);
 			tc=GetFTControl(tstr);
 			if (tc!=0) {
@@ -1287,7 +1288,7 @@ int btnAccelsStopPolling_Click(FTWindow *twin,FTControl *tcontrol,int x,int y)
 	//create a mask depending on the checkbox selected
 	mask=0;
 
-	for(i=0;i<15;i++) {
+	for(i=0;i<MAX_NUM_OF_ACCELS;i++) {
 			sprintf(tstr,"chkAccelNum%d",i);
 			tc=GetFTControl(tstr);
 			if (tc!=0) {
@@ -1378,7 +1379,7 @@ int btnAccelsStartInterrupt_Click(FTWindow *twin,FTControl *tcontrol,int x,int y
 
 	//go through each Accel checkbox and send an instruction for each
 	FoundAccel=0;
-	for(i=0;i<15;i++) {
+	for(i=0;i<MAX_NUM_OF_ACCELS;i++) {
 			NumBytes=0;
 			sprintf(tstr,"chkAccelNum%d",i);
 			tc=GetFTControl(tstr);
@@ -1442,7 +1443,7 @@ int btnAccelsStopInterrupt_Click(FTWindow *twin,FTControl *tcontrol,int x,int y)
 
 		//create a mask depending on the checkbox selected
 		mask=0;
-		for(i=0;i<15;i++) {
+		for(i=0;i<MAX_NUM_OF_ACCELS;i++) {
 				sprintf(tstr,"chkAccelNum%d",i);
 				tc=GetFTControl(tstr);
 				if (tc!=0) {
@@ -1479,7 +1480,7 @@ int btnGetMagOffset_Click(FTWindow *twin,FTControl *tcontrol,int x,int y)
 
 		//create a mask depending on the checkbox selected
 		mask=0;
-		for(i=0;i<15;i++) {
+		for(i=0;i<MAX_NUM_OF_ACCELS;i++) {
 				sprintf(tstr,"chkAccelNum%d",i);
 				tc=GetFTControl(tstr);
 				if (tc!=0) {
@@ -1590,7 +1591,7 @@ uint16_t GetAccelMask(void)
 
 	//create a mask depending on the checkbox selected
 	mask = 0;
-	for (i = 0; i < 15; i++) {
+	for (i = 0; i < MAX_NUM_OF_ACCELS; i++) {
 		sprintf(tstr, "chkAccelNum%d", i);
 		tc = GetFTControl(tstr);
 		if (tc != 0) {
@@ -1616,7 +1617,7 @@ int btnAutoCalibrate_Click(FTWindow *twin,FTControl *tcontrol,int x,int y)
 
 		//create a mask depending on the checkbox selected
 		mask=0;
-		for(i=0;i<15;i++) {
+		for(i=0;i<MAX_NUM_OF_ACCELS;i++) {
 				sprintf(tstr,"chkAccelNum%d",i);
 				tc=GetFTControl(tstr);
 				if (tc!=0) {
@@ -1666,7 +1667,7 @@ int btnResetAccel_Click(FTWindow *twin,FTControl *tcontrol,int x,int y)
 
 		//create a mask depending on the checkbox selected
 		mask=0;
-		for(i=0;i<15;i++) {
+		for(i=0;i<MAX_NUM_OF_ACCELS;i++) {
 				sprintf(tstr,"chkAccelNum%d",i);
 				tc=GetFTControl(tstr);
 				if (tc!=0) {
@@ -1827,6 +1828,14 @@ int SendInstructionToAccel(MAC_Connection *lmac,unsigned char *Inst,int numbyte,
 		memcpy(SendInst,(const char *)Inst,numbyte);
 //		iResult = send(lmac->Socket,(const char *)SendInst,numbyte,0);
 	}
+	
+	//with polling a lot of data this should be commented:
+	if (RStatus.flags&ROBOT_STATUS_INFO) {								
+		//fprintf(stderr,"NumBytes=%d\n",NumBytes);
+		ConvertBytesToString(SendInst,DataStr,numbyte); //convert bytes to string
+		fprintf(stderr,"Sending %d bytes to %s\n%s\n",numbyte,lmac->Name,DataStr);
+	} 
+
 	iResult = sendto(lmac->Socket,(const char *)SendInst,numbyte,0,(struct sockaddr*)&lmac->DestAddress,sizeof(lmac->DestAddress));
 #if Linux
 	if (iResult == 0) {
