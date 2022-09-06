@@ -57,5 +57,8 @@ systemctl restart NetworkManager.service
 systemctl restart  isc-dhcp-server
 
 
+service isc-dhcp-server status
+ifconfig eth0 192.168.2.1
+service isc-dhcp-server restart
 
 if problems recognizing Eth PCBs, power them off and on and try again
