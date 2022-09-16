@@ -60,10 +60,10 @@ if (twin2==0) {
 	strcpy(twin.name,"winAnalogSensors");
 	strcpy(twin.title,"Analog Sensors");
 	strcpy(twin.ititle,"Analog Sensors");
-	twin.x=130;
-	twin.y=130;
-	twin.w=580;
-	twin.h=440;
+	twin.x=640;
+	twin.y=340;
+	twin.w=600;
+	twin.h=450;
 	twin.Keypress=(FTControlfuncwk *)winAnalogSensors_key;
 	twin.AddFTControls=(FTControlfuncw *)winAnalogSensors_AddFTControls;
 	twin.OnOpen=(FTControlfuncw *)winAnalogSensors_OnOpen;
@@ -114,14 +114,83 @@ fh=twin->fontheight;
 
 tcontrol=(FTControl *)malloc(sizeof(FTControl));
 
+
+memset(tcontrol,0,sizeof(FTControl));
+strcpy(tcontrol->name,"lblAnalogPCBName");
+tcontrol->type=CTLabel;
+tcontrol->x1=fw;
+tcontrol->y1=fh;
+tcontrol->y2=fh*2+fh/2;
+strcpy(tcontrol->text,"PCB:");
+AddFTControl(twin,tcontrol);
+
+memset(tcontrol,0,sizeof(FTControl));
+strcpy(tcontrol->name,"ddAnalogPCBName");
+tcontrol->type=CTDropdown;
+tcontrol->x1=fw*6;
+tcontrol->y1=fh;
+tcontrol->x2=fw*31;
+tcontrol->y2=fh*2+fh/2;
+tcontrol->OnChange=(FTControlfuncwc *)ddAccelPCBName_OnChange;
+AddFTControl(twin,tcontrol);
+
+memset(tcontrol,0,sizeof(FTControl));
+strcpy(tcontrol->name,"lblAnalogMACStr");
+tcontrol->type=CTLabel;
+tcontrol->x1=fw*32;
+tcontrol->y1=fh;
+tcontrol->x2=fw*50;
+tcontrol->y2=fh*2+fh/2;
+sprintf(tcontrol->text,"MAC: ");
+AddFTControl(twin,tcontrol);
+
+
+
+//note that the dest address is not needed- because SendInstToAccel is used to send, 
+//but is listed for convenience
+memset(tcontrol,0,sizeof(FTControl));
+strcpy(tcontrol->name,"lblAnalogDestIPAddressStr");
+tcontrol->type=CTLabel;
+tcontrol->x1=fw*51;
+tcontrol->y1=fh;
+tcontrol->y2=fh*2+fh/2;
+strcpy(tcontrol->text,"IP:");
+AddFTControl(twin,tcontrol);
+
+memset(tcontrol,0,sizeof(FTControl));
+strcpy(tcontrol->name,"txtAnalogDestIPAddressStr");
+tcontrol->type=CTTextBox;
+tcontrol->x1=fw*55;
+tcontrol->y1=fh;
+tcontrol->x2=fw*75;
+tcontrol->y2=fh*2+fh/2;
+//use the dest address from the accel window which should be open already
+//tcontrol2=GetFTControl("txtAccelDestIPAddressStr");
+//if (tcontrol2!=0) {
+//	strcpy(tcontrol->text,tcontrol2->text);
+//}
+//strcpy(tcontrol->text,"192.168.1.2");
+//see if a name exists for this PCB yet
+//if (lmac!=0) {
+		//strcpy(tcontrol->text,"192.168.1.1");
+	//strcpy(tcontrol->text,lmac->DestIPAddressStr);
+//}
+//if (lmac!=0) {
+//	strcpy(tcontrol->text,lmac->DestIPAddressStr);
+//}//  
+//tcontrol->OnChange=(FTControlfuncwc *)txtAccelDestIPAddress_OnChange;
+AddFTControl(twin,tcontrol);
+
+
+
 //newline
 memset(tcontrol,0,sizeof(FTControl));
 sprintf(tcontrol->name,"chkAnalogSensorAll");
 tcontrol->type=CTCheckBox;
 tcontrol->x1=fw;
-tcontrol->y1=fh;
+tcontrol->y1=fh*3;
 tcontrol->x2=fw*7;
-tcontrol->y2=2.5*fh;
+tcontrol->y2=4.5*fh;
 sprintf(tcontrol->text,"All");
 tcontrol->OnChange=(FTControlfuncwc *)chkAnalogSensorAll_OnChange;
 AddFTControl(twin,tcontrol);
@@ -132,9 +201,9 @@ memset(tcontrol, 0, sizeof(FTControl));
 strcpy(tcontrol->name, "chkAnalogSensor_ShowData");
 tcontrol->type = CTCheckBox;
 tcontrol->x1 = fw*8 ;
-tcontrol->y1 = fh;
+tcontrol->y1 = fh*3;
 tcontrol->x2 = fw*20;
-tcontrol->y2 = fh*2.5;
+tcontrol->y2 = fh*4.5;
 strcpy(tcontrol->text, "Show Data");
 tcontrol->OnChange = (FTControlfuncwc *)chkAnalogSensor_ShowData_OnChange;
 RStatus.flags|=ROBOT_STATUS_SHOW_ANALOG_SENSOR_DATA;  //default to show data when opened
@@ -142,40 +211,8 @@ tcontrol->value=1;
 //tcontrol->flags |= CGrowX1 | CGrowY1 | CGrowX2 | CGrowY2;
 AddFTControl(twin, tcontrol);
 
-//note that the dest address is not needed- because SendInstToAccel is used to send, 
-//but is listed for convenience
-memset(tcontrol,0,sizeof(FTControl));
-strcpy(tcontrol->name,"lblAnalogDestIPAddressStr");
-tcontrol->type=CTLabel;
-tcontrol->x1=fw*34;
-tcontrol->y1=fh;
-tcontrol->y2=fh*2+fh/2;
-strcpy(tcontrol->text,"Dest IP:");
-AddFTControl(twin,tcontrol);
-
-memset(tcontrol,0,sizeof(FTControl));
-strcpy(tcontrol->name,"txtAnalogDestIPAddressStr");
-tcontrol->type=CTTextBox;
-tcontrol->x1=fw*43;
-tcontrol->y1=fh;
-tcontrol->x2=fw*70;
-tcontrol->y2=fh*2+fh/2;
-//use the dest address from the accel window which should be open already
-tcontrol2=GetFTControl("txtAccelDestIPAddressStr");
-if (tcontrol2!=0) {
-	strcpy(tcontrol->text,tcontrol2->text);
-}
-//strcpy(tcontrol->text,"192.168.1.2");
-//see if a name exists for this PCB yet
-//if (lmac!=0) {
-		//strcpy(tcontrol->text,"192.168.1.1");
-	//strcpy(tcontrol->text,lmac->DestIPAddressStr);
-//} 
-//tcontrol->OnChange=(FTControlfuncwc *)txtAccelDestIPAddress_OnChange;
-AddFTControl(twin,tcontrol);
 
 
-//newline
 
 //newline
 //Start AnalogSensor #0
@@ -188,8 +225,8 @@ for(i=0;i<3;i++) {
 	sprintf(tcontrol->name,"lblHeaderSensorNum%02d",i);
 	tcontrol->type=CTLabel;
 	tcontrol->x1=fw+fw*ROWSIZE*i;
-	tcontrol->y1=fh*3;
-	tcontrol->y2=fh*4+fh/2;
+	tcontrol->y1=fh*7;
+	tcontrol->y2=fh*8+fh/2;
 	strcpy(tcontrol->text,"Sensor");
 	AddFTControl(twin,tcontrol);
 
@@ -197,8 +234,8 @@ for(i=0;i<3;i++) {
 	sprintf(tcontrol->name,"lblHeaderPerCent%02d",i);
 	tcontrol->type=CTLabel;
 	tcontrol->x1=fw*8+fw*ROWSIZE*i;
-	tcontrol->y1=fh*3;
-	tcontrol->y2=fh*4+fh/2;
+	tcontrol->y1=fh*7;
+	tcontrol->y2=fh*8+fh/2;
 	strcpy(tcontrol->text,"%/Deg");
 	AddFTControl(twin,tcontrol);
 
@@ -206,8 +243,8 @@ for(i=0;i<3;i++) {
 	sprintf(tcontrol->name,"lblHeaderPerCentChange%02d",i);
 	tcontrol->type=CTLabel;
 	tcontrol->x1=fw*15+fw*ROWSIZE*i;
-	tcontrol->y1=fh*3;
-	tcontrol->y2=fh*4+fh/2;
+	tcontrol->y1=fh*7;
+	tcontrol->y2=fh*8+fh/2;
 	strcpy(tcontrol->text,"%Change");
 	AddFTControl(twin,tcontrol);
 
@@ -215,8 +252,8 @@ for(i=0;i<3;i++) {
 	sprintf(tcontrol->name,"lblHeaderAnalogSensorVolt%02d",i);
 	tcontrol->type=CTLabel;
 	tcontrol->x1=fw*23+fw*ROWSIZE*i;
-	tcontrol->y1=fh*3;
-	tcontrol->y2=fh*4+fh/2;
+	tcontrol->y1=fh*7;
+	tcontrol->y2=fh*8+fh/2;
 	strcpy(tcontrol->text,"Volt");
 	AddFTControl(twin,tcontrol);
 
@@ -226,9 +263,9 @@ for(i=0;i<3;i++) {
 		sprintf(tcontrol->name,"chkAnalogSensorNum%02d",i*5+j);
 		tcontrol->type=CTCheckBox;
 		tcontrol->x1=fw+fw*i*ROWSIZE;
-		tcontrol->y1=fh*(j+2)*2+fh;
+		tcontrol->y1=fh*(j+4)*2+fh;
 		tcontrol->x2=tcontrol->x1+fw*3;
-		tcontrol->y2=fh*(j+2)*2+2.5*fh;
+		tcontrol->y2=fh*(j+4)*2+2.5*fh;
 		sprintf(tcontrol->text,"%02d:",i*5+j);
 		AddFTControl(twin,tcontrol);
 
@@ -236,7 +273,7 @@ for(i=0;i<3;i++) {
 		sprintf(tcontrol->name,"lblAnalogSensorPress%02d",i*5+j);
 		tcontrol->type=CTLabel;
 		tcontrol->x1=fw*8+fw*i*ROWSIZE;
-		tcontrol->y1=fh*(j+2)*2+fh;
+		tcontrol->y1=fh*(j+4)*2+fh;
 		tcontrol->x2=tcontrol->x1+fw*4;
 		tcontrol->y2=tcontrol->y1+1.5*fh;
 		strcpy(tcontrol->text,"  0%");
@@ -246,7 +283,7 @@ for(i=0;i<3;i++) {
 		sprintf(tcontrol->name,"lblAnalogSensorChange%02d",i*5+j);
 		tcontrol->type=CTLabel;
 		tcontrol->x1=fw*15+fw*i*ROWSIZE;
-		tcontrol->y1=fh*(j+2)*2+fh;
+		tcontrol->y1=fh*(j+4)*2+fh;
 		tcontrol->x2=tcontrol->x1+fw*4;
 		tcontrol->y2=tcontrol->y1+1.5*fh;
 		strcpy(tcontrol->text,"  0%");
@@ -256,7 +293,7 @@ for(i=0;i<3;i++) {
 		sprintf(tcontrol->name,"lblAnalogSensorVolt%02d",i*5+j);
 		tcontrol->type=CTLabel;
 		tcontrol->x1=fw*23+fw*i*ROWSIZE;
-		tcontrol->y1=fh*(j+2)*2+fh;
+		tcontrol->y1=fh*(j+4)*2+fh;
 		tcontrol->x2=tcontrol->x1+fw*5;
 		tcontrol->y2=tcontrol->y1+1.5*fh;
 		strcpy(tcontrol->text," - v");
@@ -271,8 +308,8 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"lblSendInstructionToAnalogSensorRaw");
 tcontrol->type=CTLabel;
 tcontrol->x1=fw;
-tcontrol->y1=fh*17;
-tcontrol->y2=fh*18+fh/2;
+tcontrol->y1=fh*19;
+tcontrol->y2=fh*20+fh/2;
 strcpy(tcontrol->text,"Send raw instruction: "); 
 //tcontrol->color[0]=wingray;  //bkground
 //tcontrol->textcolor[0]=black;//black;  //text
@@ -282,9 +319,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"txtSendInstructionToAnalogSensorRaw");
 tcontrol->type=CTTextBox;//2; //textbox
 tcontrol->x1=fw*25;
-tcontrol->y1=fh*17;
+tcontrol->y1=fh*19;
 tcontrol->x2=fw*55;
-tcontrol->y2=fh*18+fh/2;
+tcontrol->y2=fh*20+fh/2;
 strcpy(tcontrol->text,"");
 //tcontrol->Keypress=(FTControlfuncwck *)txtOutFile_Keypress;
 //tcontrol->color[0]=white;  //bkground
@@ -300,8 +337,8 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"lblAnalogSensorsMin");
 tcontrol->type=CTLabel;
 tcontrol->x1=fw*56;
-tcontrol->y1=fh*17;
-tcontrol->y2=fh*18+fh/2;
+tcontrol->y1=fh*19;
+tcontrol->y2=fh*20+fh/2;
 strcpy(tcontrol->text,"Min:"); 
 AddFTControl(twin,tcontrol);
 
@@ -309,9 +346,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"txtAnalogSensorsMin");
 tcontrol->type=CTTextBox;//2; //textbox
 tcontrol->x1=fw*60;
-tcontrol->y1=fh*17;
+tcontrol->y1=fh*19;
 tcontrol->x2=fw*70;
-tcontrol->y2=fh*18+fh/2;
+tcontrol->y2=fh*20+fh/2;
 strcpy(tcontrol->text,"");
 AddFTControl(twin,tcontrol);
 
@@ -319,8 +356,8 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"lblAnalogSensorsMax");
 tcontrol->type=CTLabel;
 tcontrol->x1=fw*71;
-tcontrol->y1=fh*17;
-tcontrol->y2=fh*18+fh/2;
+tcontrol->y1=fh*19;
+tcontrol->y2=fh*20+fh/2;
 strcpy(tcontrol->text,"Max:"); 
 AddFTControl(twin,tcontrol);
 
@@ -328,9 +365,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"txtAnalogSensorsMax");
 tcontrol->type=CTTextBox;//2; //textbox
 tcontrol->x1=fw*76;
-tcontrol->y1=fh*17;
+tcontrol->y1=fh*19;
 tcontrol->x2=fw*86;
-tcontrol->y2=fh*18+fh/2;
+tcontrol->y2=fh*20+fh/2;
 strcpy(tcontrol->text,"");
 AddFTControl(twin,tcontrol);
 
@@ -338,8 +375,8 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"lblAnalogSensorsMinMaxVolts");
 tcontrol->type=CTLabel;
 tcontrol->x1=fw*87;
-tcontrol->y1=fh*17;
-tcontrol->y2=fh*18+fh/2;
+tcontrol->y1=fh*19;
+tcontrol->y2=fh*20+fh/2;
 strcpy(tcontrol->text,"volts"); 
 AddFTControl(twin,tcontrol);
 
@@ -349,9 +386,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"lblGetAnalogSensorData");
 tcontrol->type=CTLabel;
 tcontrol->x1=fw;
-tcontrol->y1=fh*19;
+tcontrol->y1=fh*21;
 tcontrol->x2=fw*21;
-tcontrol->y2=fh*20+fh/2;
+tcontrol->y2=fh*22+fh/2;
 strcpy(tcontrol->text,"Data received: ");
 AddFTControl(twin,tcontrol);
 
@@ -359,9 +396,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"txtGetAnalogSensorData");
 tcontrol->type=CTTextBox;//2; //textbox
 tcontrol->x1=fw*21;
-tcontrol->y1=fh*19;
+tcontrol->y1=fh*21;
 tcontrol->x2=fw*35;
-tcontrol->y2=fh*20+fh/2;
+tcontrol->y2=fh*22+fh/2;
 strcpy(tcontrol->text,"");
 //tcontrol->Keypress=(FTControlfuncwck *)txtOutFile_Keypress;
 AddFTControl(twin,tcontrol);
@@ -372,9 +409,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnAnalogSensorsGetValues");
 tcontrol->type=CTButton;
 tcontrol->x1=fw;
-tcontrol->y1=fh*21;
+tcontrol->y1=fh*23;
 tcontrol->x2=fw*14;
-tcontrol->y2=fh*26;
+tcontrol->y2=fh*28;
 strcpy(tcontrol->text,"Get Values");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnAnalogSensorsGetValues_Click;
 AddFTControl(twin,tcontrol);
@@ -383,9 +420,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnAnalogSensorsStartPolling");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*15;
-tcontrol->y1=fh*21;
+tcontrol->y1=fh*23;
 tcontrol->x2=fw*29;
-tcontrol->y2=fh*26;
+tcontrol->y2=fh*28;
 strcpy(tcontrol->text,"Start Polling");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnAnalogSensorsStartPolling_Click;
 AddFTControl(twin,tcontrol);
@@ -394,9 +431,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnAnalogSensorsStopPolling");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*30;
-tcontrol->y1=fh*21;
+tcontrol->y1=fh*23;
 tcontrol->x2=fw*44;
-tcontrol->y2=fh*26;
+tcontrol->y2=fh*28;
 strcpy(tcontrol->text,"Stop Polling");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnAnalogSensorsStopPolling_Click;
 AddFTControl(twin,tcontrol);
@@ -405,9 +442,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnAnalogSensorsGetMinMax");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*45;
-tcontrol->y1=fh*21;
+tcontrol->y1=fh*23;
 tcontrol->x2=fw*59;
-tcontrol->y2=fh*26;
+tcontrol->y2=fh*28;
 strcpy(tcontrol->text,"Get Min+Max");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnAnalogSensorsGetMinMax_Click;
 AddFTControl(twin,tcontrol);
@@ -416,9 +453,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnAnalogSensorsSetMinMax");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*60;
-tcontrol->y1=fh*21;
+tcontrol->y1=fh*23;
 tcontrol->x2=fw*74;
-tcontrol->y2=fh*26;
+tcontrol->y2=fh*28;
 strcpy(tcontrol->text,"Set Min+Max");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnAnalogSensorsSetMinMax_Click;
 AddFTControl(twin,tcontrol);
@@ -428,9 +465,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnAnalogSensorsStartInterrupt");
 tcontrol->type=CTButton;
 tcontrol->x1=fw;
-tcontrol->y1=fh*27;
+tcontrol->y1=fh*29;
 tcontrol->x2=fw*14;
-tcontrol->y2=fh*32;
+tcontrol->y2=fh*34;
 strcpy(tcontrol->text,"Start Interrupt");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnAnalogSensorsStartInterrupt_Click;
 AddFTControl(twin,tcontrol);
@@ -439,9 +476,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnAnalogSensorsStopInterrupt");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*15;
-tcontrol->y1=fh*27;
+tcontrol->y1=fh*29;
 tcontrol->x2=fw*29;
-tcontrol->y2=fh*32;
+tcontrol->y2=fh*34;
 strcpy(tcontrol->text,"Stop Interrupt");  
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnAnalogSensorsStopInterrupt_Click;
 AddFTControl(twin,tcontrol);
@@ -451,9 +488,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnSendInstructionToAnalogSensor");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*30;
-tcontrol->y1=fh*27;
+tcontrol->y1=fh*29;
 tcontrol->x2=fw*44;
-tcontrol->y2=fh*32;
+tcontrol->y2=fh*34;
 strcpy(tcontrol->text,"Send Instruction");
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnSendInstructionToAnalogSensor_Click;
 AddFTControl(twin,tcontrol);
@@ -462,9 +499,9 @@ memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"btnwinAnalogSensorsExit");
 tcontrol->type=CTButton;
 tcontrol->x1=fw*45;
-tcontrol->y1=fh*27;
+tcontrol->y1=fh*29;
 tcontrol->x2=fw*59;
-tcontrol->y2=fh*32;
+tcontrol->y2=fh*34;
 strcpy(tcontrol->text,"Close");  
 tcontrol->ButtonClick[0]=(FTControlfuncwcxy *)btnwinAnalogSensorsExit_Click;
 AddFTControl(twin,tcontrol);
@@ -526,6 +563,114 @@ void winAnalogSensors_key(FTWindow *twin,KeySym key)
       }
 } //void winAnalogSensors_key(FTWindow *twin,KeySym key)
 
+
+int FillAnalogItemList(void)
+{
+	FTControl *tc;
+	FTItem *titem;
+	MAC_Connection *lmac;
+	int NumAnalogPCBs;
+
+	NumAnalogPCBs=0;
+	tc=GetFTControl("ddAnalogPCBName");
+	if (tc!=0) {
+		//delete all current items
+		DelAllFTItems(tc);
+		titem=(FTItem *)malloc(sizeof(FTItem));
+		lmac=RStatus.iMAC_Connection;	
+		while(lmac!=0) {
+			if (lmac!=0) {
+//				if (lmac->AddWindowFunction==(FTControlfunc *)winAccels_AddFTWindow) {
+//change to ETHANALOG?
+					if (!strncmp(lmac->pcb.Name,"ETHACCEL",8) || !strncmp(lmac->pcb.Name,"GAMTP",5)) {
+						//strcpy(tcontrol->text,"192.168.1.1");
+						memset(titem,0,sizeof(FTItem));
+						sprintf(titem->name,"%s",lmac->pcb.Name);
+						//sprintf(titem->name,"%i",lmac->Num);
+						//strcpy(titem->name,lmac->Name);
+						AddFTItem(tc,titem);  //sometimes crashes in debugger
+						//if (NumAccelPCBs==0) {
+							//tmac=lmac; //remember the first Accel PCB
+						//}
+						NumAnalogPCBs++;
+				} //if (!strncmp(lmac->Name,"ETHACCEL")) {
+			} 
+			lmac=lmac->next;
+		}//while(lmac!=0) {
+		free(titem);
+		if (NumAnalogPCBs>0) {
+			SelectFTItemByNum(tc->ilist,1,0); //select the first item
+			//lmac=tmac;
+		}
+		DrawFTControl(tc); //redraw the control 
+
+
+		//set initial PCB, MAC, and IP and redraw
+/*		tc=GetFTControl("ddAccelPCBName");
+		if (tc!=0) {
+			DrawFTControl(tc);
+			 
+		}
+*/
+
+		lmac=Get_MAC_Connection_By_PCBName(tc->text);
+		if (lmac!=0) { 
+			tc=GetFTControl("lblAnalogMACStr");
+			if (tc!=0) {
+				sprintf(tc->text,"MAC: %s",lmac->PhysicalAddressStr);
+				DrawFTControl(tc);
+			}
+
+			tc=GetFTControl("txtAnalogDestIPAddressStr");
+			if (tc!=0) {
+				strcpy(tc->text,lmac->DestIPAddressStr);
+				DrawFTControl(tc);
+			} 
+		} //if (lmac!=0) 
+
+	} //tc!=0
+
+	return(NumAnalogPCBs);
+} //int FillAnalogItemList(void)
+
+
+int ddAnalogPCBName_OnChange(FTWindow *twin,FTControl *tcontrol) {
+	MAC_Connection *lmac;
+	FTControl *tc;
+	
+	//fprintf(stderr,"OnChange\n");
+	//if the user changed Accel PCBs update the MAC and IP
+	lmac=Get_MAC_Connection_By_PCBName(tcontrol->text); //get remote MAC_Connection
+	if (lmac!=0) {
+		//MAC
+		tc=GetFTControl("lblAnalogMACStr");
+		if (tc) {
+			sprintf(tc->text,"MAC: %s",lmac->PhysicalAddressStr);
+			DrawFTControl(tc);
+		} //tc
+		//IP
+		tc=GetFTControl("txtAnalogDestIPAddressStr");
+		if (tc) {
+			sprintf(tc->text,"%s",lmac->DestIPAddressStr);
+			DrawFTControl(tc);
+		} //tc
+
+/*
+		//in addition, change the Analog Sensor window IP if created
+		tc=GetFTControl("txtTouchDestIPAddressStr");
+		if (tc) {
+			sprintf(tc->text,"%s",lmac->DestIPAddressStr);
+			DrawFTControl(tc);
+		} //tc
+*/
+		return(1);
+	} //if (lmac==0) {
+	return(0);
+} //int ddAnalogPCBName_OnChange(FTWindow *twin,FTControl *tcontrol) {
+
+
+
+
 int chkAnalogSensorAll_OnChange(FTWindow *twin,FTControl *tcontrol)
 {
 	int i;
@@ -545,6 +690,7 @@ int chkAnalogSensorAll_OnChange(FTWindow *twin,FTControl *tcontrol)
 
 	return(1);
 }//int chkAnalogSensorAll_OnChange;(FTWindow *twin,FTControl *tcontrol)
+
 
 //Get Touch Sensors Values
 int btnAnalogSensorsGetValues_Click(FTWindow *twin,FTControl *tcontrol,int x,int y)
@@ -909,9 +1055,17 @@ CloseFTWindow(twin);
 
 int winAnalogSensors_OnOpen(FTWindow *twin)
 {
+	FTControl *tc;
+
+	//Go through each MAC_Connection and get all names that exist for this PCB yet
+	//lmac=Get_MAC_Connection_By_WindowFunction((FTControlfunc *)winAccels_AddFTWindow);
+	//add all known EthAccelTouch PCBs to the item list
+	FillAnalogItemList();
+	
 
 	return(1);
 } //int winAnalogSensors_OnOpen(FTWindow *twin)
+
 
 int winAnalogSensors_OnClose(FTWindow *twin)
 {

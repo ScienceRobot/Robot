@@ -156,7 +156,7 @@ tcontrol->y2=fh*2+fh/2;
 tcontrol->OnChange=(FTControlfuncwc *)ddAccelPCBName_OnChange;
 AddFTControl(twin,tcontrol);
 
-lmac=Get_MAC_Connection_By_PCBName(tcontrol->text);
+//lmac=Get_MAC_Connection_By_PCBName(tcontrol->text);
 
 memset(tcontrol,0,sizeof(FTControl));
 strcpy(tcontrol->name,"lblAccelMACStr");
@@ -165,11 +165,11 @@ tcontrol->x1=fw*32;
 tcontrol->y1=fh;
 tcontrol->x2=fw*50;
 tcontrol->y2=fh*2+fh/2;
-if (lmac!=0) {		
-	sprintf(tcontrol->text,"MAC: %s",lmac->PhysicalAddressStr);
-} else {
+//if (lmac!=0) {		
+//	sprintf(tcontrol->text,"MAC: %s",lmac->PhysicalAddressStr);
+//} else {
 	sprintf(tcontrol->text,"MAC: ");
-} 
+//} 
 AddFTControl(twin,tcontrol);
 
 
@@ -192,10 +192,10 @@ tcontrol->x2=fw*75;
 tcontrol->y2=fh*2+fh/2;
 //strcpy(tcontrol->text,"192.168.1.2");
 //see if a name exists for this PCB yet
-if (lmac!=0) {
+//if (lmac!=0) {
 		//strcpy(tcontrol->text,"192.168.1.1");
-	strcpy(tcontrol->text,lmac->DestIPAddressStr);
-} 
+//	strcpy(tcontrol->text,lmac->DestIPAddressStr);
+//} 
 //tcontrol->OnChange=(FTControlfuncwc *)txtAccelDestIPAddress_OnChange;
 AddFTControl(twin,tcontrol);
 
@@ -1003,12 +1003,14 @@ int ddAccelPCBName_OnChange(FTWindow *twin,FTControl *tcontrol) {
 			DrawFTControl(tc);
 		} //tc
 
+/*
 		//in addition, change the Analog Sensor window IP if created
-		tc=GetFTControl("txtTouchDestIPAddressStr");
+		tc=GetFTControl("txtAnalogDestIPAddressStr");
 		if (tc) {
 			sprintf(tc->text,"%s",lmac->DestIPAddressStr);
 			DrawFTControl(tc);
 		} //tc
+*/
 
 		return(1);
 	} //if (lmac==0) {
@@ -1873,10 +1875,7 @@ CloseFTWindow(twin);
 int winAccels_OnOpen(FTWindow *twin)
 {
 	FTControl *tc;
-	MAC_Connection *lmac;
 
-
-	lmac=0;
 	//Go through each MAC_Connection and get all names that exist for this PCB yet
 	//lmac=Get_MAC_Connection_By_WindowFunction((FTControlfunc *)winAccels_AddFTWindow);
 	//add all known EthAccelTouch PCBs to the item list

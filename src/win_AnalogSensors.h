@@ -17,6 +17,8 @@ You should have received a copy of the GNU General Public License
 
 int winAnalogSensors_AddFTWindow(void);
 void winAnalogSensors_key(FTWindow *twin,KeySym key);
+int FillAnalogItemList(void);
+int ddAnalogPCBName_OnChange(FTWindow *twin,FTControl *tcontrol);
 int chkAnalogSensorAll_OnChange(FTWindow *twin,FTControl *tcontrol);
 int winAnalogSensors_AddFTControls(FTWindow *twin);
 int btnAnalogSensorsGetValues_Click(FTWindow *twin,FTControl *tcontrol,int x,int y);

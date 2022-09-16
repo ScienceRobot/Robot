@@ -72,10 +72,10 @@ if (twin2==0) {
 	strcpy(twin.name,"winMotors");
 	strcpy(twin.title,"Motors");
 	strcpy(twin.ititle,"Motors");
-	twin.x=630;
+	twin.x=640;
 	twin.y=50;
 	twin.w=550;
-	twin.h=240;
+	twin.h=250;
 	twin.Keypress=(FTControlfuncwk *)winMotors_key;
 	twin.AddFTControls=(FTControlfuncw *)winMotors_AddFTControls;
 	twin.OnOpen=(FTControlfuncw *)winMotors_OnOpen;

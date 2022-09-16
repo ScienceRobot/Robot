@@ -99,6 +99,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	int recog;
 	MAC_Connection *lmac;   
 	uint32_t Rflags; //to preserve robot flags
+	FTWindow *twin;
 #if WIN32
 #define MAX_ARGS 10
 	int argc;
@@ -276,6 +277,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		if (lmac->flags&ROBOT_MAC_CONNECTION_OPEN_WINDOW) {
 			lmac->flags&=~ROBOT_MAC_CONNECTION_OPEN_WINDOW;  //clear flag
 			(*lmac->AddWindowFunction) (); //create and open the window
+			//temp fix for now: if winAnalogSensors is opening, and winAccel is not open, open that as well (for GAMTP PCB)
+			if (lmac->AddWindowFunction==winAnalogSensors_AddFTWindow) {
+				twin = GetFTWindow("winAccels");
+				if (twin == 0) {  //this thread can't be the parent thread of the window, because GetInput doesn't work- the hourglass just spins and the window can't be clicked on
+					lmac->AddWindowFunction = (FTControlfunc *)winAccels_AddFTWindow;
+					(*lmac->AddWindowFunction) (); //create and open the window
+				} //if (twin == 0) {
+			} //if (!strcmp(lmac->Name,"winAnanlog")) 
 		} //if (RStatus.flags&ROBOT_OPEN_WINDOW) {
 		lmac=lmac->next;
 		} //while(lmac!=0) {
@@ -8277,6 +8286,7 @@ DWORD WINAPI Thread_ListenToRobot(LPVOID lpParam)
 
 											} //if (!MAC_Already_Exists) { //a new AccelTouch PCB
 
+											//Problem: two windows need to be opened (winAccels and winAnalogSensors), but only 1 can be set to open currently
 											//Create and open Accelerometers window if not already created and open
 											twin = GetFTWindow("winAccels");
 											if (twin == 0) {  //this thread can't be the parent thread of the window, because GetInput doesn't work- the hourglass just spins and the window can't be clicked on
@@ -8385,7 +8395,7 @@ DWORD WINAPI Thread_ListenToRobot(LPVOID lpParam)
 										if (recvbuf[4] == 0x01 || (recvbuf[4] >= ROBOT_START_ACCEL_INSTRUCTIONS
  && recvbuf[4] <= ROBOT_END_ACCEL_INSTRUCTIONS)) { //Accelerometer
 							 				//print sample
-											fprintf(stderr,"NumBytes: %d\n",NumBytes);
+											//fprintf(stderr,"NumBytes: %d\n",NumBytes);
 											ProcessAccelSensorData(lmacnew, recvbuf, NumBytes, DataStr);
 										}
 										if (recvbuf[4] >= ROBOT_START_ANALOG_SENSOR_INSTRUCTIONS && recvbuf[4] <= ROBOT_END_ANALOG_SENSOR_INSTRUCTIONS) { //analog sensor
@@ -9643,7 +9653,7 @@ int ProcessAnalogSensorData(MAC_Connection *lmac,unsigned char *recvbuf,int NumB
 	char LogStr[512];
 	uint16_t Mini,Maxi;
 	float Minf,Maxf;
-	
+	int AnalogWindowOpen;
 
 
 	//leth=&lmac->pcb.EthAccelsPCB;
@@ -9654,14 +9664,12 @@ int ProcessAnalogSensorData(MAC_Connection *lmac,unsigned char *recvbuf,int NumB
 	} //
 
 
-	SelectedPCB=0;
 	GotError=0;
 	//see Analog Sensors window is open, if no open it
 	twin=GetFTWindow("winAnalogSensors");
 	if (twin==0) {  //this thread can't be the parent thread of the window, because GetInput doesn't work- the hourglass just spins and the window can't be clicked on
 		lmac->flags|=ROBOT_MAC_CONNECTION_OPEN_WINDOW;
-		//lmac->AddWindowFunction=(FTControlfunc *)winAccels_AddFTWindow;
-    lmac->AddWindowFunction=(FTControlfunc *)winAnalogSensors_AddFTWindow;
+	    lmac->AddWindowFunction=(FTControlfunc *)winAnalogSensors_AddFTWindow;
 	} else {
 		//FT_SetFocus(twin,0); //give the window the focus
 	}
@@ -9702,6 +9710,7 @@ int ProcessAnalogSensorData(MAC_Connection *lmac,unsigned char *recvbuf,int NumB
 		case ROBOT_ACCELMAGTOUCH_GET_ANALOG_MINMAX:
 			//data is:
 			//ip(0-3) inst(4) num(5)min(6-7)max(8-9)num(10)min(11-12)max(13-14)...
+
 			i=5;
 			while(i<NumBytes) {
 				SensorNum=(int)recvbuf[i];
@@ -9738,6 +9747,30 @@ int ProcessAnalogSensorData(MAC_Connection *lmac,unsigned char *recvbuf,int NumB
 		case ROBOT_ACCELMAGTOUCH_GET_ANALOG_SENSOR_VALUES:
 		case ROBOT_ACCELMAGTOUCH_START_POLLING_ANALOG_SENSORS:
 		case ROBOT_ACCELMAGTOUCH_START_ANALOG_SENSORS_INTERRUPT:
+
+
+			//see if Analog window is open
+			twin=GetFTWindow("winAnalog");
+			AnalogWindowOpen=0;
+			if (twin!=0 && twin->flags&WOpen) {  
+				AnalogWindowOpen=1;
+			}
+
+			if (AnalogWindowOpen) {
+				//determine if this data comes from an EthAccel PCB that is currently selected in the Accel Window
+				//output data to the Accelerometer box depending on which Accelerometer (0-2) the data corresponds to
+				SelectedPCB=0;
+				tc=GetFTControl("txtAnalogDestIPAddressStr");									
+				if (tc!=0) {
+					//control exists
+					if (!strcmp(tc->text,lmac->DestIPAddressStr)) {
+						//The PCB connected to this data is curently selected in the Accelerometers window
+						//so update the data in the textboxes
+						SelectedPCB=1;
+					} //if (!strcmp(tc->text,lmac->DestIPAddressStr)) {
+				} //if (tc!=0) {
+			} //if (AccelWindow)
+
 
 
 			//output data to AnalogSensor box depending on which Analog Sensor (0-15)
