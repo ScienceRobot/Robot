@@ -8703,9 +8703,10 @@ int ProcessAccelSensorData(MAC_Connection *lmac,unsigned char *recvbuf,int NumBy
 				fSample.y=(float)SampleY/16384.0;
 				fSample.z=(float)SampleZ/16384.0;
 
-				//print sample
-				fprintf(stderr,"Accel: %d Sample: %f %f %f\n",AccelNum,fSample.x,fSample.y,fSample.z);
-
+				if (RStatus.flags&ROBOT_STATUS_INFO) {
+					//print sample
+					fprintf(stderr,"Accel: %d Sample: %f %f %f\n",AccelNum,fSample.x,fSample.y,fSample.z);
+				}
 
 				MSampleX=(int16_t)(recvbuf[i+7]<<8|recvbuf[i+8]);
 				MSampleY=(int16_t)(recvbuf[i+9]<<8|recvbuf[i+10]);
@@ -8752,6 +8753,11 @@ int ProcessAccelSensorData(MAC_Connection *lmac,unsigned char *recvbuf,int NumBy
 				fSample.x=(float)SampleX/16384.0;
 				fSample.y=(float)SampleY/16384.0; 
 				fSample.z=(float)SampleZ/16384.0;
+
+				if (RStatus.flags&ROBOT_STATUS_INFO) {
+					//print sample
+					fprintf(stderr,"Accel: %d Sample: %f %f %f\n",AccelNum,fSample.x,fSample.y,fSample.z);
+				}
 
 				//16-bit Temperature sample
 				TSample=(int16_t)(recvbuf[i+7]<<8|recvbuf[i+8]);
