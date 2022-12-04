@@ -8756,6 +8756,7 @@ int ProcessAccelSensorData(MAC_Connection *lmac,unsigned char *recvbuf,int NumBy
 
 				if (RStatus.flags&ROBOT_STATUS_INFO) {
 					//print sample
+					//fprintf(stderr,"Accel: %d Sample: %d %d %d\n",AccelNum,SampleX,SampleY,SampleZ);
 					fprintf(stderr,"Accel: %d Sample: %f %f %f\n",AccelNum,fSample.x,fSample.y,fSample.z);
 				}
 
