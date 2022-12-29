@@ -57,7 +57,7 @@ You should have received a copy of the GNU General Public License
 #define ROBOT_MAX_INST_LEN	256 //maximum robot instruction length in bytes
 #define ROBOT_ADD_IP_ADDRESS_TO_INSTRUCTION 0x00000001 //add the source IP address to the instruction to send to the robot
 #define PCB_NAME_LENGTH 5  //the number of characters used by an Eth PCB to identify itself (for example "Motor00")
-#define MAX_NUM_ACCELS_ON_ETHACCELS 3  //no more than 3 accelerometers on any EthAccels PCB
+#define MAX_NUM_ACCELS_ON_ETHACCELS 8 //8 accels on GAMTP 3  //no more than 3 accelerometers on any EthAccels PCB
 #define MAX_NUM_ANALOG_SENSORS_ON_ETHACCELS 16  //no more than 16 analog (touch or potentiometer) sensors on any EthAccels PCB
 #define DEFAULT_NETWORK_BUFLEN 2048 //512 - cam packets are 1074
 
