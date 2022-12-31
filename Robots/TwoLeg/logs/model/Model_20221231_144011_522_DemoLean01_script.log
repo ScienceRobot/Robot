@@ -1,0 +1,7 @@
+0,StartLogging 
+0,LogScriptFileName
+1,TurnMotor(MOTOR_RIGHT_ANKLE,-8,500)
+1,TurnMotor(MOTOR_LEFT_ANKLE,-8,500)
+500,TurnMotor(MOTOR_RIGHT_ANKLE,8,1000)
+500,TurnMotor(MOTOR_LEFT_ANKLE,8,1000)
+5000,StopLogging

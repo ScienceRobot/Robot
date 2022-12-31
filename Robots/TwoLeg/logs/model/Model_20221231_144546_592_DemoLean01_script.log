@@ -1,0 +1,11 @@
+0,StartLogging 
+0,LogScriptFileName
+1,TurnMotor(MOTOR_RIGHT_ANKLE,-8,500)
+1,TurnMotor(MOTOR_LEFT_ANKLE,-8,500)
+1,StartLoop(-1,Any,31)  #***START LOOP***  Any key ends loop, escape key aborts script
+500,TurnMotor(MOTOR_RIGHT_ANKLE,8,1000)
+500,TurnMotor(MOTOR_LEFT_ANKLE,8,1000)
+1500,TurnMotor(MOTOR_RIGHT_ANKLE,-8,1000)
+1500,TurnMotor(MOTOR_LEFT_ANKLE,-8,1000)
+5000,EndLoop  #  ***END LOOP****
+5000,StopLogging
