@@ -1980,7 +1980,7 @@ int btnCalibrateAllAccelGyro_Click(FTWindow *twin, FTControl *tcontrol, int x, i
 
 	//CalibrateAccelGyro(NUM_ETHACCEL_PCBS, PCBNum, 7, AccelAndOrGyro, NumCalibSamples);
   //AStatus.NumPCBs=NUM_ETHACCEL_PCBS;
-	AStatus.AccelMask=7;
+	AStatus.AccelMask=0xff;//7;
 	AStatus.AccelAndOrGyro=AccelAndOrGyro;
 	AStatus.NumCalibSamples=NumCalibSamples;
 
@@ -2041,7 +2041,7 @@ int btnCalibrateAccelGyro_Click(FTWindow *twin, FTControl *tcontrol, int x, int 
 //		CalibrateAccelGyro(1, PCBNum, AccelMask, AccelAndOrGyro, NumCalibSamples);
 		//AStatus.NumPCBs=NUM_ETHACCEL_PCBS;
 		AStatus.PCBNum=PCBNum;  //Is AccelsPCBNum
-		AStatus.AccelMask=7;
+		AStatus.AccelMask=0xff;//7;
 		AStatus.AccelAndOrGyro=AccelAndOrGyro;
 		AStatus.NumCalibSamples=NumCalibSamples;
 
@@ -2164,7 +2164,7 @@ DWORD WINAPI Thread_AutoCalibrateAccelGyro(LPVOID lpParam)
 	Accels_PCB *leth[MAX_NUM_OF_ETHACCELS];
 	int SampleCount[MAX_NUM_OF_ETHACCELS],TotalSampleCount,NoSampleCount,SampleComplete;
 	uint32_t CurTimeStamp,LastTimeStamp[MAX_NUM_OF_ETHACCELS];
-	AccelSample SampleA[MAX_NUM_OF_ETHACCELS][3], SampleG[MAX_NUM_OF_ETHACCELS][3], AvgSamp;
+	AccelSample SampleA[MAX_NUM_OF_ETHACCELS][MAX_NUM_ACCELS_ON_ETHACCELS], SampleG[MAX_NUM_OF_ETHACCELS][MAX_NUM_ACCELS_ON_ETHACCELS], AvgSamp;
 	FILE *fptrA, *fptrG;
 	char FilenameA[512], FilenameG[512], tstr[256];
 	Accelerometer *lAccel;
@@ -2235,7 +2235,13 @@ DWORD WINAPI Thread_AutoCalibrateAccelGyro(LPVOID lpParam)
 	for(i=0;i<NumPCBs;i++) {  //for each EthAccel PCB
 		LastTimeStamp[i]=0;
 		SampleCount[i]=0;
-		for(j=0;j<3;j++) {  //for each Accel 0,1, 2
+		leth[i] = Get_AccelsPCB_By_PCBNum(PCBNum[i]);
+		if (!leth[i]) {
+			fprintf(stderr,"Error: CalibrateAccelGyro(): Could not find EthAccel PCB with number=%d\n",PCBNum[i]);
+			return(0);
+		}
+		//for(j=0;j<3;j++) {  //for each Accel 0,1, 2
+		for(j=0;j<leth[i]->NumAccels;j++) {  //for each Accel on PCB
 			for(k=0;k<3;k++) {  //for each dimension (X, Y, Z)
 				SampleA[i][j].i[k]=0.0;
 				SampleG[i][j].i[k]=0.0;
@@ -2328,7 +2334,13 @@ DWORD WINAPI Thread_AutoCalibrateAccelGyro(LPVOID lpParam)
 			//note that for a single PCB, not all accels may have a timestamp. If only 1 or 2 accels are selected, the firmware will noly send samples from those accels. 
 			//For convenience, and for now, since I scan all accels at once, and do not want to scan one PCB at a time, so just verify that at least one accel per PCB has a new timestamp
 			GotNewTimeStamp = 0;
-			for (j = 0; j < 3; j++) { //for each accel
+			leth[i] = Get_AccelsPCB_By_PCBNum(PCBNum[i]);
+			if (!leth[i]) {
+				fprintf(stderr,"Error: CalibrateAccelGyro(): Could not find EthAccel PCB with number=%d\n",PCBNum[i]);
+				return(0);
+			}
+			for(j=0;j<leth[i]->NumAccels;j++) {  //for each Accel on PCB
+			//for (j = 0; j < 3; j++) { //for each accel
 				if ((1<<j) & AccelMask) {  //only for selected accels
 					if (LastTimeStamp[i] != leth[i]->Accel[j].TimeStamp) {
 						GotNewTimeStamp = 1;
@@ -2340,7 +2352,14 @@ DWORD WINAPI Thread_AutoCalibrateAccelGyro(LPVOID lpParam)
 
 			if (GotNewTimeStamp) { //new accel sample				
 				if (SampleCount[i]>100) { //only add up after 100 timestamps/samples
-					for(j=0;j<3;j++) { //for each accel
+					leth[i] = Get_AccelsPCB_By_PCBNum(PCBNum[i]);
+					if (!leth[i]) {
+						fprintf(stderr,"Error: CalibrateAccelGyro(): Could not find EthAccel PCB with number=%d\n",PCBNum[i]);
+						return(0);
+					}
+					//for(j=0;j<3;j++) {  //for each Accel 0,1, 2
+					for(j=0;j<leth[i]->NumAccels;j++) {  //for each Accel on PCB				
+					//for(j=0;j<3;j++) { //for each accel
 						//if ((int)pow(2.0,(double)j) & AccelMask) {  //only for selected accels
 						if ((1<<j) & AccelMask) {  //only for selected accels
 							for (k = 0; k < 3; k++) { //x,y,z
@@ -2424,84 +2443,106 @@ DWORD WINAPI Thread_AutoCalibrateAccelGyro(LPVOID lpParam)
 		}
 		fprintf(stderr,"\n\n%s:\n",FilenameA);
 
-		for(i=0;i<RStatus.NumEthAccelsPCBsExpected;i++) { //for each pcb
-			EAPN=EAPCBNum[i];
-
-			//fprintf(stderr,"%s\n",ROBOT_PCB_NAMES[i+1]);
-			fprintf(stderr,"%s\n",RStatus.AccelsPCBInfo[EAPN]->Name);
-			if (fptrA != 0) {
-				//fprintf(fptrA,"%s\n", ROBOT_PCB_NAMES[i+1]);
-				fprintf(fptrA,"%s\n",RStatus.AccelsPCBInfo[EAPN]->Name);
+		//can be GAMTP not just EthAccels
+		for(i=0;i<NumPCBs;i++) { //for each PCB
+			leth[i] = Get_AccelsPCB_By_PCBNum(PCBNum[i]);
+			if (!leth[i]) {
+				fprintf(stderr,"Error: CalibrateAccelGyro(): Could not find EthAccel PCB with number=%d\n",PCBNum[i]);
+				return(0);
 			}
+			if (leth[i]->NumAccels>0) { //PCB has accels
 
-			//if this PCB did not have an accel that was calibrated, just print the accel.conf values
-			CalibratedPCB=0;
-			for(j=0;j<NumPCBs;j++) {
-				if (j==EAPN) {
-					CalibratedPCB=1;  //needs to be calibrated
-				} //if (i+1==PCBNum[j]) {
-			} //for j=0
+			//for(i=0;i<RStatus.NumEthAccelsPCBsExpected;i++) { //for each pcb
+				//EAPN=EAPCBNum[i];
+				EAPN=PCBNum[i];
+
+				//fprintf(stderr,"%s\n",ROBOT_PCB_NAMES[i+1]);
+				fprintf(stderr,"%s\n",RStatus.AccelsPCBInfo[EAPN]->Name);
+				if (fptrA != 0) {
+					//fprintf(fptrA,"%s\n", ROBOT_PCB_NAMES[i+1]);
+					fprintf(fptrA,"%s\n",RStatus.AccelsPCBInfo[EAPN]->Name);
+				}
+
+				//if this PCB did not have an accel that was calibrated, just print the accel.conf values
+				CalibratedPCB=0;
+				for(j=0;j<NumPCBs;j++) {
+					if (j==EAPN) {  //todo: need this code?
+						CalibratedPCB=1;  //needs to be calibrated
+					} //if (i+1==PCBNum[j]) {
+				} //for j=0
 
 
-			if (CalibratedPCB==0) {
-				for(j=0;j<3;j++) { //for each accel on a single pcb
-					//fprintf(stderr,"%d: x=%03.3f y=%03.3f z=%03.3f\n",j,RStatus.AccelsPCBInfo[EAPN].AOffset[j][0],RStatus.AccelsPCBInfo[EAPN].AOffset[j][1], RStatus.AccelsPCBInfo[EAPN].AOffset[j][2]);
-					fprintf(stderr,"%d: x=%03.3f y=%03.3f z=%03.3f\n",j,RStatus.AccelsPCBInfo[EAPN]->AOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->AOffset[j][1], RStatus.AccelsPCBInfo[EAPN]->AOffset[j][2]);
-
-					if (fptrA != 0) {
-						fprintf(fptrA, "%d: %03.3f %03.3f %03.3f\n",j,RStatus.AccelsPCBInfo[EAPN]->AOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->AOffset[j][1], RStatus.AccelsPCBInfo[EAPN]->AOffset[j][2]);
+				if (CalibratedPCB==0) {
+					leth[i] = Get_AccelsPCB_By_PCBNum(PCBNum[i]);
+					if (!leth[i]) {
+						fprintf(stderr,"Error: CalibrateAccelGyro(): Could not find EthAccel PCB with number=%d\n",PCBNum[i]);
+						return(0);
 					}
-				} //for j
-			} else { //CalibratedPCB==0
-				//PCB has at least 1 accel that was calibrated
-
-				for(j=0;j<3;j++) { //for each accel on a single pcb
-
-					//because not all accelerometers on a single EthAccels PCB may be getting calibrated, 
-					//only output new values for those accels/gyros being calibrated, for the rest use the 
-					//calibration file values read in InitRobot().
-					if ((1<<j) & AccelMask) { //2^j only for selected accels
-
-
-						//note that some samplecounts may not be exactly 1100- for example if accel[0] on EthAccel[0] reaches 1100 the while ends, the accel[0] on EthAccel[1] and [2] will have 1099 samples. So use SampleCount[i]-100
-						//offset is subtracted from sample, so if z=1.07, zoffset=0.07, so sample-=0.07
-						lAccel = &leth[i]->Accel[j];
-						//accel - determine offset values needed to make accel x,y,z = 0.0,0.0,1.0 respectively
-										//       unless the user has specified a pitch (x) and/or roll (z)
-						AvgSamp.x=SampleA[i][j].x / (SampleCount[i] - 100.0);
-						AvgSamp.y=SampleA[i][j].y / (SampleCount[i] - 100.0);
-						AvgSamp.z=SampleA[i][j].z / (SampleCount[i] - 100.0);
-						if (RStatus.AccelInfo[lAccel->NameNum].Calib.x!=0.0 || RStatus.AccelInfo[lAccel->NameNum].Calib.z!=0.0) {
-							lAccel->ACali[0] = AvgSamp.x-(RStatus.AccelInfo[lAccel->NameNum].Calib.z*PI*AvgSamp.z/180.0);  //accel x should = (Roll*PI/180)*z
-							lAccel->ACali[1] = AvgSamp.y+(RStatus.AccelInfo[lAccel->NameNum].Calib.x*PI*AvgSamp.z/180.0);  //accel y should = -(Pitch*PI/180)*z
-							lAccel->ACali[2] = 0.0;// Z is not calibrated since user gave pitch and roll
-						} else {
-							lAccel->ACali[0] = AvgSamp.x;  //accel x should = 0.0
-							lAccel->ACali[1] = AvgSamp.y;  //accel y should = 0.0
-							lAccel->ACali[2] = AvgSamp.z-1.0;  //accel z should = 1.0 
-						} //if (RStatus.AccelInfo[lAccel->NameNum].Calib.x!=0.0 ...
-						fprintf(stderr,"%d: x=%03.3f y=%03.3f z=%03.3f\n",j,lAccel->ACali[0], lAccel->ACali[1], lAccel->ACali[2]);
+					for(j=0;j<leth[i]->NumAccels;j++) {  //for each Accel on PCB			
+					//for(j=0;j<3;j++) { //for each accel on a single pcb
+						//fprintf(stderr,"%d: x=%03.3f y=%03.3f z=%03.3f\n",j,RStatus.AccelsPCBInfo[EAPN].AOffset[j][0],RStatus.AccelsPCBInfo[EAPN].AOffset[j][1], RStatus.AccelsPCBInfo[EAPN].AOffset[j][2]);
+						fprintf(stderr,"%d: x=%03.3f y=%03.3f z=%03.3f\n",j,RStatus.AccelsPCBInfo[EAPN]->AOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->AOffset[j][1], RStatus.AccelsPCBInfo[EAPN]->AOffset[j][2]);
 
 						if (fptrA != 0) {
-							fprintf(fptrA, "%d: %03.3f %03.3f %03.3f\n", j, lAccel->ACali[0], lAccel->ACali[1], lAccel->ACali[2]);
+							fprintf(fptrA, "%d: %03.3f %03.3f %03.3f\n",j,RStatus.AccelsPCBInfo[EAPN]->AOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->AOffset[j][1], RStatus.AccelsPCBInfo[EAPN]->AOffset[j][2]);
 						}
+					} //for j
+				} else { //CalibratedPCB==0
+					//PCB has at least 1 accel that was calibrated
+					leth[i] = Get_AccelsPCB_By_PCBNum(PCBNum[i]);
+					if (!leth[i]) {
+						fprintf(stderr,"Error: CalibrateAccelGyro(): Could not find EthAccel PCB with number=%d\n",PCBNum[i]);
+						return(0);
+					}
+					for(j=0;j<leth[i]->NumAccels;j++) {  //for each Accel on PCB
+					//for(j=0;j<3;j++) { //for each accel on a single pcb
 
-						//update the earlier loaded values- in case different accels are updated later
-						RStatus.AccelsPCBInfo[EAPN]->AOffset[j][0]=lAccel->ACali[0];
-						RStatus.AccelsPCBInfo[EAPN]->AOffset[j][1]=lAccel->ACali[1];
-						RStatus.AccelsPCBInfo[EAPN]->AOffset[j][2]=lAccel->ACali[2];
+						//because not all accelerometers on a single EthAccels PCB may be getting calibrated, 
+						//only output new values for those accels/gyros being calibrated, for the rest use the 
+						//calibration file values read in InitRobot().
+						if ((1<<j) & AccelMask) { //2^j only for selected accels
 
 
-					} else { //if ((1<<j) & AccelMask) { //2^j only for selected accels selected for calibration
-						//Accel was not selected for calibration so just print out the calibration values read in InitRobot().
-						fprintf(stderr,"%d: x=%03.3f y=%03.3f z=%03.3f\n",j,RStatus.AccelsPCBInfo[EAPN]->AOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->AOffset[j][1],RStatus.AccelsPCBInfo[EAPN]->AOffset[j][2]);
+							//note that some samplecounts may not be exactly 1100- for example if accel[0] on EthAccel[0] reaches 1100 the while ends, the accel[0] on EthAccel[1] and [2] will have 1099 samples. So use SampleCount[i]-100
+							//offset is subtracted from sample, so if z=1.07, zoffset=0.07, so sample-=0.07
+							lAccel = &leth[i]->Accel[j];
+							//accel - determine offset values needed to make accel x,y,z = 0.0,0.0,1.0 respectively
+											//       unless the user has specified a pitch (x) and/or roll (z)
+							AvgSamp.x=SampleA[i][j].x / (SampleCount[i] - 100.0);
+							AvgSamp.y=SampleA[i][j].y / (SampleCount[i] - 100.0);
+							AvgSamp.z=SampleA[i][j].z / (SampleCount[i] - 100.0);
+							if (RStatus.AccelInfo[lAccel->NameNum].Calib.x!=0.0 || RStatus.AccelInfo[lAccel->NameNum].Calib.z!=0.0) {
+								lAccel->ACali[0] = AvgSamp.x-(RStatus.AccelInfo[lAccel->NameNum].Calib.z*PI*AvgSamp.z/180.0);  //accel x should = (Roll*PI/180)*z
+								lAccel->ACali[1] = AvgSamp.y+(RStatus.AccelInfo[lAccel->NameNum].Calib.x*PI*AvgSamp.z/180.0);  //accel y should = -(Pitch*PI/180)*z
+								lAccel->ACali[2] = 0.0;// Z is not calibrated since user gave pitch and roll
+							} else {
+								lAccel->ACali[0] = AvgSamp.x;  //accel x should = 0.0
+								lAccel->ACali[1] = AvgSamp.y;  //accel y should = 0.0
+								lAccel->ACali[2] = AvgSamp.z-1.0;  //accel z should = 1.0 
+							} //if (RStatus.AccelInfo[lAccel->NameNum].Calib.x!=0.0 ...
+							fprintf(stderr,"%d: x=%03.3f y=%03.3f z=%03.3f\n",j,lAccel->ACali[0], lAccel->ACali[1], lAccel->ACali[2]);
 
-						if (fptrA != 0) {
-							fprintf(fptrA, "%d: %03.3f %03.3f %03.3f\n",j,RStatus.AccelsPCBInfo[EAPN]->AOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->AOffset[j][1],RStatus.AccelsPCBInfo[EAPN]->AOffset[j][2]);
-						}
-					} //if ((1<<j) & AccelMask) { //2^j only for selected accels
-				} //for j
-			} //if (CalibratedPCB==0) {
+							if (fptrA != 0) {
+								fprintf(fptrA, "%d: %03.3f %03.3f %03.3f\n", j, lAccel->ACali[0], lAccel->ACali[1], lAccel->ACali[2]);
+							}
+
+							//update the earlier loaded values- in case different accels are updated later
+							RStatus.AccelsPCBInfo[EAPN]->AOffset[j][0]=lAccel->ACali[0];
+							RStatus.AccelsPCBInfo[EAPN]->AOffset[j][1]=lAccel->ACali[1];
+							RStatus.AccelsPCBInfo[EAPN]->AOffset[j][2]=lAccel->ACali[2];
+
+
+						} else { //if ((1<<j) & AccelMask) { //2^j only for selected accels selected for calibration
+							//Accel was not selected for calibration so just print out the calibration values read in InitRobot().
+							fprintf(stderr,"%d: x=%03.3f y=%03.3f z=%03.3f\n",j,RStatus.AccelsPCBInfo[EAPN]->AOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->AOffset[j][1],RStatus.AccelsPCBInfo[EAPN]->AOffset[j][2]);
+
+							if (fptrA != 0) {
+								fprintf(fptrA, "%d: %03.3f %03.3f %03.3f\n",j,RStatus.AccelsPCBInfo[EAPN]->AOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->AOffset[j][1],RStatus.AccelsPCBInfo[EAPN]->AOffset[j][2]);
+							}
+						} //if ((1<<j) & AccelMask) { //2^j only for selected accels
+					} //for j
+				} //if (CalibratedPCB==0) {
+			} //if (leth[i]->NumAccels>0) { //PCB has accels
 		} //for i
 
 		if (fptrA != 0) {
@@ -2526,70 +2567,91 @@ DWORD WINAPI Thread_AutoCalibrateAccelGyro(LPVOID lpParam)
 		}
 		fprintf(stderr,"\n\n%s:\n",FilenameG);
 
-
-		for(i=0;i<RStatus.NumAccelsPCBsExpected;i++) {
-			EAPN=EAPCBNum[i];
-			fprintf(stderr,"%s\n",RStatus.AccelsPCBInfo[EAPN]->Name);
-			if (fptrG != 0) {
-				fprintf(fptrG,"%s\n",RStatus.AccelsPCBInfo[EAPN]->Name);
+		//can be GAMTP not just EthAccels
+		for(i=0;i<NumPCBs;i++) { //for each PCB
+			leth[i] = Get_AccelsPCB_By_PCBNum(PCBNum[i]);
+			if (!leth[i]) {
+				fprintf(stderr,"Error: CalibrateAccelGyro(): Could not find EthAccel PCB with number=%d\n",PCBNum[i]);
+				return(0);
 			}
+			if (leth[i]->NumAccels>0) { //PCB has accels
 
-			//if this PCB did not have an accel that was calibrated, just print the accel.conf values
-			CalibratedPCB=0;
-			for(j=0;j<NumPCBs;j++) {
-				if (i+1==PCBNum[j]) {
-					CalibratedPCB=1;
-				} //if (i==PCBNum[j]) {
-			} //for j=0
+			//for(i=0;i<RStatus.NumEthAccelsPCBsExpected;i++) { //for each pcb
+				//EAPN=EAPCBNum[i];
+				EAPN=PCBNum[i];
+
+				fprintf(stderr,"%s\n",RStatus.AccelsPCBInfo[EAPN]->Name);
+				if (fptrG != 0) {
+					fprintf(fptrG,"%s\n",RStatus.AccelsPCBInfo[EAPN]->Name);
+				}
+
+				//if this PCB did not have an accel that was calibrated, just print the accel.conf values
+				CalibratedPCB=0;
+				for(j=0;j<NumPCBs;j++) {
+					if (j==EAPN) {
+						CalibratedPCB=1;  //needs to be calibrated
+					} //if (i==PCBNum[j]) {
+				} //for j=0
 
 
-			if (CalibratedPCB==0) {
-				for(j=0;j<3;j++) { //for each gyro on a single pcb
-					fprintf(stderr,"%d: x=%03.3f y=%03.3f z=%03.3f\n",j,RStatus.AccelsPCBInfo[EAPN]->GOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->GOffset[j][1],RStatus.AccelsPCBInfo[EAPN]->GOffset[j][2]);
-
-					if (fptrG != 0) {
-						fprintf(fptrG, "%d: %03.3f %03.3f %03.3f\n",j,RStatus.AccelsPCBInfo[EAPN]->GOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->GOffset[j][1],RStatus.AccelsPCBInfo[EAPN]->GOffset[j][2]);
+				if (CalibratedPCB==0) {
+					leth[i] = Get_AccelsPCB_By_PCBNum(PCBNum[i]);
+					if (!leth[i]) {
+						fprintf(stderr,"Error: CalibrateAccelGyro(): Could not find EthAccel PCB with number=%d\n",PCBNum[i]);
+						return(0);
 					}
-				} //for j
-			} else { //CalibratedPCB==0
-				//PCB has at least 1 accel that was calibrated
-
-
-				for(j=0;j<3;j++) { //for each accel on a single pcb
-
-					//because not all accelerometers on a single EthAccels PCB may be getting calibrated, 
-					//only output new values for those accels/gyros being calibrated, for the rest use the 
-					//calibration file values read in InitRobot().
-
-					if ((1<<j) & AccelMask) { //2^j only for selected accels
-
-						//note that some samplecounts may not be exactly 1100- for example if accel[0] on EthAccel[0] reaches 1100 the while ends, the accel[0] on EthAccel[1] and [2] will have 1099 samples. So use SampleCount[i]-100
-						//offset is subtracted from sample, so if z=1.07, zoffset=0.07, so sample-=0.07
-						lAccel = &leth[i]->Accel[j];
-						//gyro - determine offset values needed to make gyro x,y,z all = 0.0
-						lAccel->GCali[0] = SampleG[i][j].x / (SampleCount[i] - 100.0);
-						lAccel->GCali[1] = SampleG[i][j].y / (SampleCount[i] - 100.0);
-						lAccel->GCali[2] = SampleG[i][j].z / (SampleCount[i] - 100.0);
-						fprintf(stderr,"%d: x=%03.3f y=%03.3f z=%03.3f\n",j,lAccel->GCali[0], lAccel->GCali[1], lAccel->GCali[2]);
-
-						if (fptrG != 0) {
-							fprintf(fptrG, "%d: %03.3f %03.3f %03.3f\n", j, lAccel->GCali[0], lAccel->GCali[1], lAccel->GCali[2]);
-						}
-						//update the RStatus.AccelsPCBInfo calibration values- in case different accels are updated later
-						RStatus.AccelsPCBInfo[EAPN]->GOffset[j][0]=lAccel->GCali[0];
-						RStatus.AccelsPCBInfo[EAPN]->GOffset[j][1]=lAccel->GCali[1];
-						RStatus.AccelsPCBInfo[EAPN]->GOffset[j][2]=lAccel->GCali[2];
-
-					} else { //if ((1<<j) & AccelMask) { //2^j only for selected accels
-						//Accel/Gyro was not selected for calibration so just print out the calibration values read in InitRobot().
+					for(j=0;j<leth[i]->NumAccels;j++) {  //for each Accel on PCB
+					//for(j=0;j<3;j++) { //for each gyro on a single pcb
 						fprintf(stderr,"%d: x=%03.3f y=%03.3f z=%03.3f\n",j,RStatus.AccelsPCBInfo[EAPN]->GOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->GOffset[j][1],RStatus.AccelsPCBInfo[EAPN]->GOffset[j][2]);
 
 						if (fptrG != 0) {
 							fprintf(fptrG, "%d: %03.3f %03.3f %03.3f\n",j,RStatus.AccelsPCBInfo[EAPN]->GOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->GOffset[j][1],RStatus.AccelsPCBInfo[EAPN]->GOffset[j][2]);
 						}
-					} //if ((1<<j) & AccelMask) { //2^j only for selected accels
-				} //for j
-			} //if (CalibratedPCB==0) { PCB had one or more gyros that were calibrated
+					} //for j
+				} else { //CalibratedPCB==0
+					//PCB has at least 1 accel that was calibrated
+					leth[i] = Get_AccelsPCB_By_PCBNum(PCBNum[i]);
+					if (!leth[i]) {
+						fprintf(stderr,"Error: CalibrateAccelGyro(): Could not find EthAccel PCB with number=%d\n",PCBNum[i]);
+						return(0);
+					}
+					for(j=0;j<leth[i]->NumAccels;j++) {  //for each Accel on PCB
+					//for(j=0;j<3;j++) { //for each accel on a single pcb
+
+						//because not all accelerometers on a single EthAccels PCB may be getting calibrated, 
+						//only output new values for those accels/gyros being calibrated, for the rest use the 
+						//calibration file values read in InitRobot().
+
+						if ((1<<j) & AccelMask) { //2^j only for selected accels
+
+							//note that some samplecounts may not be exactly 1100- for example if accel[0] on EthAccel[0] reaches 1100 the while ends, the accel[0] on EthAccel[1] and [2] will have 1099 samples. So use SampleCount[i]-100
+							//offset is subtracted from sample, so if z=1.07, zoffset=0.07, so sample-=0.07
+							lAccel = &leth[i]->Accel[j];
+							//gyro - determine offset values needed to make gyro x,y,z all = 0.0
+							lAccel->GCali[0] = SampleG[i][j].x / (SampleCount[i] - 100.0);
+							lAccel->GCali[1] = SampleG[i][j].y / (SampleCount[i] - 100.0);
+							lAccel->GCali[2] = SampleG[i][j].z / (SampleCount[i] - 100.0);
+							fprintf(stderr,"%d: x=%03.3f y=%03.3f z=%03.3f\n",j,lAccel->GCali[0], lAccel->GCali[1], lAccel->GCali[2]);
+
+							if (fptrG != 0) {
+								fprintf(fptrG, "%d: %03.3f %03.3f %03.3f\n", j, lAccel->GCali[0], lAccel->GCali[1], lAccel->GCali[2]);
+							}
+							//update the RStatus.AccelsPCBInfo calibration values- in case different accels are updated later
+							RStatus.AccelsPCBInfo[EAPN]->GOffset[j][0]=lAccel->GCali[0];
+							RStatus.AccelsPCBInfo[EAPN]->GOffset[j][1]=lAccel->GCali[1];
+							RStatus.AccelsPCBInfo[EAPN]->GOffset[j][2]=lAccel->GCali[2];
+
+						} else { //if ((1<<j) & AccelMask) { //2^j only for selected accels
+							//Accel/Gyro was not selected for calibration so just print out the calibration values read in InitRobot().
+							fprintf(stderr,"%d: x=%03.3f y=%03.3f z=%03.3f\n",j,RStatus.AccelsPCBInfo[EAPN]->GOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->GOffset[j][1],RStatus.AccelsPCBInfo[EAPN]->GOffset[j][2]);
+
+							if (fptrG != 0) {
+								fprintf(fptrG, "%d: %03.3f %03.3f %03.3f\n",j,RStatus.AccelsPCBInfo[EAPN]->GOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->GOffset[j][1],RStatus.AccelsPCBInfo[EAPN]->GOffset[j][2]);
+							}
+						} //if ((1<<j) & AccelMask) { //2^j only for selected accels
+					} //for j
+				} //if (CalibratedPCB==0) { PCB had one or more gyros that were calibrated
+			} //if (leth[i]->NumAccels>0) { //PCB has accels
 		} //for i
 
 		if (fptrG != 0) {
@@ -2600,26 +2662,37 @@ DWORD WINAPI Thread_AutoCalibrateAccelGyro(LPVOID lpParam)
 
 	//set Analog Sensor Max and Min
 	if (AccelAndOrGyro&4) {
-		//for each EthAccel
-		for(i=0;i<NumPCBs;i++) {
-			EAPN=EAPCBNum[i];
+		//can be GAMTP not just EthAccels
+		for(i=0;i<NumPCBs;i++) { //for each PCB
+			leth[i] = Get_AccelsPCB_By_PCBNum(PCBNum[i]);
+			if (!leth[i]) {
+				fprintf(stderr,"Error: CalibrateAccelGyro(): Could not find EthAccel PCB with number=%d\n",PCBNum[i]);
+				return(0);
+			}
+			if (leth[i]->NumAnalogSensors>0) { //PCB has analog sensors
+				EAPN=PCBNum[i];
+			//for each EthAccel
+	//		for(i=0;i<NumPCBs;i++) {
+				//EAPN=EAPCBNum[i];
 
 
-			//get the MAC_Connection this Detected PCB is part of 
-			lmac=Get_MAC_Connection_By_PCBNum(EAPN);
-			//lmac=Get_MAC_Connection_By_PCBNum(CaliFile[i].PCBNum);
-			//lmac=leth[i]->mac;
-			
-			if (!lmac) {
-				//fprintf(stderr,"Error: Could not get MAC_Connection for PCB %s\n",ROBOT_PCB_NAMES[CaliFile[i].PCBNum]);
-				fprintf(stderr,"Error: Could not get MAC_Connection for PCB %s\n",RStatus.AccelsPCBInfo[EAPN]->Name);
-			} 
-			for (j=0;j<RStatus.AccelsPCBInfo[EAPN]->NumAnalogSensors;j++) { //for each touch sensor (start at 0)
-				if (lmac) {
-					SetAnalogSensorsMinAndMax(lmac,(unsigned int)1<<j,RStatus.AccelsPCBInfo[EAPN]->AnOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->AnOffset[j][1]);		
-				} //if (lmac) {
-			} //for j
-			fprintf(stderr,"Set Analog Sensors Min and Max for PCB %s\n",RStatus.AccelsPCBInfo[EAPN]->Name);
+				//get the MAC_Connection this Detected PCB is part of 
+				lmac=Get_MAC_Connection_By_PCBNum(EAPN);
+				//lmac=Get_MAC_Connection_By_PCBNum(CaliFile[i].PCBNum);
+				//lmac=leth[i]->mac;
+				
+				if (!lmac) {
+					//fprintf(stderr,"Error: Could not get MAC_Connection for PCB %s\n",ROBOT_PCB_NAMES[CaliFile[i].PCBNum]);
+					fprintf(stderr,"Error: Could not get MAC_Connection for PCB %s\n",RStatus.AccelsPCBInfo[EAPN]->Name);
+				} 
+				for (j=0;j<RStatus.AccelsPCBInfo[EAPN]->NumAnalogSensors;j++) { //for each touch sensor (start at 0)
+					if (lmac) {
+						SetAnalogSensorsMinAndMax(lmac,(unsigned int)1<<j,RStatus.AccelsPCBInfo[EAPN]->AnOffset[j][0],RStatus.AccelsPCBInfo[EAPN]->AnOffset[j][1]);		
+					} //if (lmac) {
+				} //for j
+				fprintf(stderr,"Set Analog Sensors Min and Max for PCB %s\n",RStatus.AccelsPCBInfo[EAPN]->Name);
+			} //if (leth[i]->NumAnalogSensors>0) { //PCB has analog sensors
+
 		} //for i
 	} //if (AccelAndOrGyro&4) {
 

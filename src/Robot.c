@@ -8209,7 +8209,7 @@ DWORD WINAPI Thread_ListenToRobot(LPVOID lpParam)
 											//set any calibration offsets that were read earlier from accel.conf, gyro.conf or mag.conf
 											//get and set the EthPCBInfo index (PCBNum)
 
-											AccelsPCBNameNum=GetAccelsPCBNameNum(lmacnew->pcb.Name);
+											AccelsPCBNameNum=GetAccelsPCBNameNum(lmacnew->pcb.Name);											
 											iAccelsPCB->AccelsPCBNum=AccelsPCBNameNum;
 											NumAccels=RStatus.AccelsPCBInfo[AccelsPCBNameNum]->NumAccels;
 											iAccelsPCB->NumAccels=NumAccels;  //set Number of active accels on detected PCB struct
@@ -8226,7 +8226,9 @@ DWORD WINAPI Thread_ListenToRobot(LPVOID lpParam)
 
 													//copy the Accel Name number
 													//AccelNameNum=(EthPCBNameNum)*3+i;
-													AccelNameNum=GetAccelNameNum(RStatus.AccelsPCBInfo[AccelsPCBNameNum]->Name);
+													//AccelNameNum=GetAccelNameNum(RStatus.AccelsPCBInfo[AccelsPCBNameNum]->Name);
+													//Get Accel NameNum (number of accelerometer on the list of all accelerometers over multiple PCBs- all accelerometers have a unique index number)
+													AccelNameNum=GetAccelNameNum_By_PCB(AccelsPCBNameNum,i);
 													
 													iAccelsPCB->Accel[i].NameNum=AccelNameNum;  //used to match accel name
 													if (RStatus.AccelInfo[AccelNameNum].flags&ACCEL_INFO_TABLE_SWAP_Y_AND_MINUS_Z) {
@@ -8497,6 +8499,10 @@ int ProcessMotorData(MAC_Connection *lmac,unsigned char *recvbuf,int NumBytes,ch
 
 	//output data to Motor00 textbox depending on which motor of 6 (0,1,2,3,4,5)
 
+
+/*
+
+	//takes up CPU time and GPU time
 	//determine if the data from this PCB is the same as the PCB selected in the Motors window
 	//perhaps a faster way would be just to set some global flag to determine which PCB is selected
 	tc=GetFTControl("txtMotorDestIPAddressStr");									
@@ -8513,6 +8519,7 @@ int ProcessMotorData(MAC_Connection *lmac,unsigned char *recvbuf,int NumBytes,ch
 			} //if (tc!=0) {
 		} //if (!strcmp(tc->text,lmac->DestIPAddressStr)) {
 	} //if (tc!=0)
+*/
 
 	return(0);
 } //int ProcessMotorData(MAC_Connection *lmac, char *recvbuf,int NumBytes) 
@@ -10100,7 +10107,7 @@ int ProcessPowerData(MAC_Connection *lmac,unsigned char *recvbuf,int NumBytes,ch
 		i+=2;//i+=3;
 	} //while
 
-
+/*
 	//print the raw data string to the "Data received" box
 	tc=GetFTControl("txtGetPowerData");									
 	if (tc!=0) {
@@ -10109,7 +10116,7 @@ int ProcessPowerData(MAC_Connection *lmac,unsigned char *recvbuf,int NumBytes,ch
 	} else {
 		GotError=1;
 	}//if tc==0
-
+*/
 
 	return(!GotError);
 } //int ProcessPowerData(MAC_Connection *lmac, char *recvbuf,int NumBytes) 
